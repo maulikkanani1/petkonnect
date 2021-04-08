@@ -1,0 +1,69 @@
+@import "./colors.scss";
+
+.login_contanier {
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  .nav {
+    .nav-link.active {
+      color: $primary;
+      border-bottom: 3px solid;
+      border-radius: 3px;
+    }
+  }
+
+  .btn-primary {
+    background-color: $seondaryPrimary;
+    border-color: $seondaryPrimary;
+    color: #fff;
+  }
+
+  .login_img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .form_signin {
+    text-align: center;
+
+    .card {
+      box-shadow: 0px 5px 6px #0000001a;
+      border: 1px solid #70707017;
+      background-color: #fcfcfc;
+      border-radius: 4px;
+    }
+
+    .form-control {
+      position: relative;
+      box-sizing: border-box;
+      height: auto;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .checkbox {
+      font-weight: 400;
+    }
+
+    .form-control:focus {
+      z-index: 2;
+    }
+
+    input[type="email"] {
+      margin-bottom: 10px;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    input[type="password"] {
+      margin-bottom: 10px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+
+  .forgot_link {
+    color: $seondaryPrimary;
+  }
+}

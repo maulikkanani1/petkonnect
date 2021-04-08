@@ -1,0 +1,75 @@
+@import "./colors.scss";
+
+.main_silder_contanier {
+  height: 450px;
+  .awssld__bullets {
+    z-index: 999;
+    bottom: 10px;
+  }
+  .awssld__wrapper {
+    height: 415px;
+  }
+}
+.awssld {
+  --control-bullet-color: #fff;
+  --control-bullet-active-color: $primary;
+}
+.store_card {
+  border: 0px;
+  img {
+    height: 150px;
+    max-width: 100%;
+    object-fit: cover;
+  }
+  .offer_text {
+    color: $primary;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+}
+.category_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .category_card {
+    margin-right: 1.5rem;
+    img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+    }
+    .category_text {
+      color: #333333;
+      text-align: center;
+    }
+  }
+}
+.brand_bg {
+  background-color: #ffbc4e21;
+}
+.brand_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .brand_card {
+    margin-right: 3rem;
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .brand_text {
+      color: $dark;
+      text-align: center;
+      margin-top: 1rem;
+    }
+  }
+}
+.products_container {
+  .nav-pills .nav-link.active,
+  .nav-pills .show > .nav-link {
+    color: #ffffff;
+    background-color: $seondaryPrimary;
+  }
+}
