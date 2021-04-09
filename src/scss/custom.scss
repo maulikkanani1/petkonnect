@@ -4,12 +4,37 @@ $theme-colors: (
   "primary": $primary,
   "danger": $danger,
   "dark": $dark,
+  "secondary": $seondaryPrimary,
 );
 
 @import "~bootstrap/scss/bootstrap.scss";
 a {
   color: $dark;
 }
+h5 {
+  color: #333333;
+}
+.card {
+  box-shadow: 2px 2px 6px #00000014;
+  border: 1px solid #ededed;
+  border-radius: 4px;
+  background: #ffffff;
+}
+.main_silder_contanier {
+  height: 450px;
+  .awssld__bullets {
+    z-index: 999;
+    bottom: 10px;
+  }
+  .awssld__wrapper {
+    height: 415px;
+  }
+}
+.awssld {
+  --control-bullet-color: #fff;
+  --control-bullet-active-color: #ff801e;
+}
 
 // custom css
 @import "./dashboard.scss";
+@import "./product.scss";

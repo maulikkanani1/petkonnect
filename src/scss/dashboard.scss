@@ -1,19 +1,5 @@
 @import "./colors.scss";
 
-.main_silder_contanier {
-  height: 450px;
-  .awssld__bullets {
-    z-index: 999;
-    bottom: 10px;
-  }
-  .awssld__wrapper {
-    height: 415px;
-  }
-}
-.awssld {
-  --control-bullet-color: #fff;
-  --control-bullet-active-color: $primary;
-}
 .store_card {
   border: 0px;
   img {
@@ -36,7 +22,8 @@
     img {
       width: 200px;
       height: 200px;
-      object-fit: cover;
+      object-fit: none;
+      border-radius: 8px;
     }
     .category_text {
       color: #333333;
@@ -57,7 +44,7 @@
       width: 150px;
       height: 150px;
       border-radius: 50%;
-      object-fit: cover;
+      object-fit: none;
     }
     .brand_text {
       color: $dark;

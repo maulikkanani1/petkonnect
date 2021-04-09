@@ -1,0 +1,45 @@
+@import "./colors.scss";
+.product_card {
+  border-radius: 7px;
+  background: #ffffff;
+  .product-btns {
+    position: absolute;
+    transition: transform ease-out 0.3s;
+    right: 8px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    i {
+      color: $seondaryPrimary;
+      margin-top: 0.8rem;
+    }
+  }
+  img {
+    height: 150px;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .amount {
+    color: $primary;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3pt;
+    font-size: 24px;
+  }
+  .amount + small {
+    font-size: 8px;
+  }
+  &:hover {
+    .product-btns {
+      opacity: 1;
+    }
+  }
+}
+.product-menu {
+  .card-header {
+    background-color: #ffbc4e40;
+    border: 0px;
+    border-left: 5px solid $seondaryPrimary;
+  }
+}

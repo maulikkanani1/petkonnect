@@ -50,7 +50,7 @@ const DashBoard = () => {
 
   useEffect(() => {
     GetallStores().then(({ data }) => {
-      setStores(data);
+      setStores(data.vendors);
     });
   }, []);
   return (
@@ -58,6 +58,7 @@ const DashBoard = () => {
       <Header />
       <Slider />
       <Container>
+        {/* shob by category */}
         <h5 className="text-primary text-center mt-5">Shop By Category</h5>
         <div className="row mt-5">
           <div className="col-12 category_container">
@@ -66,12 +67,20 @@ const DashBoard = () => {
             ))}
           </div>
         </div>
+
+        {/* Shop Recommended for You */}
         <h5 className="text-primary text-center mt-5">
           Shop Recommended for You
         </h5>
-        <StoreCard stores={stores.vendors} />
+        <div className="row mt-5">
+          {stores.map((store, i) => (
+            <StoreCard store={store} />
+          ))}
+        </div>
       </Container>
-      <div className="brand_bg p-2">
+
+      {/* Best Selling Brands */}
+      <div className="brand_bg p-2 mt-5">
         <h5 className="text-primary text-center mt-5">Best Selling Brands</h5>
         <div className="row mt-5">
           <div className="col-12 brand_container">
@@ -81,8 +90,9 @@ const DashBoard = () => {
           </div>
         </div>
       </div>
+
       <Container>
-        <Products stores={stores.vendors} />
+        <Products stores={stores} />
       </Container>
     </div>
   );

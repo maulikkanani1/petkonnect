@@ -31,3 +31,5 @@ export const getLoginDetails = () => {
 export const venderLogin = (data) => axios.post(`${MAIN_API}/vendor/login`, data);
 
 export const GetallStores = () => axios.get(`${MAIN_API}/vendor/get_stores`);
+
+export const GetAllProduct = () => axios.get(`${MAIN_API}/vendor/get_vendor_store`);

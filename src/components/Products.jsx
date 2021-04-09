@@ -21,7 +21,11 @@ const Products = ({ stores }) => {
           <Nav.Link eventKey="link-2">Top Selling</Nav.Link>
         </Nav.Item>
       </Nav>
-      <StoreCard stores={stores} />
+      <div className="row mt-5 mb-5">
+        {stores.map((store, i) => (
+          <StoreCard store={store} />
+        ))}
+      </div>
     </div>
   );
 };
