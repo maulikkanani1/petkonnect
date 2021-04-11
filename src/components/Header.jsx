@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  Container,
-  Navbar,
-  Nav,
-  Form,
-  NavDropdown,
-  Button,
-  FormControl,
-  InputGroup,
-} from "react-bootstrap";
+import { Container, Navbar, Nav, Form, NavDropdown, Button, FormControl, InputGroup } from "react-bootstrap";
 
 const Header = () => {
   return (
@@ -20,19 +11,15 @@ const Header = () => {
             <Nav.Link href="#home">24 * 7 Support</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Navbar className="bg-light justify-content-between">
+      <Navbar className="bg-white justify-content-between">
         <div>
           <Navbar.Brand>
             <img src="./../../img/logo.png" />

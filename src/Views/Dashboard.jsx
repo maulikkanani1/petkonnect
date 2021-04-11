@@ -69,9 +69,7 @@ const DashBoard = () => {
         </div>
 
         {/* Shop Recommended for You */}
-        <h5 className="text-primary text-center mt-5">
-          Shop Recommended for You
-        </h5>
+        <h5 className="text-primary text-center mt-5">Shop Recommended for You</h5>
         <div className="row mt-5">
           {stores.map((store, i) => (
             <StoreCard store={store} />
@@ -80,9 +78,9 @@ const DashBoard = () => {
       </Container>
 
       {/* Best Selling Brands */}
-      <div className="brand_bg p-2 mt-5">
+      <div className="brand_bg p-2 mt-5 ">
         <h5 className="text-primary text-center mt-5">Best Selling Brands</h5>
-        <div className="row mt-5">
+        <div className="row mt-5 mx-0">
           <div className="col-12 brand_container">
             {brands.map((brand) => (
               <BrandCard brand={brand} />

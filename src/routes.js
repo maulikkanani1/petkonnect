@@ -1,6 +1,6 @@
 import Dashboard from "./Views/Dashboard";
 import Store from "./Views/Store";
-
+import ProductDetail from "./Views/ProductDetail";
 
 const Routes = [
   {
@@ -11,6 +11,11 @@ const Routes = [
   {
     path: "/store",
     component: Store,
+    role: "store",
+  },
+  {
+    path: "/ProductDetail",
+    component: ProductDetail,
     role: "store",
   },
 ];

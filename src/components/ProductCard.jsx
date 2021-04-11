@@ -1,7 +1,10 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onClick }) => {
+  const history = useHistory();
+
   return (
     <div className="col-lg-4 col-md-4 col-sm-12" key={product.id}>
       <Card className="w-100 product_card">
@@ -13,9 +16,9 @@ const ProductCard = ({ product }) => {
           <a href="">
             <i class="fas fa-heart"></i>
           </a>
-          <a href="">
+          <div onClick={() => history.push("ProductDetail", { data: product })}>
             <i class="fas fa-eye"></i>
-          </a>
+          </div>
         </div>
         <Card.Body>
           <h5>{product.productName}</h5>

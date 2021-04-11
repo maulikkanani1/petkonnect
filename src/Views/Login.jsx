@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { venderLogin } from "../ApiService";
 import { Container, Nav, Card } from "react-bootstrap";
@@ -23,6 +23,7 @@ const Login = () => {
       }
     });
   };
+
   return (
     <div>
       <div className="row login_contanier">
@@ -35,43 +36,36 @@ const Login = () => {
 
             <Card className="mt-4">
               <Card.Header className="bg-transparent border-0">
-                <Nav
-                  activeKey="/login"
-                  onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
-                >
+                {/* <Nav activeKey="/login" onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}>
                   <Nav.Item>
                     <Nav.Link href="/login">Login</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="link-1">Register</Nav.Link>
+                    <Nav.Link href="/login">Register</Nav.Link>
+                  </Nav.Item>
+                </Nav> */}
+                <Nav variant="pills" defaultActiveKey="/home">
+                  <Nav.Item>
+                    <Nav.Link as={Link} to="/">
+                      Active
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link as={Link} to="/">
+                      Option 2
+                    </Nav.Link>
                   </Nav.Item>
                 </Nav>
               </Card.Header>
               <Card.Body>
-                <p className="text-left mb-4">
-                  Use your credentials to login into account.
-                </p>
+                <p className="text-left mb-4">Use your credentials to login into account.</p>
                 <label className="sr-only">Email address</label>
-                <input
-                  type="email"
-                  name="email"
-                  className="form-control"
-                  placeholder="Email address"
-                  required
-                  autofocus
-                />
+                <input type="email" name="email" className="form-control" placeholder="Email address" required />
                 <label className="sr-only">Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  className="form-control"
-                  placeholder="Password"
-                  required
-                />
+                <input type="password" name="password" className="form-control" placeholder="Password" required />
                 <div className="checkbox text-left mb-3">
                   <label>
-                    <input type="checkbox" defaultValue="remember-me" />{" "}
-                    Remember me
+                    <input type="checkbox" defaultValue="remember-me" /> Remember me
                   </label>
                 </div>
                 <div className="text-right mb-3">
@@ -79,10 +73,7 @@ const Login = () => {
                     Forgot Password ?
                   </a>
                 </div>
-                <button
-                  className="btn btn-lg btn-primary btn-block"
-                  type="submit"
-                >
+                <button className="btn btn-lg btn-primary btn-block" type="submit">
                   Login
                 </button>
               </Card.Body>
