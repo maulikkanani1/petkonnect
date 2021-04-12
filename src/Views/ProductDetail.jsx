@@ -91,10 +91,13 @@ const ProductDetail = () => {
                   <small className="d-block mt-2">50% Discount | Free Delivery</small>
                   <div className="quantity_contanier mt-3">
                     <label className="mr-5 mb-0">Quantity</label>
-                    <i className="fas fa-plus-circle text-secondary mr-4" onClick={() => setQuantity(quantity + 1)}></i>
+                    <i
+                      className="fas fa-plus-circle cursor-pointer text-secondary mr-4"
+                      onClick={() => setQuantity(quantity + 1)}
+                    ></i>
                     <span className="quantity_text mr-4">{quantity}</span>
                     <i
-                      className="fas fa-minus-circle text-secondary"
+                      className="fas fa-minus-circle cursor-pointer text-secondary"
                       onClick={() => quantity > 0 && setQuantity(quantity - 1)}
                     ></i>
                   </div>

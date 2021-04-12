@@ -10,15 +10,20 @@ const ProductCard = ({ product, id }) => {
       <Card className="w-100 product_card">
         <Card.Img variant="top" src={product.productImage[0]} />
         <div className="product-btns">
-          <a href="">
+          <a
+            href="javascript:void(0)"
+            onClick={() => {
+              history.push("/checkout");
+            }}
+          >
             <i class="fas fa-shopping-cart"></i>
           </a>
-          <a href="">
+          <a href="javascript:void(0)">
             <i class="fas fa-heart"></i>
           </a>
-          <div onClick={() => history.push("/ProductDetail", { data: product, id })}>
+          <a href="javascript:void(0)" onClick={() => history.push("/ProductDetail", { data: product, id })}>
             <i class="fas fa-eye"></i>
-          </div>
+          </a>
         </div>
         <Card.Body>
           <h5>{product.productName}</h5>

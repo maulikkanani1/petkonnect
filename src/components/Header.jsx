@@ -1,7 +1,11 @@
 import React from "react";
 import { Container, Navbar, Nav, Form, NavDropdown, Button, FormControl, InputGroup } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import { logout } from "../ApiService";
 
 const Header = () => {
+  const history = useHistory();
+
   return (
     <Container>
       <Navbar bg="light" expand="lg">
@@ -10,11 +14,9 @@ const Header = () => {
           <Nav className="ml-auto">
             <Nav.Link href="#home">24 * 7 Support</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
+              <NavDropdown.Item href="#" onClick={() => logout()}>
+                Logout
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
@@ -43,9 +45,14 @@ const Header = () => {
           </Nav.Link>
         </div>
         <div className="d-flex">
-          <i class="fas fa-search text-primary mr-3"></i>
-          <i class="fas fa-shopping-cart text-primary mr-3"></i>
-          <i class="fas fa-bell text-primary"></i>
+          <i class="fas fa-search text-primary cursor-pointer mr-3"></i>
+          <i
+            class="fas fa-shopping-cart text-primary mr-3 cursor-pointer"
+            onClick={() => {
+              history.push("/checkout");
+            }}
+          ></i>
+          <i class="fas fa-bell cursor-pointer text-primary"></i>
         </div>
       </Navbar>
     </Container>

@@ -7,13 +7,13 @@ const StoreCard = ({ store }) => {
 
   return (
     <div className="col-lg-3 col-md-3 col-sm-12" key={store.id}>
-      <Card className="w-100 store_card" key={store.id}>
-        <div
-          onClick={() => history.push(`/store/${store.storeName}`, { vendorId: store.id })}
-          className="stretched-link"
-        >
-          <Card.Img variant="top" src={store.storeImage} />
-        </div>
+      <Card
+        className="w-100 store_card cursor-pointer"
+        onClick={() => history.push(`/store/${store.storeName}`, { vendorId: store.id })}
+        key={store.id}
+      >
+        <Card.Img variant="top" src={store.storeImage} />
+
         <Card.Body>
           <h5>{store.storeName}</h5>
           <div className="mb-2">

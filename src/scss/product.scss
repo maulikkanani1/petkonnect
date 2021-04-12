@@ -119,3 +119,11 @@
     }
   }
 }
+.mini_cart {
+  img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    box-shadow: 0px 2px 5px #00000017;
+  }
+}

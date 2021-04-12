@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { view_cart } from "../ApiService";
 
@@ -23,10 +23,11 @@ const CartSide = () => {
       name: "Kittens",
     },
   ];
+  const [cartDate, setCartDate] = useState([]);
 
   useEffect(() => {
     view_cart().then(({ data }) => {
-      console.log(data.cart);
+      setCartDate(data.cart);
     });
   }, []);
 
@@ -37,7 +38,32 @@ const CartSide = () => {
           <h5>Cart</h5>
         </Card.Header>
         <Card.Body>
-          <Card.Text>No Products in the Cart</Card.Text>
+          {useState.length ? (
+            cartDate.map((product) => {
+              const { productImage, productName, sellingPrice } = product.productID;
+              return (
+                <div className="d-flex w-100 justify-content-between align-items-center mb-3 mini_cart">
+                  <div>
+                    <img src={productImage[0]} />
+                  </div>
+                  <div className="w-80">
+                    <span className="product_name ml-3">{productName}</span>
+                    <div className="ml-3">
+                      <span className="mr-2">{product.quantity}</span>
+                      <i class="fas fa-times mr-2"></i>
+                      <i class="fas fa-rupee-sign  f-14"></i>
+                      {sellingPrice}
+                    </div>
+                  </div>
+                  <div>
+                    <i class="far fa-times-circle text-danger "></i>
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+            <Card.Text>No Products in the Cart</Card.Text>
+          )}
         </Card.Body>
       </Card>
       <Card className="mt-4">
