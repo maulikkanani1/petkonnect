@@ -80,7 +80,7 @@ const DashBoard = () => {
       {/* Best Selling Brands */}
       <div className="brand_bg p-2 mt-5 ">
         <h5 className="text-primary text-center mt-5">Best Selling Brands</h5>
-        <div className="row mt-5 mx-0">
+        <div className="row my-5 mx-0">
           <div className="col-12 brand_container">
             {brands.map((brand) => (
               <BrandCard brand={brand} />

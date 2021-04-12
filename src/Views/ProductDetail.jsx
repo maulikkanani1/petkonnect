@@ -1,31 +1,142 @@
 import React, { useEffect, useState } from "react";
-import { Container, Card } from "react-bootstrap";
+import { Container, Card, Button, Tab, Nav } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
+import { GetAllProduct } from "../ApiService";
 import Header from "./../components/Header.jsx";
-import Slider from "./../components/Slider.jsx";
 import CartSide from "../components/CartSide";
+import ProductCard from "../components/ProductCard";
 
 const Store = () => {
   const location = useLocation();
   const productData = location.state.data;
-  const { productImage, productDescription, sellingPrice } = productData;
-  console.log(productData);
+  const { productImage, productDescription, sellingPrice, productSubcategory, productName, rating } = productData;
+
+  const [products, setProducts] = useState([]);
+  useEffect(async () => {
+    GetAllProduct().then(({ data }) => {
+      setProducts(data.products);
+    });
+  }, []);
   return (
-    <div>
+    <div className="product_details">
       <Header />
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container d-flex  justify-content-center">
+          <div>
+            <h1 class="display-4 text-center">Product</h1>
+            <nav aria-label="breadcrumb ">
+              <ol class="breadcrumb bg-transparent">
+                <li class="breadcrumb-item ">
+                  <a className="text-primary" href="#">
+                    Home
+                  </a>
+                </li>
+                <li class="breadcrumb-item">
+                  <a className="text-primary" href="#">
+                    Store
+                  </a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  <a className="text-dark" href="#">
+                    Product
+                  </a>
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
       <Container>
         <div className="row mt-5 mb-5">
           <div className="col-lg-8">
-            <Card className="w-100 product_card">
-              <img src={productImage[0]} />
-              <h1>{productDescription}</h1>
-              <p>{sellingPrice}</p>
+            <Card className="w-100  ">
+              <Card.Body className="d-flex">
+                <div className="w-50">
+                  <img src={productImage[0]} className="product_img" />
+                  <h6>Offers Available</h6>
+                  <ul className="list pl-3">
+                    <li className="list_item">Special 50% Offer with ABC Bank Credit Card</li>
+                    <li className="list_item">Cashback 20% on the payment of Paytm</li>
+                    <li className="list_item">Free Coupon Voucher for purchase of 2 items</li>
+                  </ul>
+                </div>
+                <div className="product_info p-3 w-50">
+                  <h6 className="text-primary">{productSubcategory}</h6>
+                  <h5 className="text-dark font-weight-bold mt-2">{productName}</h5>
+                  {Array.from({ length: 5 }, (x, i) => {
+                    return i + 1 > rating ? (
+                      <i class="far fa-star text-secondary"></i>
+                    ) : (
+                      <i class="fas fa-star text-secondary"></i>
+                    );
+                  })}
+                  <h4 className="text-primary amount mt-3">
+                    <i class="fas fa-rupee-sign "></i>
+                    {sellingPrice}
+                  </h4>
+                  <small className="d-block mt-2">50% Discount | Free Delivery</small>
+                  <div className="quantity_contanier mt-3">
+                    <label className="mr-5 mb-0">Quantity</label>
+                    <i className="fas fa-plus-circle text-secondary mr-4"></i>
+                    <span className="quantity_text mr-4">2</span>
+                    <i className="fas fa-minus-circle text-secondary"></i>
+                  </div>
+                  <div className="total_contanier mt-4">
+                    <label className="mr-5 mb-0">Total</label>
+                    <h4 className="text-primary mb-0 total">
+                      <i class="fas fa-rupee-sign "></i>
+                      {sellingPrice}
+                    </h4>
+                  </div>
+                  <div className="d-flex w-100 mt-5">
+                    <Button className="w-50 mr-3" variant="outline-dark">
+                      Add to Cart
+                    </Button>
+
+                    <Button className="w-50" variant="secondary">
+                      Buy Now
+                    </Button>
+                  </div>
+                </div>
+              </Card.Body>
             </Card>
-            {/* <div className="row">
+
+            <Tab.Container id="left-tabs-example" defaultActiveKey="description">
+              <Card className="mt-3">
+                <Card.Header className="bg-transparent border-0">
+                  <Nav variant="tab">
+                    <Nav.Item>
+                      <Nav.Link eventKey="description">Description</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link eventKey="reviews">Reviews</Nav.Link>
+                    </Nav.Item>
+                  </Nav>
+                </Card.Header>
+                <Card.Body>
+                  <Tab.Content>
+                    <Tab.Pane eventKey="description">
+                      <h5>Product Information</h5>
+                      <label className="f-12 mb-0">Vendor :</label>
+                      <label className="f-12 font-weight-bold ml-2 mb-0">Wild Earth</label>
+                      <br />
+                      <label className="f-12">Food Type :</label>
+                      <label className="f-12 font-weight-bold ml-2  mb-0">Dry Food</label>
+                      <p>{productDescription}</p>
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="reviews">
+                      <h6>Reviews</h6>
+                    </Tab.Pane>
+                  </Tab.Content>
+                </Card.Body>
+              </Card>
+            </Tab.Container>
+            <h2 className="my-3">You may also like</h2>
+            <div className="row mb-4 mt-3">
               {products.map((product) => (
                 <ProductCard product={product} />
               ))}
-            </div> */}
+            </div>
           </div>
           <CartSide />
         </div>

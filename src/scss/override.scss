@@ -1,0 +1,61 @@
+// bootstrap
+a {
+  color: $dark;
+}
+h5 {
+  color: #333333;
+}
+@media (min-width: 1200px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl {
+    max-width: 1250px;
+  }
+}
+.btn-secondary,
+.btn-secondary:hover {
+  color: #ffffff;
+}
+.card {
+  box-shadow: 2px 2px 6px #00000014;
+  border: 1px solid #ededed;
+  border-radius: 4px;
+  background: #ffffff;
+}
+.jumbotron {
+  background-color: #ffbc4eab;
+  height: 227px;
+  .display-4 {
+    font-size: 55px;
+    font-weight: 500;
+  }
+  a {
+    font-size: 22px;
+  }
+  .breadcrumb-item + .breadcrumb-item::before {
+    margin-top: 8px;
+    color: #333333;
+    content: ">";
+  }
+}
+
+// others
+.main_silder_contanier {
+  height: 450px;
+  .awssld__bullets {
+    z-index: 999;
+    bottom: 10px;
+  }
+  .awssld__wrapper {
+    height: 415px;
+  }
+}
+.awssld {
+  --control-bullet-color: #fff;
+  --control-bullet-active-color: #ff801e;
+}
+.f-12 {
+  font-size: 12px;
+}

@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { venderLogin } from "../ApiService";
-import { Container, Nav, Card } from "react-bootstrap";
+import { Container, Nav, Card, Tab } from "react-bootstrap";
 import "./../scss/login.scss";
 
 const Login = () => {
@@ -26,58 +26,72 @@ const Login = () => {
 
   return (
     <div>
-      <div className="row login_contanier">
+      <div className="row login_contanier mx-0">
         <div className="col-lg-3 col-md-4 col-sm-12">
           <img className="login_img" src="./../../img/bg_img_login_1.png" />
         </div>
         <div className="col-lg-3 col-md-6 col-sm-12 ml-5">
           <form onSubmit={onSubmit} className="form_signin">
             <img className="mb-4" src="./../../img/logo.png" alt="" />
+            <Tab.Container id="left-tabs-example" defaultActiveKey="login">
+              <Card className="mt-4">
+                <Card.Header className="bg-transparent border-0">
+                  <Nav variant="tab">
+                    <Nav.Item>
+                      <Nav.Link eventKey="login">Login</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link eventKey="register">Register</Nav.Link>
+                    </Nav.Item>
+                  </Nav>
+                </Card.Header>
+                <Card.Body>
+                  <Tab.Content>
+                    <Tab.Pane eventKey="login">
+                      <p className="text-left mb-4">Use your credentials to login into account.</p>
+                      <label className="sr-only">Email address</label>
+                      <input type="email" name="email" className="form-control" placeholder="Email address" required />
+                      <label className="sr-only">Password</label>
+                      <input type="password" name="password" className="form-control" placeholder="Password" required />
+                      <div className="checkbox text-left mb-3">
+                        <label>
+                          <input type="checkbox" defaultValue="remember-me" /> Remember me
+                        </label>
+                      </div>
+                      <div className="text-right mb-3">
+                        <a className="forgot_link" href="#">
+                          Forgot Password ?
+                        </a>
+                      </div>
+                      <button className="btn btn-lg btn-primary btn-block" type="submit">
+                        Login
+                      </button>
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="register">
+                      <p className="text-left mb-4">Enter your information to setup a new account.</p>
 
-            <Card className="mt-4">
-              <Card.Header className="bg-transparent border-0">
-                {/* <Nav activeKey="/login" onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}>
-                  <Nav.Item>
-                    <Nav.Link href="/login">Login</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link href="/login">Register</Nav.Link>
-                  </Nav.Item>
-                </Nav> */}
-                <Nav variant="pills" defaultActiveKey="/home">
-                  <Nav.Item>
-                    <Nav.Link as={Link} to="/">
-                      Active
-                    </Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link as={Link} to="/">
-                      Option 2
-                    </Nav.Link>
-                  </Nav.Item>
-                </Nav>
-              </Card.Header>
-              <Card.Body>
-                <p className="text-left mb-4">Use your credentials to login into account.</p>
-                <label className="sr-only">Email address</label>
-                <input type="email" name="email" className="form-control" placeholder="Email address" required />
-                <label className="sr-only">Password</label>
-                <input type="password" name="password" className="form-control" placeholder="Password" required />
-                <div className="checkbox text-left mb-3">
-                  <label>
-                    <input type="checkbox" defaultValue="remember-me" /> Remember me
-                  </label>
-                </div>
-                <div className="text-right mb-3">
-                  <a className="forgot_link" href="#">
-                    Forgot Password ?
-                  </a>
-                </div>
-                <button className="btn btn-lg btn-primary btn-block" type="submit">
-                  Login
-                </button>
-              </Card.Body>
-            </Card>
+                      <label className="sr-only">Username</label>
+                      <input type="text" name="username" className="form-control" placeholder="Username" required />
+
+                      <label className="sr-only">Email address</label>
+                      <input type="email" name="email" className="form-control" placeholder="Email address" required />
+
+                      <label className="sr-only">Password</label>
+                      <input type="password" name="password" className="form-control" placeholder="Password" required />
+
+                      <button className="btn btn-lg btn-primary btn-block" type="submit">
+                        Register
+                      </button>
+                      <div className="text-right mb-3">
+                        <a className="forgot_link" href="#">
+                          or login within
+                        </a>
+                      </div>
+                    </Tab.Pane>
+                  </Tab.Content>
+                </Card.Body>
+              </Card>
+            </Tab.Container>
           </form>
         </div>
       </div>

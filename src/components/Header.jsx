@@ -14,7 +14,7 @@ const Header = () => {
               <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
@@ -26,19 +26,19 @@ const Header = () => {
           </Navbar.Brand>
         </div>
         <div className="d-flex">
-          <Nav.Link className="text-dark" href="#home">
+          <Nav.Link className="text-dark" href="/dashboard">
             Home
           </Nav.Link>
-          <Nav.Link className="text-dark" href="#home">
+          <Nav.Link className="text-dark" href="#">
             Feed
           </Nav.Link>
-          <Nav.Link className="text-dark" href="#home">
+          <Nav.Link className="text-dark" href="#">
             Store
           </Nav.Link>
-          <Nav.Link className="text-dark" href="#home">
+          <Nav.Link className="text-dark" href="#">
             Services
           </Nav.Link>
-          <Nav.Link className="text-dark" href="#home">
+          <Nav.Link className="text-dark" href="#">
             SOS
           </Nav.Link>
         </div>

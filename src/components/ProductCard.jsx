@@ -6,7 +6,7 @@ const ProductCard = ({ product, onClick }) => {
   const history = useHistory();
 
   return (
-    <div className="col-lg-4 col-md-4 col-sm-12" key={product.id}>
+    <div className="col-lg-4 col-md-4 col-sm-12 mb-3" key={product.id}>
       <Card className="w-100 product_card">
         <Card.Img variant="top" src={product.productImage[0]} />
         <div className="product-btns">
