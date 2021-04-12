@@ -1,22 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { Container, Card, Button, Tab, Nav } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import { GetAllProduct } from "../ApiService";
+import { add_to_cart, GetVendorProduct } from "../ApiService";
 import Header from "./../components/Header.jsx";
 import CartSide from "../components/CartSide";
 import ProductCard from "../components/ProductCard";
 
-const Store = () => {
+const ProductDetail = () => {
   const location = useLocation();
   const productData = location.state.data;
-  const { productImage, productDescription, sellingPrice, productSubcategory, productName, rating } = productData;
+  const vendorId = location.state.id;
+
+  const { productImage, productDescription, sellingPrice, productSubcategory, productName, rating, id } = productData;
 
   const [products, setProducts] = useState([]);
-  useEffect(async () => {
-    GetAllProduct().then(({ data }) => {
-      setProducts(data.products);
+  const [quantity, setQuantity] = useState(0);
+
+  useEffect(() => {
+    if (vendorId) {
+      GetVendorProduct(vendorId).then(({ data }) => {
+        setProducts(data.products);
+      });
+    }
+  }, [vendorId]);
+
+  const addtoCart = () => {
+    add_to_cart({
+      productID: id,
+      vendorID: vendorId,
+      quantity: quantity,
     });
-  }, []);
+  };
   return (
     <div className="product_details">
       <Header />
@@ -77,9 +91,12 @@ const Store = () => {
                   <small className="d-block mt-2">50% Discount | Free Delivery</small>
                   <div className="quantity_contanier mt-3">
                     <label className="mr-5 mb-0">Quantity</label>
-                    <i className="fas fa-plus-circle text-secondary mr-4"></i>
-                    <span className="quantity_text mr-4">2</span>
-                    <i className="fas fa-minus-circle text-secondary"></i>
+                    <i className="fas fa-plus-circle text-secondary mr-4" onClick={() => setQuantity(quantity + 1)}></i>
+                    <span className="quantity_text mr-4">{quantity}</span>
+                    <i
+                      className="fas fa-minus-circle text-secondary"
+                      onClick={() => quantity > 0 && setQuantity(quantity - 1)}
+                    ></i>
                   </div>
                   <div className="total_contanier mt-4">
                     <label className="mr-5 mb-0">Total</label>
@@ -89,7 +106,7 @@ const Store = () => {
                     </h4>
                   </div>
                   <div className="d-flex w-100 mt-5">
-                    <Button className="w-50 mr-3" variant="outline-dark">
+                    <Button className="w-50 mr-3" onClick={addtoCart} variant="outline-dark">
                       Add to Cart
                     </Button>
 
@@ -134,7 +151,7 @@ const Store = () => {
             <h2 className="my-3">You may also like</h2>
             <div className="row mb-4 mt-3">
               {products.map((product) => (
-                <ProductCard product={product} />
+                <ProductCard product={product} id={vendorId} />
               ))}
             </div>
           </div>
@@ -145,4 +162,4 @@ const Store = () => {
   );
 };
 
-export default Store;
+export default ProductDetail;

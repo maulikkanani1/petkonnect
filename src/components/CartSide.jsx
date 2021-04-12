@@ -1,4 +1,6 @@
-import { Button, Card } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Card } from "react-bootstrap";
+import { view_cart } from "../ApiService";
 
 const CartSide = () => {
   const productCategory = [
@@ -21,6 +23,12 @@ const CartSide = () => {
       name: "Kittens",
     },
   ];
+
+  useEffect(() => {
+    view_cart().then(({ data }) => {
+      console.log(data.cart);
+    });
+  }, []);
 
   return (
     <div className="col-lg-4 product-menu">

@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Container, Card, Button, Table } from "react-bootstrap";
+import { view_cart } from "../ApiService";
+
 import Header from "../components/Header.jsx";
 import "./../scss/cart.scss";
 
 const Cart = () => {
+  useEffect(() => {
+    view_cart().then(({ data }) => {
+      console.log(data.cart);
+    });
+  }, []);
+
   return (
     <div className="product_details">
       <Header />

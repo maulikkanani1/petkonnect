@@ -29,8 +29,11 @@ export const getLoginDetails = () => {
   return decoded;
 };
 
-export const venderLogin = (data) => axios.post(`${MAIN_API}/vendor/login`, data);
+export const userLogin = (data) => axios.post(`${MAIN_API}/user/login`, data);
 
 export const GetallStores = () => axios.get(`${MAIN_API}/vendor/get_stores`);
 
-export const GetAllProduct = () => axios.get(`${MAIN_API}/vendor/get_vendor_store`);
+export const GetVendorProduct = (vendorID) => axios.get(`${MAIN_API}/vendor/get_vendor_store/?vendorID=${vendorID}`);
+
+export const add_to_cart = (data) => axios.put(`${MAIN_API}/user/add_to_cart`, data);
+export const view_cart = () => axios.get(`${MAIN_API}/user/view_cart`);

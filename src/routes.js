@@ -1,28 +1,24 @@
 import Dashboard from "./Views/Dashboard";
 import Store from "./Views/Store";
 import ProductDetail from "./Views/ProductDetail";
-import Cart from "./Views/Cart";
+import Checkout from "./Views/Checkout";
 
 const Routes = [
   {
     path: "/dashboard",
     component: Dashboard,
-    role: "store",
   },
   {
-    path: "/store",
+    path: "/store/:storeName",
     component: Store,
-    role: "store",
   },
   {
     path: "/ProductDetail",
     component: ProductDetail,
-    role: "store",
   },
   {
-    path: "/cart",
-    component: Cart,
-    role: "store",
+    path: "/Checkout",
+    component: Checkout,
   },
 ];
 
