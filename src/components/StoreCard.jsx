@@ -19,9 +19,9 @@ const StoreCard = ({ store }) => {
           <div className="mb-2">
             {Array.from({ length: 5 }, (x, i) => {
               return i + 1 > store.storeRating ? (
-                <i class="far fa-star text-primary"></i>
+                <i className="far fa-star text-primary"></i>
               ) : (
-                <i class="fas fa-star text-primary"></i>
+                <i className="fas fa-star text-primary"></i>
               );
             })}
           </div>

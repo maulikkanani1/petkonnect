@@ -16,13 +16,13 @@ const ProductCard = ({ product, id }) => {
               history.push("/checkout");
             }}
           >
-            <i class="fas fa-shopping-cart"></i>
+            <i className="fas fa-shopping-cart"></i>
           </a>
           <a href="javascript:void(0)">
-            <i class="fas fa-heart"></i>
+            <i className="fas fa-heart"></i>
           </a>
           <a href="javascript:void(0)" onClick={() => history.push("/ProductDetail", { data: product, id })}>
-            <i class="fas fa-eye"></i>
+            <i className="fas fa-eye"></i>
           </a>
         </div>
         <Card.Body>
@@ -30,16 +30,16 @@ const ProductCard = ({ product, id }) => {
           <div className="mb-2">
             {Array.from({ length: 5 }, (x, i) => {
               return i + 1 > product.rating ? (
-                <i class="far fa-star text-secondary"></i>
+                <i className="far fa-star text-secondary"></i>
               ) : (
-                <i class="fas fa-star text-secondary"></i>
+                <i className="fas fa-star text-secondary"></i>
               );
             })}
           </div>
           <small className="text-muted">Brand : {product.productBrand}</small>
           <div>
             <small>
-              <i class="fas fa-rupee-sign text-primary mr-1"></i>
+              <i className="fas fa-rupee-sign text-primary mr-1"></i>
             </small>
             <span className="amount">{product.sellingPrice.toFixed(2)}</span>
             <small className="text-muted ml-2">50+ Delivery</small>

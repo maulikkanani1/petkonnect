@@ -37,3 +37,6 @@ export const GetVendorProduct = (vendorID) => axios.get(`${MAIN_API}/vendor/get_
 
 export const add_to_cart = (data) => axios.put(`${MAIN_API}/user/add_to_cart`, data);
 export const view_cart = () => axios.get(`${MAIN_API}/user/view_cart`);
+export const remove_card_item = (pid) => axios.post(`${MAIN_API}/user/remove_item`, { productID: pid });
+
+export const place_order = () => axios.post(`${MAIN_API}/user/confirm_order`);

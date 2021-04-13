@@ -5,6 +5,7 @@ import { add_to_cart, GetVendorProduct } from "../ApiService";
 import Header from "./../components/Header.jsx";
 import CartSide from "../components/CartSide";
 import ProductCard from "../components/ProductCard";
+import MyJumbotron from "../components/MyJumbotron";
 
 const ProductDetail = () => {
   const location = useLocation();
@@ -29,37 +30,18 @@ const ProductDetail = () => {
       productID: id,
       vendorID: vendorId,
       quantity: quantity,
+    }).then(() => {
+      window.location.reload();
     });
   };
   return (
     <div className="product_details">
       <Header />
-      <div class="jumbotron jumbotron-fluid">
-        <div class="container d-flex  justify-content-center">
-          <div>
-            <h1 class="display-4 text-center">Product</h1>
-            <nav aria-label="breadcrumb ">
-              <ol class="breadcrumb bg-transparent">
-                <li class="breadcrumb-item ">
-                  <a className="text-primary" href="#">
-                    Home
-                  </a>
-                </li>
-                <li class="breadcrumb-item">
-                  <a className="text-primary" href="#">
-                    Store
-                  </a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">
-                  <a className="text-dark" href="#">
-                    Product
-                  </a>
-                </li>
-              </ol>
-            </nav>
-          </div>
-        </div>
-      </div>
+
+      <MyJumbotron
+        title="Product"
+        route={[{ title: "Home" }, { title: "Store" }, { title: "Product", isActive: true }]}
+      />
       <Container>
         <div className="row mt-5 mb-5">
           <div className="col-lg-8">
@@ -79,13 +61,13 @@ const ProductDetail = () => {
                   <h5 className="text-dark font-weight-bold mt-2">{productName}</h5>
                   {Array.from({ length: 5 }, (x, i) => {
                     return i + 1 > rating ? (
-                      <i class="far fa-star text-secondary"></i>
+                      <i className="far fa-star text-secondary"></i>
                     ) : (
-                      <i class="fas fa-star text-secondary"></i>
+                      <i className="fas fa-star text-secondary"></i>
                     );
                   })}
                   <h4 className="text-primary amount mt-3">
-                    <i class="fas fa-rupee-sign "></i>
+                    <i className="fas fa-rupee-sign "></i>
                     {sellingPrice}
                   </h4>
                   <small className="d-block mt-2">50% Discount | Free Delivery</small>
@@ -104,7 +86,7 @@ const ProductDetail = () => {
                   <div className="total_contanier mt-4">
                     <label className="mr-5 mb-0">Total</label>
                     <h4 className="text-primary mb-0 total">
-                      <i class="fas fa-rupee-sign "></i>
+                      <i className="fas fa-rupee-sign "></i>
                       {sellingPrice}
                     </h4>
                   </div>

@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Container, Card, Button, Table, Form } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import { view_cart, place_order, remove_card_item } from "../ApiService";
 
-import Header from "../components/Header.jsx";
+import Header from "../components/Header";
 import MyJumbotron from "../components/MyJumbotron";
+
 import "./../scss/checkout.scss";
 
-const Cart = () => {
+const OrderDetails = () => {
   const [cartDate, setCartDate] = useState([]);
+  const history = useHistory();
   useEffect(() => {
     view_cart().then(({ data }) => {
       setCartDate(data.cart);
@@ -18,8 +21,13 @@ const Cart = () => {
     <div>
       <Header />
       <MyJumbotron
-        title="Your Cart"
-        route={[{ title: "Home" }, { title: "Store" }, { title: "Your Cart", isActive: true }]}
+        title="Order Details"
+        route={[
+          { title: "Home" },
+          { title: "Store" },
+          { title: "Your Cart" },
+          { title: "Order Details", isActive: true },
+        ]}
       />
       <Container>
         <Card>
@@ -67,20 +75,9 @@ const Cart = () => {
                 })}
               </tbody>
             </Table>
-            <div className="row">
-              <div className="col-lg-3 col-md-3">
-                <Form.Control type="text" placeholder="Enter Coupon Code" />
-              </div>
-              <div className="col-lg-3 col-md-3">
-                <Button variant="secondary">Apply Coupon</Button>
-              </div>
-            </div>
           </Card.Body>
         </Card>
         <Card className="mt-3 mb-5 cart_summary">
-          <Card.Header>
-            <h5 className="font-weight-bold">Cart Summary</h5>
-          </Card.Header>
           <Card.Body>
             <div className="row">
               <div className="col-md-6">
@@ -90,9 +87,6 @@ const Cart = () => {
                   </div>
                   <div className="col-md-6">
                     <span className="address">No.2, KK Road, T Nagar, Chennai 600026</span>
-                    <a className="mt-3 d-block text-primary" href="#">
-                      Change Address
-                    </a>
                   </div>
                 </div>
               </div>
@@ -113,8 +107,6 @@ const Cart = () => {
                 </div>
               </div>
             </div>
-          </Card.Body>
-          <Card.Footer>
             <div className="row">
               <div className="offset-6 col-md-6">
                 <div className="row">
@@ -128,23 +120,33 @@ const Cart = () => {
                   </div>
                 </div>
               </div>
-              <div className="d-flex w-100 mt-3 justify-content-center">
-                <Button className="cart_btn mr-3" variant="outline-dark" lg>
-                  Continue Shopping
-                </Button>
-
-                <Button
-                  className="cart_btn"
-                  onClick={() => {
-                    place_order().then(() => {
-                      window.location.reload();
-                    });
-                  }}
-                  variant="secondary"
-                >
-                  Checkout
-                </Button>
+            </div>
+          </Card.Body>
+          <Card.Footer>
+            <div className="row">
+              <div className="col-md-6">
+                <div className="row">
+                  <div className="col-md-6 ">
+                    <h5 className="font-weight-bold mb-3">Payment Type</h5>
+                  </div>
+                  <div className="col-md-4">
+                    <label className="text-gray mb-0">Debit Card</label>
+                    <label className="text-gray mb-0">**** **** **** 9890</label>
+                  </div>
+                </div>
               </div>
+            </div>
+            <div className="d-flex w-100 my-5 justify-content-center">
+              <Button
+                className="track_order_btn"
+                size="lg"
+                onClick={() => {
+                  history.push("/TrackOrder");
+                }}
+                variant="secondary"
+              >
+                Track Order
+              </Button>
             </div>
           </Card.Footer>
         </Card>
@@ -153,4 +155,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default OrderDetails;

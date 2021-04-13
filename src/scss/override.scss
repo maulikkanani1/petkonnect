@@ -5,15 +5,7 @@ a {
 h5 {
   color: #333333;
 }
-@media (min-width: 1200px) {
-  .container,
-  .container-sm,
-  .container-md,
-  .container-lg,
-  .container-xl {
-    max-width: 1250px;
-  }
-}
+
 .btn-secondary,
 .btn-secondary:hover {
   color: #ffffff;
@@ -56,7 +48,9 @@ h5 {
   --control-bullet-color: #fff;
   --control-bullet-active-color: #ff801e;
 }
-
+.text-gray {
+  color: #777777;
+}
 .cursor-pointer {
   cursor: pointer;
 }

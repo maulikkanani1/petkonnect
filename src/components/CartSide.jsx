@@ -50,13 +50,13 @@ const CartSide = () => {
                     <span className="product_name ml-3">{productName}</span>
                     <div className="ml-3">
                       <span className="mr-2">{product.quantity}</span>
-                      <i class="fas fa-times mr-2"></i>
-                      <i class="fas fa-rupee-sign  f-14"></i>
+                      <i className="fas fa-times mr-2"></i>
+                      <i className="fas fa-rupee-sign  f-14"></i>
                       {sellingPrice}
                     </div>
                   </div>
                   <div>
-                    <i class="far fa-times-circle text-danger "></i>
+                    <i className="far fa-times-circle text-danger "></i>
                   </div>
                 </div>
               );

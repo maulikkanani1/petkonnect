@@ -26,7 +26,7 @@ const Store = () => {
   }, [vendorId]);
 
   return (
-    <div>
+    <div className="product_listing_page">
       <Header />
       <Slider />
       <Container>

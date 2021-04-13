@@ -12,9 +12,12 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <Nav.Link href="#home">24 * 7 Support</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#" onClick={() => logout()}>
+            <Nav.Link href="javascript:void(0)">24 * 7 Support</Nav.Link>
+            <NavDropdown title="Hello Jasmine" id="basic-nav-dropdown">
+              <NavDropdown.Item href="javascript:void(0)" onClick={() => history.push("/OrderDetails")}>
+                Order Details
+              </NavDropdown.Item>
+              <NavDropdown.Item href="javascript:void(0)" onClick={() => logout()}>
                 Logout
               </NavDropdown.Item>
             </NavDropdown>
@@ -24,7 +27,7 @@ const Header = () => {
       <Navbar className="bg-white justify-content-between">
         <div>
           <Navbar.Brand>
-            <img src="./../../img/logo.png" />
+            <img src="./../../img/logo new.png" />
           </Navbar.Brand>
         </div>
         <div className="d-flex">
@@ -45,14 +48,14 @@ const Header = () => {
           </Nav.Link>
         </div>
         <div className="d-flex">
-          <i class="fas fa-search text-primary cursor-pointer mr-3"></i>
+          <i className="fas fa-search text-primary cursor-pointer mr-3"></i>
           <i
-            class="fas fa-shopping-cart text-primary mr-3 cursor-pointer"
+            className="fas fa-shopping-cart text-primary mr-3 cursor-pointer"
             onClick={() => {
               history.push("/checkout");
             }}
           ></i>
-          <i class="fas fa-bell cursor-pointer text-primary"></i>
+          <i className="fas fa-bell cursor-pointer text-primary"></i>
         </div>
       </Navbar>
     </Container>

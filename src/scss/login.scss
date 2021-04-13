@@ -5,6 +5,23 @@
   align-items: center;
   min-height: 100vh;
 
+  .login_main_img {
+    height: 100vh;
+    width: 100%;
+  }
+  .login_sec_div {
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    .heading {
+      color: #355f8e;
+      font-weight: bold;
+      font-size: 50px;
+    }
+  }
+
   .nav {
     .nav-link.active {
       color: $primary;
