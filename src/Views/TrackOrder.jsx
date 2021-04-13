@@ -27,7 +27,7 @@ const TrackOrder = () => {
               <h5>Track Order</h5>
               <h5 className="text-primary ">Order ID : 45465416</h5>
             </div>
-            <div className="p-3">
+            <div className="p-5">
               <TrackCard
                 icon="./../../icons/order_placed.svg"
                 title="Order Placed"
