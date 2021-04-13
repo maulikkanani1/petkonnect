@@ -19,7 +19,11 @@ const Cart = () => {
       <Header />
       <MyJumbotron
         title="Your Cart"
-        route={[{ title: "Home" }, { title: "Store" }, { title: "Your Cart", isActive: true }]}
+        route={[
+          { title: "Home", to: "/" },
+          { title: "Store", to: "/store" },
+          { title: "Your Cart", isActive: true },
+        ]}
       />
       <Container>
         <Card>
@@ -114,8 +118,8 @@ const Cart = () => {
               </div>
             </div>
           </Card.Body>
-          <Card.Footer>
-            <div className="row">
+          <Card.Footer className="bg-transparent">
+            <div className="row mb-3">
               <div className="offset-6 col-md-6">
                 <div className="row">
                   <div className="col-md-6 text-right">

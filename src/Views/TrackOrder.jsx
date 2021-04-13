@@ -13,9 +13,9 @@ const TrackOrder = () => {
       <MyJumbotron
         title="Track Order"
         route={[
-          { title: "Home" },
-          { title: "Store" },
-          { title: "Order Details" },
+          { title: "Home", to: "/" },
+          { title: "Store", to: "/store" },
+          { title: "Order Details", to: "/OrderDetails" },
           { title: "Track Order", isActive: true },
         ]}
       />

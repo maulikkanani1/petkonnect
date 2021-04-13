@@ -11,7 +11,7 @@ const Routes = [
     component: Dashboard,
   },
   {
-    path: "/store/:storeName",
+    path: "/store/:storeName?",
     component: Store,
   },
   {

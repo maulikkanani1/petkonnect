@@ -34,6 +34,8 @@ export const userLogin = (data) => axios.post(`${MAIN_API}/user/login`, data);
 export const GetallStores = () => axios.get(`${MAIN_API}/vendor/get_stores`);
 
 export const GetVendorProduct = (vendorID) => axios.get(`${MAIN_API}/vendor/get_vendor_store/?vendorID=${vendorID}`);
+export const GetAllVendorProduct = () => axios.get(`${MAIN_API}/vendor/get_stores`);
+
 
 export const add_to_cart = (data) => axios.put(`${MAIN_API}/user/add_to_cart`, data);
 export const view_cart = () => axios.get(`${MAIN_API}/user/view_cart`);

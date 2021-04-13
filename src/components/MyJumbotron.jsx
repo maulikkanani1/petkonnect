@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const MyJumbotron = ({ title, route }) => {
   return (
@@ -10,9 +11,12 @@ const MyJumbotron = ({ title, route }) => {
             <ul className="breadcrumb bg-transparent">
               {route.map((item) => (
                 <li className="breadcrumb-item ">
-                  <a className={item.isActive ? "text-dark" : "text-primary"} href="#">
+                  <Link
+                    className={item.isActive ? "text-dark" : "text-primary"}
+                    to={item.to ? item.to : "javascript:void(0)"}
+                  >
                     {item.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

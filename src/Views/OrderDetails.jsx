@@ -23,9 +23,9 @@ const OrderDetails = () => {
       <MyJumbotron
         title="Order Details"
         route={[
-          { title: "Home" },
-          { title: "Store" },
-          { title: "Your Cart" },
+          { title: "Home", to: "/" },
+          { title: "Store", to: "/store" },
+          { title: "Your Cart", to: "/checkout" },
           { title: "Order Details", isActive: true },
         ]}
       />
@@ -122,7 +122,7 @@ const OrderDetails = () => {
               </div>
             </div>
           </Card.Body>
-          <Card.Footer>
+          <Card.Footer className="bg-transparent">
             <div className="row">
               <div className="col-md-6">
                 <div className="row">
@@ -136,7 +136,7 @@ const OrderDetails = () => {
                 </div>
               </div>
             </div>
-            <div className="d-flex w-100 my-5 justify-content-center">
+            <div className="d-flex w-100 mt-5 mb-2 justify-content-center">
               <Button
                 className="track_order_btn"
                 size="lg"

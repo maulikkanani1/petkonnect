@@ -40,7 +40,11 @@ const ProductDetail = () => {
 
       <MyJumbotron
         title="Product"
-        route={[{ title: "Home" }, { title: "Store" }, { title: "Product", isActive: true }]}
+        route={[
+          { title: "Home", to: "/" },
+          { title: "Store", to: "/store" },
+          { title: "Product", isActive: true },
+        ]}
       />
       <Container>
         <div className="row mt-5 mb-5">

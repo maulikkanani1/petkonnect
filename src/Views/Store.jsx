@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { GetVendorProduct } from "../ApiService";
 import { Container } from "react-bootstrap";
+import { useHistory, useLocation, useParams } from "react-router-dom";
+
+import { GetVendorProduct, GetAllVendorProduct } from "../ApiService";
 import Header from "./../components/Header.jsx";
 import Slider from "./../components/Slider.jsx";
 import ProductCard from "./../components/ProductCard.jsx";
 import CartSide from "../components/CartSide";
-import { useHistory, useLocation, useParams } from "react-router-dom";
 
 const Store = () => {
   const location = useLocation();
@@ -21,7 +22,11 @@ const Store = () => {
         setProducts(data.products);
       });
     } else {
-      history.push(`/dashboard`);
+      GetAllVendorProduct().then(({ data }) => {
+        const productArr = [];
+        data.vendors.map((item) => item.products.map((innerItem) => productArr.push(innerItem)));
+        setProducts(productArr);
+      });
     }
   }, [vendorId]);
 
