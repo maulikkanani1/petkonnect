@@ -4,6 +4,7 @@ import ProductDetail from "./Views/ProductDetail";
 import Checkout from "./Views/Checkout";
 import TrackOrder from "./Views/TrackOrder";
 import OrderDetails from "./Views/OrderDetails";
+import Profile from "./Views/Profile";
 
 const Routes = [
   {
@@ -13,6 +14,10 @@ const Routes = [
   {
     path: "/store/:storeName?",
     component: Store,
+  },
+  {
+    path: "/profile",
+    component: Profile
   },
   {
     path: "/ProductDetail",

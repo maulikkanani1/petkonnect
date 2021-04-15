@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Navbar, Nav, Form, NavDropdown, Button, FormControl, InputGroup } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { logout } from "../ApiService";
 
 const Header = () => {
@@ -13,6 +14,7 @@ const Header = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
             <Nav.Link href="javascript:void(0)">24 * 7 Support</Nav.Link>
+            <Link to="/Profile"><img src={'./../../img/profile_img_2.png'} width="30px" className="pt-1" /></Link>
             <NavDropdown title="Hello Jasmine" id="basic-nav-dropdown">
               <NavDropdown.Item href="javascript:void(0)" onClick={() => history.push("/OrderDetails")}>
                 Order Details

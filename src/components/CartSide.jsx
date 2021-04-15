@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-import { view_cart } from "../ApiService";
+import { view_cart,remove_card_item } from "../ApiService";
 
 const CartSide = () => {
   const productCategory = [
@@ -30,6 +30,19 @@ const CartSide = () => {
       setCartDate(data.cart);
     });
   }, []);
+  const remove_item=(id)=>{
+    let item=[];
+    item.push(id);
+    console.log("id=========",id)
+    remove_card_item(item).then(()=>{
+      view_cart().then(({ data }) => {
+        setCartDate(data.cart);
+      });
+    }).catch((err)=>{
+      console.log(err)
+    })
+  }
+
 
   return (
     <div className="col-lg-4 product-menu">
@@ -56,7 +69,7 @@ const CartSide = () => {
                     </div>
                   </div>
                   <div>
-                    <i className="far fa-times-circle text-danger "></i>
+                    <i className="far fa-times-circle text-danger " onClick={() => remove_item(product['productID']['id'])}></i>
                   </div>
                 </div>
               );

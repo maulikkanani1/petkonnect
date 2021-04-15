@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="46" height="46" viewBox="0 0 46 46">
+  <defs>
+    <clipPath id="clip-add_post">
+      <rect width="46" height="46"/>
+    </clipPath>
+  </defs>
+  <g id="add_post" clip-path="url(#clip-add_post)">
+    <rect width="46" height="46" fill="rgba(255,255,255,0)"/>
+    <g id="noun_add_929467" transform="translate(1.715 1.607)">
+      <path id="Path_2112" data-name="Path 2112" d="M44.972,14.813a21.4,21.4,0,1,0,0,30.259A21.4,21.4,0,0,0,44.972,14.813ZM39.559,31.154a1.8,1.8,0,0,1-1.237.515h-6.7v6.7a1.76,1.76,0,0,1-1.753,1.753,1.738,1.738,0,0,1-1.753-1.753v-6.7h-6.7a1.753,1.753,0,0,1,0-3.505h6.7v-6.7a1.738,1.738,0,0,1,1.753-1.753h0a1.738,1.738,0,0,1,1.753,1.753v6.7h6.7a1.738,1.738,0,0,1,1.753,1.753A2.068,2.068,0,0,1,39.559,31.154Z" transform="translate(-8.45 -8.55)" fill="#ff801e"/>
+    </g>
+  </g>
+</svg>

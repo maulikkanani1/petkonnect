@@ -15,7 +15,7 @@ const ProductDetail = () => {
   const { productImage, productDescription, sellingPrice, productSubcategory, productName, rating, id } = productData;
 
   const [products, setProducts] = useState([]);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     if (vendorId) {
@@ -84,7 +84,7 @@ const ProductDetail = () => {
                     <span className="quantity_text mr-4">{quantity}</span>
                     <i
                       className="fas fa-minus-circle cursor-pointer text-secondary"
-                      onClick={() => quantity > 0 && setQuantity(quantity - 1)}
+                      onClick={() => quantity > 1 && setQuantity(quantity - 1)}
                     ></i>
                   </div>
                   <div className="total_contanier mt-4">

@@ -1,0 +1,135 @@
+@import "./colors.scss";
+
+.profile_border{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 2px 2px 6px #00000014;
+    border: 1px solid #EDEDED;
+    border-radius: 7px;
+    opacity: 1;
+    
+}
+
+.profile_name{
+    text-align: left;
+    font: normal normal 600 16px Poppins;
+    letter-spacing: 0px;
+    color: #333333;
+}
+
+.left-side-title{
+    text-align: center;
+    padding: 10px;
+    font: normal normal medium 22px/33px Poppins;
+    letter-spacing: 0px;
+    color: #333333;
+}
+
+.profile_side_images{
+    width:28px; 
+}
+
+.profile_image{
+    width:50%;
+}
+
+.profile_edit{
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width:20px;
+}
+
+.count{
+    text-align: center;
+    font: normal normal bold 25px Poppins;
+    letter-spacing: 0px;
+    color: #FF801E;
+    padding:0px 10px;
+}
+
+.count_title{
+    text-align: center;
+    font: normal normal 600 15px Poppins;
+    letter-spacing: 0px;
+    color: #333333;
+    padding:0px 10px;
+}
+
+.follow_button{
+    box-shadow: 0px 3px 5px #0000001A;
+    border: 2px solid #FF801E;
+    border-radius: 3px;
+}
+
+.name{
+    text-align: left;
+    font: normal normal medium 20px Poppins;
+    letter-spacing: 0px;
+    color: #333333;
+}
+.link{
+    text-align: left;
+    font: normal normal medium 20px Poppins;
+    letter-spacing: 0px;
+    color: #0DA9E7 !important;
+}
+
+.story_img{
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;box-shadow: 0px 1px 4px #00000029;
+  }
+  
+  .tab_text{
+  font: normal normal 600 18px Poppins;
+  letter-spacing: 0px;
+  color: #FF801E;
+  text-transform: capitalize;
+  margin-right:25px;
+  padding:10px;
+  }
+
+  .post_img{
+      width:inherit;
+      padding:10px 0px;
+  }
+
+
+  .suggested_profiles{
+    font: normal normal 600 18px Poppins;
+    letter-spacing: 0px;
+    color: #FF801E;
+    text-transform: capitalize;   
+  }
+
+  .suggested_profiles_img{
+
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;box-shadow: 0px 1px 4px #00000029;
+  }
+
+  .profile_texts{
+    text-align: left;
+    font: normal normal medium 600 8px Poppins;
+    letter-spacing: 0px;
+    color: #333333;
+    padding-left:10px;
+  }
+
+  .follow_text{
+    text-align: center;
+    font: normal normal medium 600 6px Poppins;
+    letter-spacing: 0px;
+    color: #FF801E;
+    opacity: 1;
+  }
+
+  .Explore{
+    box-shadow: 0px 3px 5px #0000001A;
+    border: 2px solid #FF801E;
+    border-radius: 3px;
+    opacity: 1;
+    text-align: center;
+  }

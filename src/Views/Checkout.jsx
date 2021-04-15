@@ -13,6 +13,18 @@ const Cart = () => {
       setCartDate(data.cart);
     });
   }, []);
+  const remove_item=(id)=>{
+    let item=[];
+    item.push(id);
+    console.log("id=========",id)
+    remove_card_item(item).then(()=>{
+      view_cart().then(({ data }) => {
+        setCartDate(data.cart);
+      });
+    }).catch((err)=>{
+      console.log(err)
+    })
+  }
 
   return (
     <div>
@@ -54,7 +66,7 @@ const Cart = () => {
                       </td>
                       <td>1 kg</td>
                       <td>
-                        <i className="fas fa-plus-circle text-secondary mr-4"></i>
+                        <i className="fas fa-plus-circle text-secondary mr-4" ></i>
                         <span className="mr-4">{product.quantity}</span>
                         <i className="fas fa-minus-circle text-secondary "></i>
                       </td>
@@ -63,7 +75,7 @@ const Cart = () => {
                         {sellingPrice * product.quantity}
                         <i
                           className="far fa-times-circle text-danger ml-3 cursor-pointer"
-                          onClick={() => remove_card_item(id)}
+                          onClick={() => remove_item(product['productID']['id'])}
                         ></i>
                       </td>
                     </tr>
