@@ -39,6 +39,7 @@ const Cart = () => {
       />
       <Container>
         <Card>
+          { cartDate && cartDate.length > 0 ?
           <Card.Body>
             <Table className="cart_tbl">
               <thead className="bg-secondary text-dark ">
@@ -51,7 +52,7 @@ const Cart = () => {
                 </tr>
               </thead>
               <tbody>
-                {cartDate.map((product) => {
+                 { cartDate.map((product) => {
                   console.log(product);
                   const { productImage, productName, sellingPrice, id } = product.productID;
                   return (
@@ -83,6 +84,7 @@ const Cart = () => {
                 })}
               </tbody>
             </Table>
+            
             <div className="row">
               <div className="col-lg-3 col-md-3">
                 <Form.Control type="text" placeholder="Enter Coupon Code" />
@@ -92,6 +94,7 @@ const Cart = () => {
               </div>
             </div>
           </Card.Body>
+             : <h1 className="text-center" >Your Cart is empty.</h1>}
         </Card>
         <Card className="mt-3 mb-5 cart_summary">
           <Card.Header>

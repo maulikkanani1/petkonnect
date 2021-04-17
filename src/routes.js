@@ -5,6 +5,7 @@ import Checkout from "./Views/Checkout";
 import TrackOrder from "./Views/TrackOrder";
 import OrderDetails from "./Views/OrderDetails";
 import Profile from "./Views/Profile";
+import Products from "./Views/Products";
 
 const Routes = [
   {
@@ -32,9 +33,14 @@ const Routes = [
     component: OrderDetails,
   },
   {
-    path: "/TrackOrder",
+    path: "/TrackOrder/:id?",
     component: TrackOrder,
   },
+  {
+    path: "/Products",
+    component: Products
+  },
+  
 ];
 
 export default Routes;

@@ -1,8 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { view_cart,remove_card_item } from "../ApiService";
+import { useHistory } from "react-router-dom";
 
 const CartSide = () => {
+  const history = useHistory();
+  
+  const category_page=(category)=>{
+    if(category=='Dogs'){
+      category='Dog';
+    }
+     if(category=='Cats'){
+      category='Cat';
+    }
+    if(category=='Birds'){
+      category='Bird';
+    }
+    if(category=='Rabbits'){
+      category='Rabbit';
+    }
+    
+    history.push(`/Products?category=${category}`);
+  }
+
   const productCategory = [
     {
       name: "Dogs",
@@ -85,7 +105,7 @@ const CartSide = () => {
         </Card.Header>
         <Card.Body>
           {productCategory.map((category) => (
-            <label className="d-block mb-3">- {category.name}</label>
+            <label className="d-block mb-3" onClick={()=>category_page(category.name)}>- {category.name}</label>
           ))}
         </Card.Body>
       </Card>

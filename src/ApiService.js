@@ -13,9 +13,11 @@ axios.interceptors.request.use(function (config) {
 axios.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response.status === 403) logout();
-    return Promise.reject(error);
-  }
+    if(error.response){
+      if (error.response.status === 403) logout();
+      return Promise.reject(error);
+    }
+    }
 );
 
 export const logout = () => {
@@ -38,7 +40,12 @@ export const GetAllVendorProduct = () => axios.get(`${MAIN_API}/vendor/get_store
 
 
 export const add_to_cart = (data) => axios.put(`${MAIN_API}/user/add_to_cart`, data);
-export const view_cart = () => axios.get(`${MAIN_API}/user/view_cart`);
+export const view_cart = () => axios.post(`${MAIN_API}/user/view_cart`);
 export const remove_card_item = (pid) => axios.post(`${MAIN_API}/user/update_cart`, { productIDs: pid });
 
-export const place_order = () => axios.post(`${MAIN_API}/user/confirm_order`);
+export const place_order = () => axios.post(`${MAIN_API}/order/confirm_order`);
+export const user_oerder_history = () => axios.post(`${MAIN_API}/order/order_history`);
+export const get_order_status = (id) => axios.post(`${MAIN_API}/vendorOrder/get_order_status`,{orderID:id});
+export const get_all_products = (category) => axios.get(`${MAIN_API}/inventory/get_all_products?pet_category=${category}`);
+export const get_vendorbased_product = (category,vendor) => axios.get(`${MAIN_API}/vendor/get_vendor_store?pet_category=${category}&vendorID=${vendor}`);
+

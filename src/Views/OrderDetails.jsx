@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Card, Button, Table, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { view_cart, place_order, remove_card_item } from "../ApiService";
+import { user_oerder_history } from "../ApiService";
 
 import Header from "../components/Header";
 import MyJumbotron from "../components/MyJumbotron";
@@ -9,25 +9,15 @@ import MyJumbotron from "../components/MyJumbotron";
 import "./../scss/checkout.scss";
 
 const OrderDetails = () => {
-  const [cartDate, setCartDate] = useState([]);
+  const [OrderData, setOrderData] = useState([]);
   const history = useHistory();
   useEffect(() => {
-    view_cart().then(({ data }) => {
-      setCartDate(data.cart);
+    user_oerder_history().then(({ data }) => {
+      setOrderData(data);
     });
   }, []);
-
-  const remove_item=(id)=>{
-    let item=[];
-    item.push(id);
-    
-    remove_card_item(item).then(()=>{
-      view_cart().then(({ data }) => {
-        setCartDate(data.cart);
-      });
-    }).catch((err)=>{
-      console.log(err)
-    })
+  const get_status=(id)=>{
+    history.push(`/TrackOrder/${id}`);
   }
 
   return (
@@ -46,7 +36,7 @@ const OrderDetails = () => {
         <Card>
           <Card.Body>
             <Table className="cart_tbl">
-              <thead className="bg-secondary text-dark ">
+              <thead className="bg-secondary text-dark">
                 <tr>
                   <th>Product</th>
                   <th>Prize</th>
@@ -56,36 +46,38 @@ const OrderDetails = () => {
                 </tr>
               </thead>
               <tbody>
-                {cartDate.map((product) => {
-                  console.log(product);
-                  const { productImage, productName, sellingPrice, id } = product.productID;
-                  return (
-                    <tr>
+            
+              {OrderData ?
+                OrderData.map((res)=>{
+                  // console.log('units',res);
+                return  res['productIDs'].map((products,i)=>{
+                      return (
+                      <tr onClick={()=>get_status(res['id'])}>
                       <td>
-                        <img src={productImage[0]} />
-                        <span className="product_name ml-2">{productName}</span>
+                        <img src={products['productImage'][0]} />
+                        <span className="product_name ml-2">{products['productName']}</span>
                       </td>
                       <td>
                         <i className="fas fa-rupee-sign mr-1 f-18"></i>
-                        {sellingPrice}
+                        {products['sellingPrice']}
                       </td>
-                      <td>1 kg</td>
+                      <td>{products['subUnit']} {products['unit']}</td>
                       <td>
-                        <i className="fas fa-plus-circle text-secondary mr-4"></i>
-                        <span className="mr-4">{product.quantity}</span>
-                        <i className="fas fa-minus-circle text-secondary "></i>
+                        
+                        <span className="mr-4">{products['subUnit']}</span>
+                        
                       </td>
                       <td>
                         <i className="fas fa-rupee-sign mr-1 f-18"></i>
-                        {sellingPrice * product.quantity}
-                        <i
-                          className="far fa-times-circle text-danger ml-3 cursor-pointer"
-                          onClick={() => remove_item(product.id['productID']['id'])}
-                        ></i>
+                        {products['sellingPrice'] * products['subUnit']}
+                        
                       </td>
                     </tr>
-                  );
-                })}
+                      // console.log('prod',);
+                      );
+                    })
+                }) : <h1>No Order details</h1>
+              }
               </tbody>
             </Table>
           </Card.Body>

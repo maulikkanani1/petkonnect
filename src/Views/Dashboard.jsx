@@ -12,20 +12,24 @@ const DashBoard = () => {
   const [stores, setStores] = useState([]);
   const categories = [
     {
-      name: "Dogs",
+      name: "Dog",
       imageUrl: "./../../img/dog_img_4.png",
     },
     {
-      name: "Cats",
+      name: "Cat",
       imageUrl: "./../../img/cat_img_1.png",
     },
     {
-      name: "Birds",
+      name: "Bird",
       imageUrl: "./../../img/bird_img_1.png",
     },
     {
-      name: "Rabbits",
+      name: "Small Pets",
       imageUrl: "./../../img/rabbit_img_1.png",
+    },
+    {
+      name: "Rabbit",
+      imageUrl: "./../../img/dog_img_2.png",
     },
   ];
 
