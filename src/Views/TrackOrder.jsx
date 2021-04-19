@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useHistory,useParams } from "react-router-dom";
-import { Container, Card } from "react-bootstrap";
+import { Container, Card, Button } from "react-bootstrap";
 import Header from "../components/Header.jsx";
+import Footer from "../components/footer.jsx";
 import TrackCard from "../components/TrackCard.jsx";
 import MyJumbotron from "../components/MyJumbotron";
 import { get_order_status } from "../ApiService";
@@ -13,13 +14,7 @@ const TrackOrder = () => {
   const params=useParams();
   const [status, setstatus] = useState('');
 
-  const formatDate=(date)=> {
-    const currentMonth = date.getMonth();
-    const monthString = currentMonth >= 10 ? currentMonth : `0${currentMonth}`;
-    const currentDate = date.getDate();
-    const dateString = currentDate >= 10 ? currentDate : `0${currentDate}`;
-    return `${date.getFullYear()}-${monthString}-${currentDate}`;
-  }
+
 
   useEffect(() => {
     if(params['id']){
@@ -43,8 +38,7 @@ const TrackOrder = () => {
         title="Track Order"
         route={[
           { title: "Home", to: "/" },
-          { title: "Store", to: "/store" },
-          { title: "Order Details", to: "/OrderDetails" },
+          { title: "Order History", to: "/OrderDetails" },
           { title: "Track Order", isActive: true },
         ]}
       />
@@ -67,9 +61,6 @@ const TrackOrder = () => {
                 /> : <TrackCard
                 icon="./../../icons/order_placed.svg"
                 title="Order Placed"
-                description="We had received your order"
-                date="22/02/2021"
-                time="13 : 00"
                 /> }
               
               { status && status['orderStatus']== 'confirm' ? <TrackCard
@@ -82,9 +73,6 @@ const TrackOrder = () => {
                 /> : <TrackCard
                 icon="./../../icons/order_processed.svg"
                 title="Order Processed"
-                description="Order has been processed"
-                date="22/02/2021"
-                time="13 : 00"
                 /> }
 
             { status && status['orderStatus']== 'completed' ? <TrackCard
@@ -97,9 +85,6 @@ const TrackOrder = () => {
                 /> : <TrackCard
                 icon="./../../icons/out_for_delivery.svg"
                 title="Out for Delivery"
-                description="Your Order is dispatched"
-                date="22/02/2021"
-                time="13 : 00"
                 /> }
             
             
@@ -114,9 +99,6 @@ const TrackOrder = () => {
                 /> : <TrackCard
                 title="Delivered Successfully"
                 icon="./../../icons/delivered_successfully.svg"
-                description="Your Order is delivered to the given address"
-                date="22/02/2021"
-                time="13 : 00"
                 trackActiveDot={false}
                 /> }
                 
@@ -125,7 +107,7 @@ const TrackOrder = () => {
             <div className="d-flex my-5 justify-content-between align-items-center">
               <div className="d-flex align-items-center">
                 <img src="./../../icons/delivered_address.svg" />
-                <h5 className="ml-3 mb-0">Delivered Address</h5>
+                <h5 className="ml-3 mb-0">Delivery Address</h5>
               </div>
               <div>
                 <h6 className="font-weight-bold">Home</h6>
@@ -134,7 +116,80 @@ const TrackOrder = () => {
             </div>
           </Card.Body>
         </Card>
+        <Card className="mt-3 mb-5 cart_summary">
+          <Card.Body>
+            {/*<div className="row">
+              <div className="col-md-6">
+                <div className="row">
+                  <div className="col-md-6">
+                    <h5 className="font-weight-bold">Shipping</h5>
+                  </div>
+                  <div className="col-md-6">
+                    <span className="address">No.2, KK Road, T Nagar, Chennai 600026</span>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-6 ">
+                <div className="row">
+                  <div className="col-md-6 text-right">
+                    <h5 className="font-weight-bold mb-3">Subtotal</h5>
+                    <h5 className="font-weight-bold">Shipping Charge</h5>
+                  </div>
+                  <div className="col-md-4 text-right">
+                    <h5 className="amount">
+                      <i className="fas fa-rupee-sign mr-1 f-16"></i>1120.00
+                    </h5>
+                    <h5 className="amount">
+                      <i className="fas fa-rupee-sign mr-1 f-16"></i>50.00
+                    </h5>
+                  </div>
+                </div>
+              </div>
+      </div>*/}
+            <div className="row">
+              <div className="offset-6 col-md-6">
+                <div className="row">
+                  <div className="col-md-6 text-right">
+                    <h5 className="font-weight-bold mb-3">Total</h5>
+                  </div>
+                  <div className="col-md-4 text-right">
+                    <h5 className="amount">
+                      <i className="fas fa-rupee-sign mr-1 f-16"></i>1170.00
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card.Body>
+          <Card.Footer className="bg-transparent">
+            <div className="row">
+              <div className="col-md-6">
+                <div className="row">
+                  <div className="col-md-6 ">
+                    <h5 className="font-weight-bold mb-3">Payment Type</h5>
+                  </div>
+                  <div className="col-md-4">
+                    <label className="text-gray mb-0">Cash On Delivery</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="d-flex w-100 mt-5 mb-2 justify-content-center">
+              <Button
+                className="track_order_btn"
+                size="lg"
+                onClick={() => {
+                  history.push("/TrackOrder");
+                }}
+                variant="secondary"
+              >
+                Track Order
+              </Button>
+            </div>
+          </Card.Footer>
+        </Card>
       </Container>
+      <Footer />
     </div>
   );
 };

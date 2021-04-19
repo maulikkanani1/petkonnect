@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Container, Card, Button, Tab, Nav } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { useLocation,useHistory } from "react-router-dom";
 import { add_to_cart, GetVendorProduct } from "../ApiService";
 import Header from "./../components/Header.jsx";
+import Footer from "../components/footer.jsx";
 import CartSide from "../components/CartSide";
 import ProductCard from "../components/ProductCard";
 import MyJumbotron from "../components/MyJumbotron";
 
 const ProductDetail = () => {
+  const history = useHistory();
   const location = useLocation();
   const productData = location.state.data;
   const vendorId = location.state.id;
 
-  const { productImage, productDescription, sellingPrice, productSubcategory, productName, rating, id } = productData;
+  const { productImage, productBrand, petType, productDescription, sellingPrice, productSubcategory, productName, rating, id, productCategory } = productData;
 
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState(1);
@@ -38,14 +40,7 @@ const ProductDetail = () => {
     <div className="product_details">
       <Header />
 
-      <MyJumbotron
-        title="Product"
-        route={[
-          { title: "Home", to: "/" },
-          { title: "Store", to: "/store" },
-          { title: "Product", isActive: true },
-        ]}
-      />
+      
       <Container>
         <div className="row mt-5 mb-5">
           <div className="col-lg-8">
@@ -61,7 +56,7 @@ const ProductDetail = () => {
                   </ul>
                 </div>
                 <div className="product_info p-3 w-50">
-                  <h6 className="text-primary">{productSubcategory}</h6>
+                  <h6 className="text-primary">{petType} {productSubcategory}</h6>
                   <h5 className="text-dark font-weight-bold mt-2">{productName}</h5>
                   {Array.from({ length: 5 }, (x, i) => {
                     return i + 1 > rating ? (
@@ -74,24 +69,24 @@ const ProductDetail = () => {
                     <i className="fas fa-rupee-sign "></i>
                     {sellingPrice}
                   </h4>
-                  <small className="d-block mt-2">50% Discount | Free Delivery</small>
+                  
                   <div className="quantity_contanier mt-3">
                     <label className="mr-5 mb-0">Quantity</label>
                     <i
-                      className="fas fa-plus-circle cursor-pointer text-secondary mr-4"
-                      onClick={() => setQuantity(quantity + 1)}
+                      className="fas fa-minus-circle cursor-pointer text-secondary mr-4"
+                      onClick={() => quantity > 1 && setQuantity(quantity - 1)}
                     ></i>
                     <span className="quantity_text mr-4">{quantity}</span>
                     <i
-                      className="fas fa-minus-circle cursor-pointer text-secondary"
-                      onClick={() => quantity > 1 && setQuantity(quantity - 1)}
+                      className="fas fa-plus-circle cursor-pointer text-secondary "
+                      onClick={() => setQuantity(quantity + 1)}
                     ></i>
                   </div>
                   <div className="total_contanier mt-4">
                     <label className="mr-5 mb-0">Total</label>
                     <h4 className="text-primary mb-0 total">
                       <i className="fas fa-rupee-sign "></i>
-                      {sellingPrice}
+                      {sellingPrice*quantity }
                     </h4>
                   </div>
                   <div className="d-flex w-100 mt-5">
@@ -99,8 +94,10 @@ const ProductDetail = () => {
                       Add to Cart
                     </Button>
 
-                    <Button className="w-50" variant="secondary">
-                      Buy Now
+                    <Button className="w-50" variant="secondary" onClick={() => {
+              history.push("/checkout");
+            }}>
+                      Checkout
                     </Button>
                   </div>
                 </div>
@@ -123,15 +120,18 @@ const ProductDetail = () => {
                   <Tab.Content>
                     <Tab.Pane eventKey="description">
                       <h5>Product Information</h5>
-                      <label className="f-12 mb-0">Vendor :</label>
-                      <label className="f-12 font-weight-bold ml-2 mb-0">Wild Earth</label>
+                      <label className="f-12 mb-0">Brand :</label>
+                      <label className="f-12 font-weight-bold ml-2 mb-0">{productBrand}</label>
                       <br />
-                      <label className="f-12">Food Type :</label>
-                      <label className="f-12 font-weight-bold ml-2  mb-0">Dry Food</label>
+                      <label className="f-12">Category :</label>
+                      <label className="f-12 font-weight-bold ml-2  mb-0">{petType} {productCategory}</label>
+                      <br />
+                      <label className="f-12">{productCategory} Type :</label>
+                      <label className="f-12 font-weight-bold ml-2  mb-0">{productSubcategory}</label>
                       <p>{productDescription}</p>
                     </Tab.Pane>
                     <Tab.Pane eventKey="reviews">
-                      <h6>Reviews</h6>
+                      <h6>No Reviews yet</h6>
                     </Tab.Pane>
                   </Tab.Content>
                 </Card.Body>
@@ -147,6 +147,7 @@ const ProductDetail = () => {
           <CartSide />
         </div>
       </Container>
+      <Footer />
     </div>
   );
 };

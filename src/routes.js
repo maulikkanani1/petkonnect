@@ -6,6 +6,8 @@ import TrackOrder from "./Views/TrackOrder";
 import OrderDetails from "./Views/OrderDetails";
 import Profile from "./Views/Profile";
 import Products from "./Views/Products";
+import Myorder from "./Views/Myorder";
+import TrackMyOrder from "./Views/TrackMyOrder";
 
 const Routes = [
   {
@@ -19,6 +21,14 @@ const Routes = [
   {
     path: "/profile",
     component: Profile
+  },
+  {
+      path:"/MyOrder",
+      component:Myorder
+  },
+  { 
+      path:'/TrackMyorder',
+      component:TrackMyOrder
   },
   {
     path: "/ProductDetail",

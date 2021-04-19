@@ -1,0 +1,49 @@
+.modal-header{
+    background-color: #FFBC4EAB;
+}
+
+.edit_title{
+    
+    border-radius: 10px 10px 0px 0px;
+    opacity: 1;
+}
+
+.edit_save{
+    background: #FFBC4E 0% 0% no-repeat padding-box;
+box-shadow: 0px 3px 5px #0000001A;
+border-radius: 4px;
+opacity: 1;
+}
+.edit_lable{
+    text-align: left;
+font: normal normal  10px Poppins !important;
+letter-spacing: 0px;
+color: #777777;
+opacity: 1;
+}
+
+.edit_input{
+    border-color: grey;
+    border-width: thin;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+    text-align: left;
+    font: normal normal medium 18px/27px Poppins;
+    letter-spacing: 0px;
+    color: #333333;
+    opacity: 1;
+}
+
+.edit_profile_image{
+    width:100px;
+}
+.change_profile{
+    color:#FF801E;
+    text-align: center;
+    font: normal normal medium 14px/21px Poppins;
+    letter-spacing: 0px;
+    color: #FF801E;
+    text-transform: capitalize;
+    opacity: 1;
+}

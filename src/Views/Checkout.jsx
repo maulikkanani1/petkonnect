@@ -3,14 +3,25 @@ import { Container, Card, Button, Table, Form } from "react-bootstrap";
 import { view_cart, place_order, remove_card_item } from "../ApiService";
 
 import Header from "../components/Header.jsx";
+import Footer from "../components/footer.jsx";
 import MyJumbotron from "../components/MyJumbotron";
 import "./../scss/checkout.scss";
 
 const Cart = () => {
   const [cartDate, setCartDate] = useState([]);
+  const [shipping,setshipping] =useState(0);
+  const [total,settotal] =useState(0);
+
   useEffect(() => {
     view_cart().then(({ data }) => {
       setCartDate(data.cart);
+      let shippings,totals=0;
+      data['cart'].map((res)=>{
+        shippings=shippings + res['shippingCharges'];
+        totals=totals+ res['subTotal'];
+      })
+      setshipping(shippings);
+      settotal(totals);
     });
   }, []);
   const remove_item=(id)=>{
@@ -20,6 +31,7 @@ const Cart = () => {
     remove_card_item(item).then(()=>{
       view_cart().then(({ data }) => {
         setCartDate(data.cart);
+        setshipping(0);
       });
     }).catch((err)=>{
       console.log(err)
@@ -33,7 +45,7 @@ const Cart = () => {
         title="Your Cart"
         route={[
           { title: "Home", to: "/" },
-          { title: "Store", to: "/store" },
+          { title: "Store", to: "/dashboard" },
           { title: "Your Cart", isActive: true },
         ]}
       />
@@ -45,17 +57,18 @@ const Cart = () => {
               <thead className="bg-secondary text-dark ">
                 <tr>
                   <th>Product</th>
-                  <th>Prize</th>
-                  <th>Size</th>
+                  <th>Price</th>
                   <th>Quantity</th>
                   <th>Subtotal</th>
                 </tr>
               </thead>
               <tbody>
-                 { cartDate.map((product) => {
-                  console.log(product);
-                  const { productImage, productName, sellingPrice, id } = product.productID;
-                  return (
+              { cartDate.map((products) => {
+
+                
+             return  products['products'].map((product,i)=>{
+              const { productImage, productName, sellingPrice } = product;
+              return (
                     <tr>
                       <td>
                         <img src={productImage[0]} />
@@ -65,34 +78,35 @@ const Cart = () => {
                         <i className="fas fa-rupee-sign mr-1 f-18"></i>
                         {sellingPrice}
                       </td>
-                      <td>1 kg</td>
                       <td>
                         <i className="fas fa-plus-circle text-secondary mr-4" ></i>
-                        <span className="mr-4">{product.quantity}</span>
+                        <span className="mr-4">{products.quantities[i]}</span>
                         <i className="fas fa-minus-circle text-secondary "></i>
                       </td>
                       <td>
                         <i className="fas fa-rupee-sign mr-1 f-18"></i>
-                        {sellingPrice * product.quantity}
+                        {sellingPrice * products.quantities[i]}
                         <i
                           className="far fa-times-circle text-danger ml-3 cursor-pointer"
-                          onClick={() => remove_item(product['productID']['id'])}
+                          onClick={() => remove_item(products['id'])}
                         ></i>
                       </td>
                     </tr>
                   );
+                }) 
+                
                 })}
               </tbody>
             </Table>
             
-            <div className="row">
+            {/*<div className="row">
               <div className="col-lg-3 col-md-3">
                 <Form.Control type="text" placeholder="Enter Coupon Code" />
               </div>
               <div className="col-lg-3 col-md-3">
                 <Button variant="secondary">Apply Coupon</Button>
               </div>
-            </div>
+              </div>*/}
           </Card.Body>
              : <h1 className="text-center" >Your Cart is empty.</h1>}
         </Card>
@@ -100,7 +114,7 @@ const Cart = () => {
           <Card.Header>
             <h5 className="font-weight-bold">Cart Summary</h5>
           </Card.Header>
-          <Card.Body>
+          {/* <Card.Body>
             <div className="row">
               <div className="col-md-6">
                 <div className="row">
@@ -126,17 +140,17 @@ const Cart = () => {
                       <i className="fas fa-rupee-sign mr-1 f-16"></i>1120.00
                     </h5>
                     <h5 className="amount">
-                      <i className="fas fa-rupee-sign mr-1 f-16"></i>50.00
+                      <i className="fas fa-rupee-sign mr-1 f-16"></i>{shipping}
                     </h5>
                   </div>
                 </div>
               </div>
             </div>
-          </Card.Body>
+          </Card.Body> */}
           <Card.Footer className="bg-transparent">
             <div className="row mb-3">
               <div className="offset-6 col-md-6">
-                <div className="row">
+               <div className="row">
                   <div className="col-md-6 text-right">
                     <h5 className="font-weight-bold mb-3">Total</h5>
                   </div>
@@ -168,6 +182,8 @@ const Cart = () => {
           </Card.Footer>
         </Card>
       </Container>
+      
+<Footer />
     </div>
   );
 };

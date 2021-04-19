@@ -1,14 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import Header from "../components/Header.jsx";
+import Footer from "../components/footer.jsx";
 import { useHistory, useLocation, useParams } from "react-router-dom";
 import MyJumbotron from "../components/MyJumbotron";
+import Editprofile from "../components/Model/Editprofile";
+// import Editpet from "../components/Model/Edit_pet_profile";
 import "./../scss/profile.scss";
 
 const Store = () => {
   const location = useLocation();
   const history = useHistory();
+    const [editprofile,seteditprofile]=useState(false)
+    const [editpet,seteditpet]=useState(false)
 
+ const close_edit=()=>{
+     console.log('done');
+    seteditprofile(!editprofile);
+ }
+const close_edit_profile=()=>{
+    seteditpet(!editpet);
+}
+
+const open_my_order=()=>{
+    console.log("hio")
+    history.push('/MyOrder');
+}
 
   useEffect(() => {
   
@@ -81,7 +98,7 @@ const Store = () => {
                             </div>
                             
                             <div>
-                                    <button className="follow_button w-100 mt-2 ">
+                                    <button className="follow_button w-100 mt-2 " onClick={close_edit}>
                                         Edit Profile
                                     </button>
                             </div>
@@ -89,7 +106,6 @@ const Store = () => {
                         </div>
                         
                     </div>
-
                     <div>
                             <div claaname="story">
                                 My pets
@@ -107,7 +123,7 @@ const Store = () => {
                                     
                                 <img src={'./../../img/store_img_2.png'} className="story_img" ></img>
                                 </div>
-                                <div className="p-2">
+                                <div className="p-2" onClick={close_edit_profile}>
                                     
                                 <img src={'./../../img/add_post.png'} className="story_img" ></img>
                                  </div>
@@ -157,7 +173,7 @@ const Store = () => {
                     <div className="p-1"><img src={'./../../icons/insights.svg'} className="profile_side_images" /></div>
                     <div className="p-1">Insights</div>
                 </div>
-                <div className="d-flex justify-content-center mt-3">
+                <div className="d-flex justify-content-center mt-3" Onclick={open_my_order}>
                     <div className="p-1"><img src={'./../../icons/my_orders.svg'} className="profile_side_images" /></div>
                     <div className="p-1">My Orders</div>
                 </div>
@@ -224,6 +240,9 @@ const Store = () => {
           </div>    
         </div>
       </Container>
+        <Editprofile status={editprofile} close={close_edit} />
+        {/* <Editpet status={editprofile} close={close_edit_profile} /> */}
+      <Footer />
     </div>
   );
 };

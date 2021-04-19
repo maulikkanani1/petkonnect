@@ -8,7 +8,7 @@ const StoreCard = ({ store }) => {
   return (
     <div className="col-lg-3 col-md-3 col-sm-12" key={store.id}>
       <Card
-        className="w-100 store_card cursor-pointer"
+        className="w-100 store_card "
         onClick={() => history.push(`/store/${store.storeName}`, { vendorId: store.id })}
         key={store.id}
       >
@@ -25,10 +25,11 @@ const StoreCard = ({ store }) => {
               );
             })}
           </div>
-          <small className="text-muted">Foods | Pet Products</small>
+          <small className="text-muted">{store.storeDescription}</small>
+          <br />
+          <small className="text-muted">Delivery Fee <i className="fas fa-rupee-sign text-muted ml-2"></i>{store.shippingCharges}</small>
           <div>
-            <span className="offer_text">50% Off</span>
-            <small className="text-muted ml-2">on first 3 products</small>
+            <span className="offer_text">{store.offerText}</span>
           </div>
         </Card.Body>
       </Card>

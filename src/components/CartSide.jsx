@@ -6,41 +6,62 @@ import { useHistory } from "react-router-dom";
 const CartSide = () => {
   const history = useHistory();
   
-  const category_page=(category)=>{
-    if(category=='Dogs'){
-      category='Dog';
+  const category_page=(product_category)=>{
+    if(product_category=='Food'){
+      product_category='Food';
     }
-     if(category=='Cats'){
-      category='Cat';
+     if(product_category=='Cats'){
+      product_category='Cat';
     }
-    if(category=='Birds'){
-      category='Bird';
+    if(product_category=='Birds'){
+      product_category='Bird';
     }
-    if(category=='Rabbits'){
-      category='Rabbit';
+    if(product_category=='Rabbits'){
+      product_category='Rabbit';
     }
     
-    history.push(`/Products?category=${category}`);
+    history.push(`/Products?category=${product_category}`);
   }
 
   const productCategory = [
     {
-      name: "Dogs",
+      name: "Food",
     },
     {
-      name: "Cats",
+      name: "Treats",
     },
     {
-      name: "Birds",
+      name: "Toys",
     },
     {
-      name: "Rabbit",
+      name: "Leashes, Collars & Harness",
     },
     {
-      name: "Small Pets",
+      name: "Clothing & Accessories",
     },
     {
-      name: "Kittens",
+      name: "Bowls & Feeders",
+    },
+    {
+      name: "Beds",
+    },
+    {
+      name: "Grooming & Hygiene",
+    },
+    {
+      name: "Health & Wellness",
+    },
+    {
+      name: "Carriers & Travel",
+    },
+    {
+      name: "Crates, Pens & Gates",
+    },
+    {
+      name: "Trees, Condos & Scratchers",
+    },
+    {
+      name: "Aquarium",
     },
   ];
   const [cartDate, setCartDate] = useState([]);
@@ -72,8 +93,9 @@ const CartSide = () => {
         </Card.Header>
         <Card.Body>
           {useState.length ? (
-            cartDate.map((product) => {
-              const { productImage, productName, sellingPrice } = product.productID;
+            cartDate.map((products) => {
+             return  products['products'].map((product,i)=>{
+              const { productImage, productName, sellingPrice } = product;
               return (
                 <div className="d-flex w-100 justify-content-between align-items-center mb-3 mini_cart">
                   <div>
@@ -82,17 +104,18 @@ const CartSide = () => {
                   <div className="w-80">
                     <span className="product_name ml-3">{productName}</span>
                     <div className="ml-3">
-                      <span className="mr-2">{product.quantity}</span>
+                      <span className="mr-2">{products.quantities[i]}</span>
                       <i className="fas fa-times mr-2"></i>
                       <i className="fas fa-rupee-sign  f-14"></i>
                       {sellingPrice}
                     </div>
                   </div>
                   <div>
-                    <i className="far fa-times-circle text-danger " onClick={() => remove_item(product['productID']['id'])}></i>
+                    <i className="far fa-times-circle text-danger " onClick={() => remove_item(products['id'])}></i>
                   </div>
                 </div>
               );
+            })
             })
           ) : (
             <Card.Text>No Products in the Cart</Card.Text>
@@ -104,8 +127,8 @@ const CartSide = () => {
           <h5>Product Category</h5>
         </Card.Header>
         <Card.Body>
-          {productCategory.map((category) => (
-            <label className="d-block mb-3" onClick={()=>category_page(category.name)}>- {category.name}</label>
+          {productCategory.map((product_category) => (
+            <label className="d-block mb-3" onClick={()=>category_page(product_category.name)}>- {product_category.name}</label>
           ))}
         </Card.Body>
       </Card>

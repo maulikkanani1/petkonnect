@@ -15,9 +15,9 @@ const Header = () => {
           <Nav className="ml-auto">
             <Nav.Link href="javascript:void(0)">24 * 7 Support</Nav.Link>
             <Link to="/Profile"><img src={'./../../img/profile_img_2.png'} width="30px" className="pt-1" /></Link>
-            <NavDropdown title="Hello User" id="basic-nav-dropdown">
+            <NavDropdown title="Hello Jasmine" id="basic-nav-dropdown">
               <NavDropdown.Item href="javascript:void(0)" onClick={() => history.push("/OrderDetails")}>
-                Order History
+                Order Details
               </NavDropdown.Item>
               <NavDropdown.Item href="javascript:void(0)" onClick={() => logout()}>
                 Logout
@@ -26,20 +26,20 @@ const Header = () => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Navbar className="bg-white justify-content">
+      <Navbar className="bg-white justify-content-between">
         <div>
           <Navbar.Brand>
             <img src="./../../img/logo new.png" />
           </Navbar.Brand>
         </div>
         <div className="d-flex">
-          <Nav.Link className="text-dark" href="#">
+          <Nav.Link className="text-dark" href="/dashboard">
             Home
           </Nav.Link>
           <Nav.Link className="text-dark" href="#">
             Feed
           </Nav.Link>
-          <Nav.Link className="text-primary" href="/dashboard">
+          <Nav.Link className="text-dark" href="#">
             Store
           </Nav.Link>
           <Nav.Link className="text-dark" href="#">
@@ -50,18 +50,14 @@ const Header = () => {
           </Nav.Link>
         </div>
         <div className="d-flex">
-         {/*<i className="fas fa-search text-primary cursor-pointer mr-3"></i> */}
-          <Nav.Link className="text-primary" href="/checkout">
-            Cart
-            <i
+          <i className="fas fa-search text-primary cursor-pointer mr-3"></i>
+          <i
             className="fas fa-shopping-cart text-primary mr-3 cursor-pointer"
             onClick={() => {
               history.push("/checkout");
             }}
           ></i>
-          </Nav.Link>
-          
-         {/* <i className="fas fa-bell cursor-pointer text-primary"></i>*/}
+          <i className="fas fa-bell cursor-pointer text-primary"></i>
         </div>
       </Navbar>
     </Container>

@@ -1,19 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { Container, Card, Button, Table, Form } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
-import { user_oerder_history } from "../ApiService";
+import { useHistory, useParams } from "react-router-dom";
+import { user_oerder_history, get_order_status } from "../ApiService";
+import moment from 'moment';
+
 
 import Header from "../components/Header";
+import Footer from "../components/footer.jsx";
 import MyJumbotron from "../components/MyJumbotron";
 
 import "./../scss/checkout.scss";
 
+
 const OrderDetails = () => {
   const [OrderData, setOrderData] = useState([]);
   const history = useHistory();
+  const params=useParams();
+  const [status, setstatus] = useState('');
+  
   useEffect(() => {
     user_oerder_history().then(({ data }) => {
       setOrderData(data);
+    });
+    get_order_status(params['id']).then((res)=>{
+      if(res.data['order']){
+       console.log("status",res.data);       
+      }
     });
   }, []);
   const get_status=(id)=>{
@@ -27,9 +39,7 @@ const OrderDetails = () => {
         title="Order Details"
         route={[
           { title: "Home", to: "/" },
-          { title: "Store", to: "/store" },
-          { title: "Your Cart", to: "/checkout" },
-          { title: "Order Details", isActive: true },
+          { title: "Order History", isActive: true },
         ]}
       />
       <Container>
@@ -39,8 +49,7 @@ const OrderDetails = () => {
               <thead className="bg-secondary text-dark">
                 <tr>
                   <th>Product</th>
-                  <th>Prize</th>
-                  <th>Size</th>
+                  <th>Price</th>
                   <th>Quantity</th>
                   <th>Subtotal</th>
                 </tr>
@@ -61,7 +70,6 @@ const OrderDetails = () => {
                         <i className="fas fa-rupee-sign mr-1 f-18"></i>
                         {products['sellingPrice']}
                       </td>
-                      <td>{products['subUnit']} {products['unit']}</td>
                       <td>
                         
                         <span className="mr-4">{products['subUnit']}</span>
@@ -82,7 +90,7 @@ const OrderDetails = () => {
             </Table>
           </Card.Body>
         </Card>
-        <Card className="mt-3 mb-5 cart_summary">
+        {/*<Card className="mt-3 mb-5 cart_summary">
           <Card.Body>
             <div className="row">
               <div className="col-md-6">
@@ -154,8 +162,9 @@ const OrderDetails = () => {
               </Button>
             </div>
           </Card.Footer>
-        </Card>
+        </Card> */}
       </Container>
+      <Footer />
     </div>
   );
 };

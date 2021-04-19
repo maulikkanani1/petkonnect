@@ -94,6 +94,7 @@ const Login = () => {
                       </form>
                     </Tab.Pane>
                     <Tab.Pane eventKey="register">
+                      <form className="form_signin">
                       <p className="text-left mb-4">Enter your information to setup a new account.</p>
 
                       <label className="sr-only">Username</label>
@@ -110,9 +111,10 @@ const Login = () => {
                       </button>
                       <div className="text-right mb-3">
                         <a className="forgot_link" href="#">
-                          or login within
+                          or login with
                         </a>
                       </div>
+                      </form>
                     </Tab.Pane>
                   </Tab.Content>
                 </Card.Body>

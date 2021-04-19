@@ -14,11 +14,14 @@
   }
 }
 .category_container {
+  padding: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   .category_card {
-    margin-right: 1.5rem;
+    margin-right: 3rem;
+    
+    margin-left: 1.5rem;
     img {
       width: 200px;
       height: 200px;
@@ -33,6 +36,10 @@
 }
 .brand_bg {
   background-color: #ffbc4e21;
+}
+
+.foot_bg {
+  background-color: #1d1b19;
 }
 .brand_container {
   display: flex;

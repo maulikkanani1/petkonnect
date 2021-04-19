@@ -10,7 +10,7 @@ import CartSide from "../components/CartSide";
 
 const Products = () => {
   const location = useLocation();
-  const params = new URLSearchParams(location.search);;
+  const params = new URLSearchParams(location.search);
   const vendorId =  params.get('vendorId');
   const category = params.get('category');
 
@@ -21,7 +21,7 @@ const Products = () => {
         get_vendorbased_product(category,vendorId).then(( {data} ) => {
         setProducts(data.products);
       });
-    } else if(category.trim() !== '') {
+    } else if(category) {
         get_all_products(category).then(( {data} ) => {
         setProducts(data.products);
       }).catch((err)=>{
