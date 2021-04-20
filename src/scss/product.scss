@@ -1,0 +1,142 @@
+@import "./colors.scss";
+
+.product_card {
+  border-radius: 7px;
+  background: #ffffff;
+  .product-btns {
+    position: absolute;
+    transition: transform ease-out 0.3s;
+    right: 8px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    cursor: pointer;
+    i {
+      color: $seondaryPrimary;
+      margin-top: 0.8rem;
+    }
+  }
+  img {
+    height: 150px;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .amount {
+    color: $primary;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3pt;
+    font-size: 24px;
+  }
+  .amount + small {
+    font-size: 8px;
+  }
+  &:hover {
+    .product-btns {
+      opacity: 1;
+    }
+  }
+}
+.product-menu {
+  .card-header {
+    background-color: #ffbc4e40;
+    border: 0px;
+    border-left: 5px solid $seondaryPrimary;
+  }
+}
+.product_details {
+  .product_img {
+    width: 300px;
+    height: 300px;
+    object-fit: none;
+  }
+  small {
+    color: #777777;
+  }
+
+  .amount {
+    i {
+      font-size: 23px;
+      margin-right: 3px;
+    }
+    font-size: 28px;
+  }
+  .quantity_contanier {
+    display: flex;
+    align-items: center;
+    label {
+      color: #333333;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    i {
+      font-size: 28px;
+    }
+    .quantity_text {
+      font-size: 28px;
+      color: #777777;
+      font-weight: bolder;
+    }
+  }
+  .total_contanier {
+    display: flex;
+    align-items: center;
+
+    label {
+      color: #333333;
+      font-size: 21px;
+      font-weight: 500;
+    }
+    .total {
+      i {
+        font-size: 22px;
+        margin-right: 3px;
+      }
+      font-size: 26px;
+    }
+  }
+
+  .list {
+    list-style: none; /* Remove default bullets */
+    .list_item {
+      font-size: 14px;
+      color: #333333;
+    }
+    .list_item::before {
+      content: "\2022"; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+      color: $primary;
+      font-weight: bold;
+      display: inline-block;
+      width: 8px;
+      padding-right: 1rem;
+      margin-left: -1em; /* Also needed for space (tweak if needed) */
+    }
+  }
+  .nav {
+    .nav-link.active {
+      color: $seondaryPrimary;
+      border-bottom: 3px solid;
+    }
+  }
+}
+.mini_cart {
+  img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    box-shadow: 0px 2px 5px #00000017;
+  }
+}
+.product_listing_page,
+.product_details {
+  @media (min-width: 1200px) {
+    .container,
+    .container-sm,
+    .container-md,
+    .container-lg,
+    .container-xl {
+      max-width: 1250px;
+    }
+  }
+}

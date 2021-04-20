@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="38" height="47" viewBox="0 0 38 47">
+  <defs>
+    <clipPath id="clip-delivered_address">
+      <rect width="38" height="47"/>
+    </clipPath>
+  </defs>
+  <g id="delivered_address" clip-path="url(#clip-delivered_address)">
+    <rect width="38" height="47" fill="rgba(255,255,255,0)"/>
+    <g id="noun_Location_3855754" transform="translate(-22.195 -15.459)">
+      <path id="Path_2143" data-name="Path 2143" d="M56.8,30.828a15.882,15.882,0,0,0-31.463,2.62,16.415,16.415,0,0,0,2.038,7.4,97.091,97.091,0,0,0,11.5,17.553c1.587,2.032,3.161,2.032,4.712-.059,2.531-3.417,5.045-6.851,7.434-10.381A45.576,45.576,0,0,0,56.2,38.131a13.435,13.435,0,0,0,.606-7.3Zm-15.55,10.1a7.047,7.047,0,1,1,7.006-7.006,7.047,7.047,0,0,1-7.006,7.006Z" transform="translate(0)" fill="#ff801e"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,26 @@
+.track_order_page {
+  .track_card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    .track_card_icon {
+      width: 37px;
+      height: 51px;
+    }
+    .track_dot {
+      position: relative;
+    }
+    .track_dot::after {
+      content: "";
+      border: 1px solid #ededed;
+      position: absolute;
+      top: 16px;
+      height: 94px;
+      left: 49%;
+    }
+  }
+
+  .delivered_address {
+    width: 200px;
+  }
+}

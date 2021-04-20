@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="28" height="27" viewBox="0 0 28 27">
+  <defs>
+    <clipPath id="clip-cart">
+      <rect width="28" height="27"/>
+    </clipPath>
+  </defs>
+  <g id="cart" clip-path="url(#clip-cart)">
+    <rect width="28" height="27" fill="rgba(255,255,255,0)"/>
+    <path id="Path_2489" data-name="Path 2489" d="M30.857,24.872,29.174,10.02a.476.476,0,0,0-.508-.427H25.782V8.177a5.9,5.9,0,0,0-11.807,0V9.592H11.09a.52.52,0,0,0-.508.427L8.9,24.872v.08a2.861,2.861,0,0,0,2.858,2.858H27.972a2.861,2.861,0,0,0,2.858-2.858C30.857,24.952,30.857,24.9,30.857,24.872ZM15.658,8.15a4.221,4.221,0,0,1,8.441,0V9.566H15.658Z" transform="translate(-5.879 -1.555)" fill="#ff801e"/>
+  </g>
+</svg>

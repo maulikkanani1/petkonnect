@@ -1,0 +1,89 @@
+// bootstrap
+a {
+  color: $dark;
+}
+h5 {
+  color: #333333;
+}
+
+.btn-secondary,
+.btn-secondary:hover {
+  color: #ffffff;
+}
+.card {
+  box-shadow: 2px 2px 6px #00000014;
+  border: 1px solid #ededed;
+  border-radius: 4px;
+  background: #ffffff;
+}
+.jumbotron {
+  background-color: #ffbc4eab;
+  height: 227px;
+  .display-4 {
+    font-size: 55px;
+    font-weight: 500;
+  }
+  a {
+    font-size: 22px;
+  }
+  .breadcrumb-item + .breadcrumb-item::before {
+    margin-top: 8px;
+    color: #333333;
+    content: ">";
+  }
+}
+
+// others
+.main_silder_contanier {
+  height: 450px;
+  .awssld__bullets {
+    z-index: 999;
+    bottom: 10px;
+  }
+  .awssld__wrapper {
+    height: 415px;
+  }
+}
+.awssld {
+  --control-bullet-color: #fff;
+  --control-bullet-active-color: #ff801e;
+}
+.text-gray {
+  color: #777777;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.f-12 {
+  font-size: 12px;
+}
+.f-14 {
+  font-size: 14px;
+}
+.f-16 {
+  font-size: 16px;
+}
+.f-18 {
+  font-size: 18px;
+}
+.f-20 {
+  font-size: 20px;
+}
+.f-22 {
+  font-size: 22px;
+}
+.f-24 {
+  font-size: 24px;
+}
+.f-30 {
+  font-size: 30px;
+}
+.w-90 {
+  width: 90%;
+}
+.w-80 {
+  width: 80%;
+}
+.w-10 {
+  width: 10%;
+}

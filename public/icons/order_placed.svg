@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="43" height="54" viewBox="0 0 43 54">
+  <defs>
+    <clipPath id="clip-order_placed">
+      <rect width="43" height="54"/>
+    </clipPath>
+  </defs>
+  <g id="order_placed" clip-path="url(#clip-order_placed)">
+    <rect width="43" height="54" fill="rgba(255,255,255,0)"/>
+    <g id="noun_Shopping_Bag_2035193" data-name="noun_Shopping Bag_2035193" transform="translate(2.94 1)">
+      <path id="Path_2405" data-name="Path 2405" d="M182.728,229.1a9.728,9.728,0,1,0,9.728,9.728A9.728,9.728,0,0,0,182.728,229.1Zm6.188,7.29-7.009,6.692a.818.818,0,0,1-.563.223.865.865,0,0,1-.586-.234l-3.973-3.973a.82.82,0,0,1,1.16-1.16l3.411,3.411,6.434-6.142a.817.817,0,0,1,1.16.023.851.851,0,0,1-.035,1.16Z" transform="translate(-164.21 -206.831)" fill="#ff801e"/>
+      <path id="Path_2406" data-name="Path 2406" d="M134.227,52.239h-7.583V48.922a9.822,9.822,0,1,0-19.643,0v3.317H98.82a.815.815,0,0,0-.82.82V84.446a5.517,5.517,0,0,0,5.509,5.509h26.042a5.517,5.517,0,0,0,5.509-5.509V53.059A.833.833,0,0,0,134.227,52.239Zm-25.6-3.329a8.181,8.181,0,1,1,16.362,0v3.317H108.63Zm7.888,33.556A11.369,11.369,0,1,1,127.887,71.1,11.369,11.369,0,0,1,116.518,82.466Z" transform="translate(-98 -39.1)" fill="#ff801e"/>
+    </g>
+  </g>
+</svg>

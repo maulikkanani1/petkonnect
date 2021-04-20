@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="37" height="43" viewBox="0 0 37 43">
+  <defs>
+    <clipPath id="clip-my_orders">
+      <rect width="37" height="43"/>
+    </clipPath>
+  </defs>
+  <g id="my_orders" clip-path="url(#clip-my_orders)">
+    <rect width="37" height="43" fill="rgba(255,255,255,0)"/>
+    <path id="Path_3970" data-name="Path 3970" d="M41.91,36.234,39.38,13.906a.715.715,0,0,0-.763-.643H34.28V11.135a8.875,8.875,0,0,0-17.75,0v2.128H12.193a.781.781,0,0,0-.763.643L8.9,36.234v.12a4.3,4.3,0,0,0,4.3,4.3H37.573a4.3,4.3,0,0,0,4.3-4.3C41.91,36.354,41.91,36.274,41.91,36.234ZM19.06,11.095a6.345,6.345,0,0,1,12.69,0v2.128H19.06Z" transform="translate(-6.905 -0.3)" fill="#ff801e"/>
+  </g>
+</svg>

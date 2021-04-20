@@ -1,0 +1,15 @@
+@import "./colors.scss";
+// change the theme
+$theme-colors: (
+  "primary": $primary,
+  "danger": $danger,
+  "dark": $dark,
+  "secondary": $seondaryPrimary,
+);
+
+@import "~bootstrap/scss/bootstrap.scss";
+
+// custom css
+@import "./override.scss";
+@import "./dashboard.scss";
+@import "./product.scss";

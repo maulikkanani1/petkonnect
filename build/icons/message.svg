@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="58" height="41" viewBox="0 0 58 41">
+  <defs>
+    <clipPath id="clip-message">
+      <rect width="58" height="41"/>
+    </clipPath>
+  </defs>
+  <g id="message" clip-path="url(#clip-message)">
+    <rect width="58" height="41" fill="rgba(255,255,255,0)"/>
+    <g id="noun_Mail_1544264" transform="translate(2.814 2.582)">
+      <g id="Group_786" data-name="Group 786" transform="translate(0 0)">
+        <path id="Path_2110" data-name="Path 2110" d="M32.027,49.1a4.039,4.039,0,0,1-2.177-.588L5.9,34.8V58.338a3.6,3.6,0,0,0,3.59,3.59H54.623a3.6,3.6,0,0,0,3.59-3.59V34.8L34.2,48.511A4.182,4.182,0,0,1,32.027,49.1Z" transform="translate(-5.841 -26.091)" fill="#ff801e"/>
+        <path id="Path_2111" data-name="Path 2111" d="M54.582,20H9.39A3.6,3.6,0,0,0,5.8,23.59V24.3L31.692,39.125a.441.441,0,0,0,.53,0L58.113,24.3V23.59A3.554,3.554,0,0,0,54.582,20Z" transform="translate(-5.8 -20)" fill="#ff801e"/>
+      </g>
+    </g>
+  </g>
+</svg>

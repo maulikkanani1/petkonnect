@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="43" viewBox="0 0 45 43">
+  <defs>
+    <clipPath id="clip-my_store">
+      <rect width="45" height="43"/>
+    </clipPath>
+  </defs>
+  <g id="my_store" clip-path="url(#clip-my_store)">
+    <rect width="45" height="43" fill="rgba(255,255,255,0)"/>
+    <g id="shopping-cart" transform="translate(2 2.682)">
+      <g id="Group_679" data-name="Group 679" transform="translate(25.313 28.416)">
+        <g id="Group_678" data-name="Group 678" transform="translate(0 0)">
+          <path id="Path_2020" data-name="Path 2020" d="M296.962,338.862a4.61,4.61,0,1,0,4.61,4.61A4.665,4.665,0,0,0,296.962,338.862Z" transform="translate(-292.352 -338.862)" fill="#ff801e"/>
+        </g>
+      </g>
+      <g id="Group_681" data-name="Group 681" transform="translate(0 0)">
+        <g id="Group_680" data-name="Group 680" transform="translate(0 0)">
+          <path id="Path_2021" data-name="Path 2021" d="M38.036,17.1c-.089,0-.222-.044-.355-.044H9.753l-.443-2.97A3.97,3.97,0,0,0,5.364,10.67H1.773a1.773,1.773,0,1,0,0,3.546H5.364a.471.471,0,0,1,.443.4L8.556,33.323a4.86,4.86,0,0,0,4.788,4.123H31.785a4.927,4.927,0,0,0,4.788-3.9l2.881-14.407A1.752,1.752,0,0,0,38.036,17.1Z" transform="translate(0 -10.67)" fill="#ff801e"/>
+        </g>
+      </g>
+      <g id="Group_683" data-name="Group 683" transform="translate(9.617 28.416)">
+        <g id="Group_682" data-name="Group 682" transform="translate(0 0)">
+          <path id="Path_2022" data-name="Path 2022" d="M120.072,343.251a4.584,4.584,0,0,0-4.566-4.389,4.637,4.637,0,0,0-4.433,4.788,4.544,4.544,0,0,0,4.522,4.389h.089A4.6,4.6,0,0,0,120.072,343.251Z" transform="translate(-111.07 -338.862)" fill="#ff801e"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
