@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Card, Button, Table, Form } from "react-bootstrap";
 import { view_cart, place_order, remove_card_item } from "../ApiService";
+import { useHistory} from "react-router-dom";
 
 import Header from "../components/Header.jsx";
 import Footer from "../components/footer.jsx";
@@ -8,31 +9,37 @@ import MyJumbotron from "../components/MyJumbotron";
 import "./../scss/checkout.scss";
 
 const Cart = () => {
+  const history = useHistory();
   const [cartDate, setCartDate] = useState([]);
   const [shipping,setshipping] =useState(0);
+  const [subtotal,setsubtotal] =useState(0);
   const [total,settotal] =useState(0);
 
   useEffect(() => {
+    View_cart();
+  }, []);
+
+  const View_cart=()=>{
     view_cart().then(({ data }) => {
       setCartDate(data.cart);
-      let shippings,totals=0;
+      console.log("hellow",data.cart);
+      let shippings=0;
+      let totals=0;
       data['cart'].map((res)=>{
-        shippings=shippings + res['shippingCharges'];
-        totals=totals+ res['subTotal'];
+        shippings=shippings + parseInt(res['shippingCharges']);
+        totals=totals+ parseInt(res['subTotal'] - res['shippingCharges']);
       })
+      let all_total=shippings+totals;
       setshipping(shippings);
-      settotal(totals);
+      setsubtotal(totals);
+      settotal(all_total);
     });
-  }, []);
+  }
   const remove_item=(id)=>{
     let item=[];
     item.push(id);
-    console.log("id=========",id)
     remove_card_item(item).then(()=>{
-      view_cart().then(({ data }) => {
-        setCartDate(data.cart);
-        setshipping(0);
-      });
+      View_cart();
     }).catch((err)=>{
       console.log(err)
     })
@@ -67,7 +74,7 @@ const Cart = () => {
 
                 
              return  products['products'].map((product,i)=>{
-              const { productImage, productName, sellingPrice } = product;
+              const { productImage, productName, gstInclusivePrice,id } = product;
               return (
                     <tr>
                       <td>
@@ -76,7 +83,7 @@ const Cart = () => {
                       </td>
                       <td>
                         <i className="fas fa-rupee-sign mr-1 f-18"></i>
-                        {sellingPrice}
+                        {gstInclusivePrice}
                       </td>
                       <td>
                         <i className="fas fa-plus-circle text-secondary mr-4" ></i>
@@ -85,10 +92,10 @@ const Cart = () => {
                       </td>
                       <td>
                         <i className="fas fa-rupee-sign mr-1 f-18"></i>
-                        {sellingPrice * products.quantities[i]}
+                        {gstInclusivePrice * products.quantities[i]}
                         <i
                           className="far fa-times-circle text-danger ml-3 cursor-pointer"
-                          onClick={() => remove_item(products['id'])}
+                          onClick={() => remove_item(id)}
                         ></i>
                       </td>
                     </tr>
@@ -99,14 +106,14 @@ const Cart = () => {
               </tbody>
             </Table>
             
-            {/*<div className="row">
+            <div className="row">
               <div className="col-lg-3 col-md-3">
                 <Form.Control type="text" placeholder="Enter Coupon Code" />
               </div>
               <div className="col-lg-3 col-md-3">
                 <Button variant="secondary">Apply Coupon</Button>
               </div>
-              </div>*/}
+              </div>
           </Card.Body>
              : <h1 className="text-center" >Your Cart is empty.</h1>}
         </Card>
@@ -114,7 +121,7 @@ const Cart = () => {
           <Card.Header>
             <h5 className="font-weight-bold">Cart Summary</h5>
           </Card.Header>
-          {/* <Card.Body>
+          <Card.Body>
             <div className="row">
               <div className="col-md-6">
                 <div className="row">
@@ -137,7 +144,7 @@ const Cart = () => {
                   </div>
                   <div className="col-md-4 text-right">
                     <h5 className="amount">
-                      <i className="fas fa-rupee-sign mr-1 f-16"></i>1120.00
+                      <i className="fas fa-rupee-sign mr-1 f-16"></i>{subtotal}
                     </h5>
                     <h5 className="amount">
                       <i className="fas fa-rupee-sign mr-1 f-16"></i>{shipping}
@@ -146,7 +153,7 @@ const Cart = () => {
                 </div>
               </div>
             </div>
-          </Card.Body> */}
+          </Card.Body>
           <Card.Footer className="bg-transparent">
             <div className="row mb-3">
               <div className="offset-6 col-md-6">
@@ -156,13 +163,13 @@ const Cart = () => {
                   </div>
                   <div className="col-md-4 text-right">
                     <h5 className="amount">
-                      <i className="fas fa-rupee-sign mr-1 f-16"></i>1170.00
+                      <i className="fas fa-rupee-sign mr-1 f-16"></i>{total}
                     </h5>
                   </div>
                 </div>
               </div>
               <div className="d-flex w-100 mt-3 justify-content-center">
-                <Button className="cart_btn mr-3" variant="outline-dark" lg>
+                <Button className="cart_btn mr-3" variant="outline-dark" onClick={()=>{history.push('/')}}>
                   Continue Shopping
                 </Button>
 

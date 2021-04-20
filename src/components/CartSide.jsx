@@ -7,18 +7,7 @@ const CartSide = () => {
   const history = useHistory();
   
   const category_page=(product_category)=>{
-    if(product_category=='Food'){
-      product_category='Food';
-    }
-     if(product_category=='Cats'){
-      product_category='Cat';
-    }
-    if(product_category=='Birds'){
-      product_category='Bird';
-    }
-    if(product_category=='Rabbits'){
-      product_category='Rabbit';
-    }
+ 
     
     history.push(`/Products?category=${product_category}`);
   }
@@ -89,13 +78,15 @@ const CartSide = () => {
     <div className="col-lg-4 product-menu">
       <Card>
         <Card.Header>
+          <div className="d-flex">
           <h5>Cart</h5>
+          </div>
         </Card.Header>
         <Card.Body>
           {useState.length ? (
             cartDate.map((products) => {
              return  products['products'].map((product,i)=>{
-              const { productImage, productName, sellingPrice } = product;
+              const { productImage, productName, gstInclusivePrice } = product;
               return (
                 <div className="d-flex w-100 justify-content-between align-items-center mb-3 mini_cart">
                   <div>
@@ -107,7 +98,7 @@ const CartSide = () => {
                       <span className="mr-2">{products.quantities[i]}</span>
                       <i className="fas fa-times mr-2"></i>
                       <i className="fas fa-rupee-sign  f-14"></i>
-                      {sellingPrice}
+                      {gstInclusivePrice}
                     </div>
                   </div>
                   <div>

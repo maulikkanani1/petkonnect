@@ -13,8 +13,20 @@ const ProductDetail = () => {
   const location = useLocation();
   const productData = location.state.data;
   const vendorId = location.state.id;
-
-  const { productImage, productBrand, petType, productDescription, sellingPrice, productSubcategory, productName, rating, id, productCategory } = productData;
+  const vendor = location.state.vendor;
+  
+  const { productImage,
+    productBrand,
+    petType,
+    productDescription,
+    sellingPrice,
+    productSubcategory,
+    gstInclusivePrice,
+    productName,
+    rating,
+    id,
+    gst,
+    productCategory } = productData;
 
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState(1);
@@ -48,16 +60,26 @@ const ProductDetail = () => {
               <Card.Body className="d-flex">
                 <div className="w-50">
                   <img src={productImage[0]} className="product_img" />
-                  <h6>Offers Available</h6>
+                  {/* <h6>Offers Available</h6>
                   <ul className="list pl-3">
-                    <li className="list_item">Special 50% Offer with ABC Bank Credit Card</li>
-                    <li className="list_item">Cashback 20% on the payment of Paytm</li>
-                    <li className="list_item">Free Coupon Voucher for purchase of 2 items</li>
-                  </ul>
+                    <li className="list_item">
+                      Special 50% Offer with ABC Bank Credit Card
+                    </li>
+                    <li className="list_item">
+                      Cashback 20% on the payment of Paytm
+                    </li>
+                    <li className="list_item">
+                      Free Coupon Voucher for purchase of 2 items
+                    </li>
+                  </ul> */}
                 </div>
                 <div className="product_info p-3 w-50">
-                  <h6 className="text-primary">{petType} {productSubcategory}</h6>
-                  <h5 className="text-dark font-weight-bold mt-2">{productName}</h5>
+                  <h6 className="text-primary">
+                    {petType} {productSubcategory}
+                  </h6>
+                  <h5 className="text-dark font-weight-bold mt-2">
+                    {productName}
+                  </h5>
                   {Array.from({ length: 5 }, (x, i) => {
                     return i + 1 > rating ? (
                       <i className="far fa-star text-secondary"></i>
@@ -67,9 +89,9 @@ const ProductDetail = () => {
                   })}
                   <h4 className="text-primary amount mt-3">
                     <i className="fas fa-rupee-sign "></i>
-                    {sellingPrice}
+                    {gstInclusivePrice}
                   </h4>
-                  
+
                   <div className="quantity_contanier mt-3">
                     <label className="mr-5 mb-0">Quantity</label>
                     <i
@@ -86,17 +108,25 @@ const ProductDetail = () => {
                     <label className="mr-5 mb-0">Total</label>
                     <h4 className="text-primary mb-0 total">
                       <i className="fas fa-rupee-sign "></i>
-                      {sellingPrice*quantity }
+                      {gstInclusivePrice * quantity}
                     </h4>
                   </div>
                   <div className="d-flex w-100 mt-5">
-                    <Button className="w-50 mr-3" onClick={addtoCart} variant="outline-dark">
+                    <Button
+                      className="w-50 mr-3"
+                      onClick={addtoCart}
+                      variant="outline-dark"
+                    >
                       Add to Cart
                     </Button>
 
-                    <Button className="w-50" variant="secondary" onClick={() => {
-              history.push("/checkout");
-            }}>
+                    <Button
+                      className="w-50"
+                      variant="secondary"
+                      onClick={() => {
+                        history.push('/checkout');
+                      }}
+                    >
                       Checkout
                     </Button>
                   </div>
@@ -104,7 +134,10 @@ const ProductDetail = () => {
               </Card.Body>
             </Card>
 
-            <Tab.Container id="left-tabs-example" defaultActiveKey="description">
+            <Tab.Container
+              id="left-tabs-example"
+              defaultActiveKey="description"
+            >
               <Card className="mt-3">
                 <Card.Header className="bg-transparent border-0">
                   <Nav variant="tab">
@@ -121,13 +154,24 @@ const ProductDetail = () => {
                     <Tab.Pane eventKey="description">
                       <h5>Product Information</h5>
                       <label className="f-12 mb-0">Brand :</label>
-                      <label className="f-12 font-weight-bold ml-2 mb-0">{productBrand}</label>
+                      <label className="f-12 font-weight-bold ml-2 mb-0">
+                        {productBrand}
+                      </label>
                       <br />
                       <label className="f-12">Category :</label>
-                      <label className="f-12 font-weight-bold ml-2  mb-0">{petType} {productCategory}</label>
+                      <label className="f-12 font-weight-bold ml-2  mb-0">
+                        {petType} {productCategory}
+                      </label>
                       <br />
                       <label className="f-12">{productCategory} Type :</label>
-                      <label className="f-12 font-weight-bold ml-2  mb-0">{productSubcategory}</label>
+                      <label className="f-12 font-weight-bold ml-2  mb-0">
+                        {productSubcategory}
+                      </label>
+                      <br/>
+                      <label className="f-12">GST Applied :</label>
+                      <label className="f-12 font-weight-bold ml-2  mb-0">
+                        {gst}%
+                      </label>
                       <p>{productDescription}</p>
                     </Tab.Pane>
                     <Tab.Pane eventKey="reviews">
@@ -140,7 +184,7 @@ const ProductDetail = () => {
             <h2 className="my-3">You may also like</h2>
             <div className="row mb-4 mt-3">
               {products.map((product) => (
-                <ProductCard product={product} id={vendorId} />
+                <ProductCard product={product} vendor={vendor} id={vendorId} />
               ))}
             </div>
           </div>

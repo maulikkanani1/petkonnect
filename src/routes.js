@@ -8,6 +8,7 @@ import Profile from "./Views/Profile";
 import Products from "./Views/Products";
 import Myorder from "./Views/Myorder";
 import TrackMyOrder from "./Views/TrackMyOrder";
+import ProductList from "./Views/ProductList";
 
 const Routes = [
   {
@@ -33,6 +34,10 @@ const Routes = [
   {
     path: "/ProductDetail",
     component: ProductDetail,
+  },
+  {
+      path:"/ProductList",
+      component:ProductList
   },
   {
     path: "/Checkout",

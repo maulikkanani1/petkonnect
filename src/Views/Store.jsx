@@ -17,11 +17,13 @@ const Store = () => {
   const vendorId = location.state?.vendorId;
 
   const [products, setProducts] = useState([]);
+  const [vendor, setVendor] = useState({});
 
   useEffect(() => {
     if (vendorId) {
       GetVendorProduct(vendorId).then(({ data }) => {
         setProducts(data.products);
+         setVendor(data.vendor);
       });
     } else {
       GetAllVendorProduct().then(({ data }) => {
@@ -39,19 +41,21 @@ const Store = () => {
       <Container>
       <Card className="w-100  ">
               <Card.Body className="d-flex">
-                <div className="w-50">
-                  <img className="product_img" />
-                  <h6>Store img</h6>
-                  <br />
-                  <br />
-                  <br />
-                  <h6>storeName</h6>
-                  <ul className="list pl-3">
-                    <li className="list_item">Phone number</li>
-                    <li className="list_item">email</li>
-                    <li className="list_item">Address</li>
-                  </ul>
-                </div>
+              <div className="w-50">
+                <img src={vendor.storeImage} className="product_img" />
+                {/* <h6>Store img</h6> */}
+                <br />
+                <br />
+                <br />
+                <h6>{vendor.storeName}</h6>
+                <ul className="list pl-3">
+                  <li className="list_item">
+                    {vendor.vendorPhonenumber}, {vendor.storeContactNo}
+                  </li>
+                  <li className="list_item">{vendor.storeEmail}</li>
+                  <li className="list_item">{vendor.storeAddress}</li>
+                </ul>
+              </div>
                 <div className="product_info p-3 w-50">
                   
                   
@@ -70,7 +74,7 @@ const Store = () => {
           <div className="col-lg-8">
             <div className="row">
               {products.map((product) => (
-                <ProductCard product={product} id={vendorId} />
+                <ProductCard product={product}  id={vendorId} vendor={vendor} />
               ))}
             </div>
           </div>
