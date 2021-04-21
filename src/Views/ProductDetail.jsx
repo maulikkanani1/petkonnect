@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Container, Card, Button, Tab, Nav } from "react-bootstrap";
-import { useLocation,useHistory } from "react-router-dom";
-import { add_to_cart, GetVendorProduct } from "../ApiService";
-import Header from "./../components/Header.jsx";
-import Footer from "../components/footer.jsx";
-import CartSide from "../components/CartSide";
-import ProductCard from "../components/ProductCard";
-import MyJumbotron from "../components/MyJumbotron";
+import React, { useEffect, useState } from 'react';
+import { Container, Card, Button, Tab, Nav } from 'react-bootstrap';
+import { useLocation, useHistory } from 'react-router-dom';
+import { add_to_cart, GetVendorProduct } from '../ApiService';
+import Header from './../components/Header.jsx';
+import Footer from '../components/footer.jsx';
+import CartSide from '../components/CartSide';
+import ProductCard from '../components/ProductCard';
+import MyJumbotron from '../components/MyJumbotron';
 
 const ProductDetail = () => {
   const history = useHistory();
@@ -14,8 +14,9 @@ const ProductDetail = () => {
   const productData = location.state.data;
   const vendorId = location.state.id;
   const vendor = location.state.vendor;
-  
-  const { productImage,
+
+  const {
+    productImage,
     productBrand,
     petType,
     productDescription,
@@ -26,7 +27,8 @@ const ProductDetail = () => {
     rating,
     id,
     gst,
-    productCategory } = productData;
+    productCategory,
+  } = productData;
 
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState(1);
@@ -52,7 +54,6 @@ const ProductDetail = () => {
     <div className="product_details">
       <Header />
 
-      
       <Container>
         <div className="row mt-5 mb-5">
           <div className="col-lg-8">
@@ -167,7 +168,7 @@ const ProductDetail = () => {
                       <label className="f-12 font-weight-bold ml-2  mb-0">
                         {productSubcategory}
                       </label>
-                      <br/>
+                      <br />
                       <label className="f-12">GST Applied :</label>
                       <label className="f-12 font-weight-bold ml-2  mb-0">
                         {gst}%

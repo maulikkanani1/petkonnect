@@ -1,60 +1,60 @@
-import React, { useEffect, useState } from "react";
-import { GetallStores, GetAllVendorProduct } from "../ApiService";
-import { Container } from "react-bootstrap";
-import Header from "./../components/Header.jsx";
-import Footer from "./../components/footer.jsx";
-import StoreCard from "./../components/StoreCard.jsx";
-import CategoryCard from "./../components/CategoryCard.jsx";
-import BrandCard from "./../components/BrandCard.jsx";
-import Products from "./../components/Products.jsx";
-import Slider from "./../components/Slider.jsx";
-import ProductCard from "./../components/ProductCard.jsx";
+import React, { useEffect, useState } from 'react';
+import { GetallStores, GetAllVendorProduct } from '../ApiService';
+import { Container } from 'react-bootstrap';
+import Header from './../components/Header.jsx';
+import Footer from './../components/footer.jsx';
+import StoreCard from './../components/StoreCard.jsx';
+import CategoryCard from './../components/CategoryCard.jsx';
+import BrandCard from './../components/BrandCard.jsx';
+import Products from './../components/Products.jsx';
+import Slider from './../components/Slider.jsx';
+import ProductCard from './../components/ProductCard.jsx';
 
 const DashBoard = () => {
   const [stores, setStores] = useState([]);
   const categories = [
     {
-      name: "Dog",
-      imageUrl: "./../../img/dog_img_4.png",
+      name: 'Dog',
+      imageUrl: './../../img/dog_img_4.png',
     },
     {
-      name: "Cat",
-      imageUrl: "./../../img/cat_img_1.png",
+      name: 'Cat',
+      imageUrl: './../../img/cat_img_1.png',
     },
     {
-      name: "Bird",
-      imageUrl: "./../../img/bird_img_1.png",
+      name: 'Bird',
+      imageUrl: './../../img/bird_img_1.png',
     },
     {
-      name: "Fish",
-      imageUrl: "./../../img/fish_2.png",
+      name: 'Fish',
+      imageUrl: './../../img/fish_2.png',
     },
     {
-      name: "Turtle",
-      imageUrl: "./../../img/turtle_1.png",
+      name: 'Turtle',
+      imageUrl: './../../img/turtle_1.png',
     },
     {
-      name: "Small pets",
-      imageUrl: "./../../img/small_pets_1.png",
+      name: 'Small pets',
+      imageUrl: './../../img/small_pets_1.png',
     },
   ];
 
   const brands = [
     {
-      name: "Wild Earth",
-      imageUrl: "./../../img/brand_img_1.png",
+      name: 'Wild Earth',
+      imageUrl: './../../img/brand_img_1.png',
     },
     {
-      name: "Pedigree",
-      imageUrl: "./../../img/brand_img_2.png",
+      name: 'Pedigree',
+      imageUrl: './../../img/brand_img_2.png',
     },
     {
-      name: "Royal Canin",
-      imageUrl: "./../../img/brand_img_3.png",
+      name: 'Royal Canin',
+      imageUrl: './../../img/brand_img_3.png',
     },
     {
-      name: "Big Heart",
-      imageUrl: "./../../img/brand_img_4.png",
+      name: 'Big Heart',
+      imageUrl: './../../img/brand_img_4.png',
     },
   ];
 
@@ -98,7 +98,7 @@ const DashBoard = () => {
           </div>
         </div>
       </div>
-<Footer />
+      <Footer />
       {/*<Container>
         <Products stores={stores} />
         
