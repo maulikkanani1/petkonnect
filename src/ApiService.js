@@ -3,8 +3,8 @@ import jwt_decode from 'jwt-decode';
 
 export const MAIN_API =
   process.env.NODE_ENV === 'development'
-    ? 'https://petkonnect.in/api'
-    : 'https://petkonnect.in/api';
+    ? 'http://localhost:5000'
+    : 'http://localhost:5000';
 
 axios.interceptors.request.use(function (config) {
   const token = localStorage.getItem('token');
