@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Card, Button, Table, Form } from "react-bootstrap";
 import { view_cart, place_order, remove_card_item, GetUserData, add_to_cart } from "../ApiService";
 import { useHistory } from "react-router-dom";
-
+import swal from "sweetalert";
 import Header from "../components/Header.jsx";
 import Footer from "../components/footer.jsx";
 import MyJumbotron from "../components/MyJumbotron";
@@ -38,6 +38,10 @@ const Cart = () => {
       setsubtotal(totals);
       settotal(all_total);
     });
+  };
+
+  const sucess_alert = () => {
+    swal("Order Confirmed", "", "success");
   };
 
   const remove_item = (id) => {
@@ -101,15 +105,9 @@ const Cart = () => {
                               {gstInclusivePrice}
                             </td>
                             <td>
-                              <i
-                                className="fas fa-plus-circle cursor-pointer text-secondary mr-4"
-                                onClick={() => updateCart(1, id, products.vendorID)}
-                              ></i>
+                              <i className="fas fa-plus-circle text-secondary mr-4"></i>
                               <span className="mr-4">{products.quantities[i]}</span>
-                              <i
-                                className="fas fa-minus-circle cursor-pointer text-secondary "
-                                onClick={() => updateCart(-1, id, products.vendorID)}
-                              ></i>
+                              <i className="fas fa-minus-circle text-secondary "></i>
                             </td>
                             <td>
                               <i className="fas fa-rupee-sign mr-1 f-18"></i>
@@ -210,8 +208,13 @@ const Cart = () => {
                     <Button
                       className="cart_btn"
                       onClick={() => {
-                        place_order().then(() => {
-                          window.location.reload();
+                        place_order().then(({ data }) => {
+                          if (data.status) {
+                            sucess_alert();
+                          }
+                          setTimeout(() => {
+                            history.push("/dashboard");
+                          }, 2000);
                         });
                       }}
                       variant="secondary"

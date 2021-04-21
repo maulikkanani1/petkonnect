@@ -84,7 +84,7 @@ const Cart = () => {
                               <h6 className="font-weight-bold">Delivered on</h6>
 
                               <label className="delivered_address">
-                                {item.confirmationDate ? new Date(item.confirmationDate).toLocaleDateString() : ""}
+                                {item.confirmationDate ? new Date(item.confirmationDate).toLocaleDateString() : "-"}
                               </label>
                             </div>
                           </div>
@@ -110,28 +110,22 @@ const Cart = () => {
                       <div className="float-right p-3 m-2">
                         <TrackCard2
                           title="Ordered"
-                          date={moment(item["createdAt"]).format("DD-MM-YYYY")}
+                          date={moment(item["updatedAt"]).format("DD-MM-YYYY")}
                           trackActiveDot={item.orderStatus === "pending" ? true : false}
                         />
                         <TrackCard2
                           title="Packed"
-                          date={
-                            item.orderStatus === "confirm" ? moment(item["confirmationDate"]).format("DD-MM-YYYY") : ""
-                          }
+                          date={moment(item["updatedAt"]).format("DD-MM-YYYY")}
                           trackActiveDot={item.orderStatus === "confirm" ? true : false}
                         />
                         <TrackCard2
                           title="Shipped"
-                          date={
-                            item.orderStatus === "completed" ? moment(item["dispatchedDate"]).format("DD-MM-YYYY") : ""
-                          }
+                          date={moment(item["updatedAt"]).format("DD-MM-YYYY")}
                           trackActiveDot={item.orderStatus === "completed" ? true : false}
                         />
                         <TrackCard2
-                          title="Delivered"
-                          date={
-                            item.orderStatus === "delivered" ? moment(item["deliveredDate"]).format("DD-MM-YYYY") : ""
-                          }
+                          title="Delivered "
+                          date={moment(item["updatedAt"]).format("DD-MM-YYYY")}
                           trackActiveDot={item.orderStatus === "delivered" ? true : false}
                         />
                       </div>
@@ -139,7 +133,7 @@ const Cart = () => {
                   </div>
                 </div>
                 <div className="d-flex justify-content-center mb-3">
-                  <Button variant="outline-primary" onClick={sucess_alert}>
+                  <Button variant="outline-primary">
                     <img className="mr-2" src="./../../icons/star.svg" width="25px" />
                     Rate & Review Product
                   </Button>

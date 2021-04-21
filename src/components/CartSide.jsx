@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Card } from 'react-bootstrap';
-import { view_cart, remove_card_item } from '../ApiService';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Card, Button } from "react-bootstrap";
+import { view_cart, remove_card_item } from "../ApiService";
+import { useHistory } from "react-router-dom";
 
 const CartSide = () => {
   const history = useHistory();
@@ -12,43 +12,43 @@ const CartSide = () => {
 
   const productCategory = [
     {
-      name: 'Food',
+      name: "Food",
     },
     {
-      name: 'Treats',
+      name: "Treats",
     },
     {
-      name: 'Toys',
+      name: "Toys",
     },
     {
-      name: 'Leashes, Collars & Harness',
+      name: "Leashes, Collars & Harness",
     },
     {
-      name: 'Clothing & Accessories',
+      name: "Clothing & Accessories",
     },
     {
-      name: 'Bowls & Feeders',
+      name: "Bowls & Feeders",
     },
     {
-      name: 'Beds',
+      name: "Beds",
     },
     {
-      name: 'Grooming & Hygiene',
+      name: "Grooming & Hygiene",
     },
     {
-      name: 'Health & Wellness',
+      name: "Health & Wellness",
     },
     {
-      name: 'Carriers & Travel',
+      name: "Carriers & Travel",
     },
     {
-      name: 'Crates, Pens & Gates',
+      name: "Crates, Pens & Gates",
     },
     {
-      name: 'Trees, Condos & Scratchers',
+      name: "Trees, Condos & Scratchers",
     },
     {
-      name: 'Aquarium',
+      name: "Aquarium",
     },
   ];
   const [cartDate, setCartDate] = useState([]);
@@ -61,7 +61,7 @@ const CartSide = () => {
   const remove_item = (id) => {
     let item = [];
     item.push(id);
-    console.log('id=========', id);
+    console.log("id=========", id);
     remove_card_item(item)
       .then(() => {
         view_cart().then(({ data }) => {
@@ -77,19 +77,24 @@ const CartSide = () => {
     <div className="col-lg-4 product-menu">
       <Card>
         <Card.Header>
-          <div className="d-flex">
-            <h5>Cart</h5>
+          <div className="d-flex justify-content-between align-items-center">
+            <h5 className="mb-0">Cart</h5>
+            <Button
+              className="w-50 "
+              variant="secondary"
+              onClick={() => {
+                history.push("/checkout");
+              }}
+            >
+              go to cart
+            </Button>
           </div>
         </Card.Header>
         <Card.Body>
-          {useState.length ? (
+          {cartDate.length ? (
             cartDate.map((products) => {
-              return products['products'].map((product, i) => {
-                const {
-                  productImage,
-                  productName,
-                  gstInclusivePrice,
-                } = product;
+              return products["products"].map((product, i) => {
+                const { productImage, productName, gstInclusivePrice } = product;
                 return (
                   <div className="d-flex w-100 justify-content-between align-items-center mb-3 mini_cart">
                     <div>
@@ -105,17 +110,14 @@ const CartSide = () => {
                       </div>
                     </div>
                     <div>
-                      <i
-                        className="far fa-times-circle text-danger "
-                        onClick={() => remove_item(products['id'])}
-                      ></i>
+                      <i className="far fa-times-circle text-danger " onClick={() => remove_item(products["id"])}></i>
                     </div>
                   </div>
                 );
               });
             })
           ) : (
-            <Card.Text>No Products in the Cart</Card.Text>
+            <Card.Text>Your Cart is empty !</Card.Text>
           )}
         </Card.Body>
       </Card>
@@ -125,10 +127,7 @@ const CartSide = () => {
         </Card.Header>
         <Card.Body>
           {productCategory.map((product_category) => (
-            <label
-              className="d-block mb-3"
-              onClick={() => category_page(product_category.name)}
-            >
+            <label className="d-block mb-3" onClick={() => category_page(product_category.name)}>
               - {product_category.name}
             </label>
           ))}

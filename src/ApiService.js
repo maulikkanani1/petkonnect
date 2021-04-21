@@ -66,5 +66,8 @@ export const get_vendorbased_product = (category, vendor) =>
   axios.get(
     `${MAIN_API}/vendor/get_vendor_store?pet_category=${category}&vendorID=${vendor}`
   );
+export const getAllProducts = () =>
+  axios.get(`${MAIN_API}/inventory/get_all_products`);
+
 export const get_brand_based_products = (brand) =>
   axios.get(`${MAIN_API}/inventory/get_all_products?brand=${brand}`);
