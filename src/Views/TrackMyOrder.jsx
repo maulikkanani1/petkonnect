@@ -84,7 +84,7 @@ const Cart = () => {
                               <h6 className="font-weight-bold">Delivered on</h6>
 
                               <label className="delivered_address">
-                                {item.confirmationDate ? new Date(item.confirmationDate).toLocaleDateString() : "-"}
+                                {item.confirmationDate ? new Date(item.confirmationDate).toLocaleDateString() : ""}
                               </label>
                             </div>
                           </div>
@@ -116,21 +116,21 @@ const Cart = () => {
                         <TrackCard2
                           title="Packed"
                           date={
-                            item.orderStatus === "confirm" ? moment(item["confirmationDate"]).format("DD-MM-YYYY") : "-"
+                            item.orderStatus === "confirm" ? moment(item["confirmationDate"]).format("DD-MM-YYYY") : ""
                           }
                           trackActiveDot={item.orderStatus === "confirm" ? true : false}
                         />
                         <TrackCard2
                           title="Shipped"
                           date={
-                            item.orderStatus === "completed" ? moment(item["dispatchedDate"]).format("DD-MM-YYYY") : "-"
+                            item.orderStatus === "completed" ? moment(item["dispatchedDate"]).format("DD-MM-YYYY") : ""
                           }
                           trackActiveDot={item.orderStatus === "completed" ? true : false}
                         />
                         <TrackCard2
                           title="Delivered"
                           date={
-                            item.orderStatus === "delivered" ? moment(item["deliveredDate"]).format("DD-MM-YYYY") : "-"
+                            item.orderStatus === "delivered" ? moment(item["deliveredDate"]).format("DD-MM-YYYY") : ""
                           }
                           trackActiveDot={item.orderStatus === "delivered" ? true : false}
                         />

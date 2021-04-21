@@ -30,7 +30,6 @@ const Cart = () => {
       let shippings = 0;
       let totals = 0;
       data["cart"].map((res) => {
-        console.log(res.quantities[0]);
         shippings = shippings + parseInt(res["shippingCharges"]);
         totals = totals + parseInt(res["subTotal"] - res["shippingCharges"]);
       });
@@ -104,12 +103,12 @@ const Cart = () => {
                             <td>
                               <i
                                 className="fas fa-plus-circle cursor-pointer text-secondary mr-4"
-                                onClick={() => updateCart(products.quantities[i] + 1, id, products.vendorID)}
+                                onClick={() => updateCart(1, id, products.vendorID)}
                               ></i>
                               <span className="mr-4">{products.quantities[i]}</span>
                               <i
                                 className="fas fa-minus-circle cursor-pointer text-secondary "
-                                onClick={() => updateCart(products.quantities[i] - 1, id, products.vendorID)}
+                                onClick={() => updateCart(-1, id, products.vendorID)}
                               ></i>
                             </td>
                             <td>
