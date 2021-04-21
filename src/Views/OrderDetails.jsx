@@ -6,6 +6,7 @@ import { useHistory, useParams } from "react-router-dom";
 import Header from "../components/Header.jsx";
 import Footer from "../components/footer.jsx";
 import MyJumbotron from "../components/MyJumbotron";
+import OrderStatus from "../components/OrderStatus";
 import "./../scss/myorders.scss";
 import "./../scss/track_order.scss";
 
@@ -75,10 +76,8 @@ const Myorder = () => {
                           <div className="col-md-5">
                             <div className="float-right p-3">
                               <div className="d-flex justify-content-center m-3">
-                                <div className="dot"></div>
                                 <div className="ml-2 status">
-                                  Delivered on{" "}
-                                  {res.confirmationDate ? new Date(res.confirmationDate).toLocaleDateString() : "-"}
+                                  <OrderStatus item={res} />
                                 </div>
                               </div>
                               <div className="sub_text m-3">You item has been arrived</div>

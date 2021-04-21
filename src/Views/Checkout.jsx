@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Card, Button, Table, Form } from "react-bootstrap";
-import { view_cart, place_order, remove_card_item, GetUserData } from "../ApiService";
+import { view_cart, place_order, remove_card_item, GetUserData, add_to_cart } from "../ApiService";
 import { useHistory } from "react-router-dom";
 
 import Header from "../components/Header.jsx";
@@ -15,6 +15,7 @@ const Cart = () => {
   const [subtotal, setsubtotal] = useState(0);
   const [total, settotal] = useState(0);
   const [userData, setuserData] = useState();
+  const [quantity, setQuantity] = useState();
 
   useEffect(() => {
     View_cart();
@@ -29,6 +30,7 @@ const Cart = () => {
       let shippings = 0;
       let totals = 0;
       data["cart"].map((res) => {
+        console.log(res.quantities[0]);
         shippings = shippings + parseInt(res["shippingCharges"]);
         totals = totals + parseInt(res["subTotal"] - res["shippingCharges"]);
       });
@@ -51,6 +53,15 @@ const Cart = () => {
       });
   };
 
+  const updateCart = (quantity, productID, vendorID) => {
+    add_to_cart({
+      productID,
+      vendorID,
+      quantity,
+    }).then(() => {
+      View_cart();
+    });
+  };
   return (
     <div>
       <Header />
@@ -91,9 +102,15 @@ const Cart = () => {
                               {gstInclusivePrice}
                             </td>
                             <td>
-                              <i className="fas fa-plus-circle text-secondary mr-4"></i>
+                              <i
+                                className="fas fa-plus-circle cursor-pointer text-secondary mr-4"
+                                onClick={() => updateCart(products.quantities[i] + 1, id, products.vendorID)}
+                              ></i>
                               <span className="mr-4">{products.quantities[i]}</span>
-                              <i className="fas fa-minus-circle text-secondary "></i>
+                              <i
+                                className="fas fa-minus-circle cursor-pointer text-secondary "
+                                onClick={() => updateCart(products.quantities[i] - 1, id, products.vendorID)}
+                              ></i>
                             </td>
                             <td>
                               <i className="fas fa-rupee-sign mr-1 f-18"></i>
