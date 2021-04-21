@@ -1,5 +1,4 @@
 .track_order_page {
- 
   .track_card {
     display: flex;
     align-items: center;
@@ -11,7 +10,7 @@
     .track_dot {
       position: relative;
     }
-    .track_dot2{
+    .track_dot2 {
       position: relative;
     }
     .track_dot2::after {
@@ -19,7 +18,7 @@
       border: 1px solid #ededed;
       position: absolute;
       top: 16px;
-      height: 94px;
+      height: 73px;
       left: 49%;
     }
     .track_dot::after {
@@ -31,26 +30,26 @@
       left: 49%;
     }
   }
-.text-green{
-  color:#51BE7C;
-}
+  .text-green {
+    color: #51be7c;
+  }
   .delivered_address {
     width: 200px;
   }
 }
 
-.track_text{
+.track_text {
   text-align: right;
-font: normal normal normal 16px Poppins;
-letter-spacing: 0px;
-color: #333333;
-opacity: 1;
+  font: normal normal normal 16px Poppins;
+  letter-spacing: 0px;
+  color: #333333;
+  opacity: 1;
 }
 
-.status{
+.status {
   text-align: left;
-font: normal normal 600 22px/33px Poppins;
-letter-spacing: 0px;
-color: #51BE7C;
-opacity: 1;
+  font: normal normal 600 22px/33px Poppins;
+  letter-spacing: 0px;
+  color: #51be7c;
+  opacity: 1;
 }

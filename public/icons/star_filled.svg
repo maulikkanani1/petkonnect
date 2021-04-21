@@ -5,7 +5,7 @@
     </clipPath>
   </defs>
   <g id="star_filled" clip-path="url(#clip-star_filled)">
-    <rect width="8" height="8" fill="rgba(255,255,255,0)"/>
-    <text id="_" data-name="" transform="translate(1 6)" fill="#ffbc4e" font-size="6" font-family="FontAwesome5Free-Solid, 'Font Awesome \35  Free'"><tspan x="0" y="0"></tspan></text>
+    <rect width="8" height="8" fill="#ff801e"/>
+    <text id="_" data-name="" transform="translate(1 6)" fill="#ffff"  font-size="6" font-family="FontAwesome5Free-Solid, 'Font Awesome \35  Free'"><tspan x="0" y="0"></tspan></text>
   </g>
 </svg>

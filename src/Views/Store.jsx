@@ -23,7 +23,7 @@ const Store = () => {
     if (vendorId) {
       GetVendorProduct(vendorId).then(({ data }) => {
         setProducts(data.products);
-         setVendor(data.vendor);
+        setVendor(data.vendor);
       });
     } else {
       GetAllVendorProduct().then(({ data }) => {
@@ -37,44 +37,40 @@ const Store = () => {
   return (
     <div className="product_listing_page">
       <Header />
-      
+
       <Container>
-      <Card className="w-100  ">
-              <Card.Body className="d-flex">
-              <div className="w-50">
-                <img src={vendor.storeImage} className="product_img" />
-                {/* <h6>Store img</h6> */}
-                <br />
-                <br />
-                <br />
-                <h6>{vendor.storeName}</h6>
-                <ul className="list pl-3">
-                  <li className="list_item">
-                    {vendor.vendorPhonenumber}, {vendor.storeContactNo}
-                  </li>
-                  <li className="list_item">{vendor.storeEmail}</li>
-                  <li className="list_item">{vendor.storeAddress}</li>
-                </ul>
+        <Card className="w-100  ">
+          <Card.Body className="d-flex">
+            <div className="w-50">
+              <img src={vendor.storeImage} className="product_img" />
+              {/* <h6>Store img</h6> */}
+              <br />
+              <br />
+              <br />
+              <h6>{vendor.storeName}</h6>
+              <ul className="list pl-3">
+                <li className="list_item">
+                  {vendor.vendorPhonenumber}, {vendor.storeContactNo}
+                </li>
+                <li className="list_item">{vendor.storeEmail}</li>
+                <li className="list_item">{vendor.storeAddress}</li>
+              </ul>
+            </div>
+            <div className="product_info p-3 w-50">
+              <small className="d-block mt-2"></small>
+
+              <div className="total_contanier mt-4">
+                <label className="mr-5 mb-0"></label>
+                <h4 className="text-primary mb-0 total"></h4>
               </div>
-                <div className="product_info p-3 w-50">
-                  
-                  
-                  <small className="d-block mt-2"></small>
-                  
-                  <div className="total_contanier mt-4">
-                    <label className="mr-5 mb-0"></label>
-                    <h4 className="text-primary mb-0 total">
-                
-                    </h4>
-                  </div>
-                </div>
-              </Card.Body>
-            </Card>
+            </div>
+          </Card.Body>
+        </Card>
         <div className="row mt-5 mb-5">
           <div className="col-lg-8">
             <div className="row">
               {products.map((product) => (
-                <ProductCard product={product}  id={vendorId} vendor={vendor} />
+                <ProductCard product={product} id={vendorId} vendor={vendor} />
               ))}
             </div>
           </div>

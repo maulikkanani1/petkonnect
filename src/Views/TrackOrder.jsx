@@ -1,34 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { useHistory,useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Container, Card, Button } from "react-bootstrap";
 import Header from "../components/Header.jsx";
 import Footer from "../components/footer.jsx";
 import TrackCard from "../components/TrackCard.jsx";
 import MyJumbotron from "../components/MyJumbotron";
 import { get_order_status } from "../ApiService";
+import moment from "moment";
 import "./../scss/track_order.scss";
-import moment from 'moment';
 
 const TrackOrder = () => {
   const history = useHistory();
-  const params=useParams();
-  const [status, setstatus] = useState('');
-
-
+  const params = useParams();
+  const [status, setstatus] = useState("");
 
   useEffect(() => {
-    if(params['id']){
-      get_order_status(params['id']).then((res)=>{
-        if(res.data['order']){
-         console.log("status",res.data);
-            setstatus(res.data['order']);         
-        }
-      }).catch((err)=>{
-        console.log("error",err);
-      })
+    if (params["id"]) {
+      get_order_status(params["id"])
+        .then(({ data }) => {
+          if (data["order"]) {
+            setstatus(data["order"]);
+          }
+        })
+        .catch((err) => {
+          console.log("error", err);
+        });
     }
-    
-
   }, []);
 
   return (
@@ -48,61 +45,65 @@ const TrackOrder = () => {
           <Card.Body>
             <div className="d-flex mb-5 justify-content-between">
               <h5>Track Order</h5>
-              <h5 className="text-primary ">Order ID : {status && status['id']}</h5>
+              <h5 className="text-primary ">Order ID : {status && status["id"]}</h5>
             </div>
             <div className="p-5">
-              { status && status['orderStatus']== 'pending' ? <TrackCard
-                icon="./../../icons/order_placed.svg"
-                title="Order Placed"
-                description="We had received your order"
-                date={moment(status['updatedAt']).format('DD-MM-YYYY')}
-                time={moment(status['updatedAt']).format('hh:mm')}
-                isActive
-                /> : <TrackCard
-                icon="./../../icons/order_placed.svg"
-                title="Order Placed"
-                /> }
-              
-              { status && status['orderStatus']== 'confirm' ? <TrackCard
-                 icon="./../../icons/order_processed.svg"
-                 title="Order Processed"
-                 description="Order has been processed"
-                date={moment(status['updatedAt']).format('DD-MM-YYYY')}
-                time={moment(status['updatedAt']).format('hh:mm')}
-                isActive
-                /> : <TrackCard
-                icon="./../../icons/order_processed.svg"
-                title="Order Processed"
-                /> }
+              {status && status["orderStatus"] == "pending" ? (
+                <TrackCard
+                  icon="./../../icons/order_placed.svg"
+                  title="Order Placed"
+                  description="We had received your order"
+                  date={moment(status["updatedAt"]).format("DD-MM-YYYY")}
+                  time={moment(status["updatedAt"]).format("hh:mm")}
+                  isActive
+                />
+              ) : (
+                <TrackCard icon="./../../icons/order_placed.svg" title="Order Placed" />
+              )}
 
-            { status && status['orderStatus']== 'completed' ? <TrackCard
-                icon="./../../icons/out_for_delivery.svg"
-                title="Out for Delivery"
-                description="Your Order is dispatched"
-                date={moment(status['updatedAt']).format('DD-MM-YYYY')}
-                time={moment(status['updatedAt']).format('hh:mm')}
-                isActive
-                /> : <TrackCard
-                icon="./../../icons/out_for_delivery.svg"
-                title="Out for Delivery"
-                /> }
-            
-            
-            { status && status['orderStatus']== 'delivered' ? <TrackCard
-               title="Delivered Successfully"
-               icon="./../../icons/delivered_successfully.svg"
-               description="Your Order is delivered to the given address"
-                date={moment(status['updatedAt']).format('DD-MM-YYYY')}
-                time={moment(status['updatedAt']).format('hh:mm')}
-                isActive
-                trackActiveDot={false}
-                /> : <TrackCard
-                title="Delivered Successfully"
-                icon="./../../icons/delivered_successfully.svg"
-                trackActiveDot={false}
-                /> }
-                
-             
+              {status && status["orderStatus"] == "confirm" ? (
+                <TrackCard
+                  icon="./../../icons/order_processed.svg"
+                  title="Order Processed"
+                  description="Order has been processed"
+                  date={moment(status["updatedAt"]).format("DD-MM-YYYY")}
+                  time={moment(status["updatedAt"]).format("hh:mm")}
+                  isActive
+                />
+              ) : (
+                <TrackCard icon="./../../icons/order_processed.svg" title="Order Processed" />
+              )}
+
+              {status && status["orderStatus"] == "completed" ? (
+                <TrackCard
+                  icon="./../../icons/out_for_delivery.svg"
+                  title="Out for Delivery"
+                  description="Your Order is dispatched"
+                  date={moment(status["updatedAt"]).format("DD-MM-YYYY")}
+                  time={moment(status["updatedAt"]).format("hh:mm")}
+                  isActive
+                />
+              ) : (
+                <TrackCard icon="./../../icons/out_for_delivery.svg" title="Out for Delivery" />
+              )}
+
+              {status && status["orderStatus"] == "delivered" ? (
+                <TrackCard
+                  title="Delivered Successfully"
+                  icon="./../../icons/delivered_successfully.svg"
+                  description="Your Order is delivered to the given address"
+                  date={moment(status["updatedAt"]).format("DD-MM-YYYY")}
+                  time={moment(status["updatedAt"]).format("hh:mm")}
+                  isActive
+                  trackActiveDot={false}
+                />
+              ) : (
+                <TrackCard
+                  title="Delivered Successfully"
+                  icon="./../../icons/delivered_successfully.svg"
+                  trackActiveDot={false}
+                />
+              )}
             </div>
             <div className="d-flex my-5 justify-content-between align-items-center">
               <div className="d-flex align-items-center">
