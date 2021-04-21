@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Card, Button, Table, Form } from 'react-bootstrap';
-import {
-  view_cart,
-  place_order,
-  remove_card_item,
-  GetUserData,
-} from '../ApiService';
-import { useHistory } from 'react-router-dom';
-import swal from 'sweetalert';
-import Header from '../components/Header.jsx';
-import Footer from '../components/footer.jsx';
-import MyJumbotron from '../components/MyJumbotron';
-import './../scss/checkout.scss';
+import React, { useEffect, useState } from "react";
+import { Container, Card, Button, Table, Form } from "react-bootstrap";
+import { view_cart, place_order, remove_card_item, GetUserData, add_to_cart } from "../ApiService";
+import { useHistory } from "react-router-dom";
+import swal from "sweetalert";
+import Header from "../components/Header.jsx";
+import Footer from "../components/footer.jsx";
+import MyJumbotron from "../components/MyJumbotron";
+import "./../scss/checkout.scss";
 
 const Cart = () => {
   const history = useHistory();
@@ -20,6 +15,7 @@ const Cart = () => {
   const [subtotal, setsubtotal] = useState(0);
   const [total, settotal] = useState(0);
   const [userData, setuserData] = useState();
+  const [quantity, setQuantity] = useState();
 
   useEffect(() => {
     View_cart();
@@ -33,9 +29,9 @@ const Cart = () => {
       setCartDate(data.cart);
       let shippings = 0;
       let totals = 0;
-      data['cart'].map((res) => {
-        shippings = shippings + parseInt(res['shippingCharges']);
-        totals = totals + parseInt(res['subTotal'] - res['shippingCharges']);
+      data["cart"].map((res) => {
+        shippings = shippings + parseInt(res["shippingCharges"]);
+        totals = totals + parseInt(res["subTotal"] - res["shippingCharges"]);
       });
       let all_total = shippings + totals;
       setshipping(shippings);
@@ -45,7 +41,7 @@ const Cart = () => {
   };
 
   const sucess_alert = () => {
-    swal('Order Confirmed', '', 'success');
+    swal("Order Confirmed", "", "success");
   };
 
   const remove_item = (id) => {
@@ -60,15 +56,24 @@ const Cart = () => {
       });
   };
 
+  const updateCart = (quantity, productID, vendorID) => {
+    add_to_cart({
+      productID,
+      vendorID,
+      quantity,
+    }).then(() => {
+      View_cart();
+    });
+  };
   return (
     <div>
       <Header />
       <MyJumbotron
         title="Your Cart"
         route={[
-          { title: 'Home', to: '/' },
-          { title: 'Store', to: '/dashboard' },
-          { title: 'Your Cart', isActive: true },
+          { title: "Home", to: "/" },
+          { title: "Store", to: "/dashboard" },
+          { title: "Your Cart", isActive: true },
         ]}
       />
       <Container>
@@ -87,20 +92,13 @@ const Cart = () => {
                   </thead>
                   <tbody>
                     {cartDate.map((products) => {
-                      return products['products'].map((product, i) => {
-                        const {
-                          productImage,
-                          productName,
-                          gstInclusivePrice,
-                          id,
-                        } = product;
+                      return products["products"].map((product, i) => {
+                        const { productImage, productName, gstInclusivePrice, id } = product;
                         return (
                           <tr>
                             <td>
                               <img src={productImage[0]} />
-                              <span className="product_name ml-2">
-                                {productName}
-                              </span>
+                              <span className="product_name ml-2">{productName}</span>
                             </td>
                             <td>
                               <i className="fas fa-rupee-sign mr-1 f-18"></i>
@@ -108,9 +106,7 @@ const Cart = () => {
                             </td>
                             <td>
                               <i className="fas fa-plus-circle text-secondary mr-4"></i>
-                              <span className="mr-4">
-                                {products.quantities[i]}
-                              </span>
+                              <span className="mr-4">{products.quantities[i]}</span>
                               <i className="fas fa-minus-circle text-secondary "></i>
                             </td>
                             <td>
@@ -152,9 +148,8 @@ const Cart = () => {
                       <div className="col-md-6">
                         {userData ? (
                           <span className="address">
-                            {userData.address.doorNo},{userData.address.street},{' '}
-                            {userData.address.building}, {userData.address.city}{' '}
-                            {userData.address.zip}, {userData.address.state}
+                            {userData.address.doorNo},{userData.address.street}, {userData.address.building},{" "}
+                            {userData.address.city} {userData.address.zip}, {userData.address.state}
                           </span>
                         ) : null}
 
@@ -204,7 +199,7 @@ const Cart = () => {
                       className="cart_btn mr-3"
                       variant="outline-dark"
                       onClick={() => {
-                        history.push('/');
+                        history.push("/");
                       }}
                     >
                       Continue Shopping
@@ -218,7 +213,7 @@ const Cart = () => {
                             sucess_alert();
                           }
                           setTimeout(() => {
-                            history.push('/dashboard');
+                            history.push("/dashboard");
                           }, 2000);
                         });
                       }}
@@ -237,7 +232,7 @@ const Cart = () => {
               className="cart_btn mr-3 "
               variant="outline-dark"
               onClick={() => {
-                history.push('/');
+                history.push("/");
               }}
               variant="secondary"
             >
