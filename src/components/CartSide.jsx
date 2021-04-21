@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import { view_cart, remove_card_item } from '../ApiService';
 import { useHistory } from 'react-router-dom';
 
@@ -79,10 +79,19 @@ const CartSide = () => {
         <Card.Header>
           <div className="d-flex">
             <h5>Cart</h5>
+            <Button
+              className="w-50 "
+              variant="secondary"
+              onClick={() => {
+                history.push('/checkout');
+              }}
+            >
+              Checkout
+            </Button>
           </div>
         </Card.Header>
         <Card.Body>
-          {useState.length ? (
+          {cartDate.length ? (
             cartDate.map((products) => {
               return products['products'].map((product, i) => {
                 const {
@@ -115,7 +124,7 @@ const CartSide = () => {
               });
             })
           ) : (
-            <Card.Text>No Products in the Cart</Card.Text>
+            <Card.Text>Your Cart is empty !</Card.Text>
           )}
         </Card.Body>
       </Card>
