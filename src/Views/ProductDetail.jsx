@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Container, Card, Button, Tab, Nav } from "react-bootstrap";
-import { useLocation, useHistory } from "react-router-dom";
-import { add_to_cart, GetVendorProduct } from "../ApiService";
-import Header from "./../components/Header.jsx";
-import Footer from "../components/footer.jsx";
-import CartSide from "../components/CartSide";
-import ProductCard from "../components/ProductCard";
-import MyJumbotron from "../components/MyJumbotron";
+import React, { useEffect, useState } from 'react';
+import { Container, Card, Button, Tab, Nav } from 'react-bootstrap';
+import { useLocation, useHistory } from 'react-router-dom';
+import { add_to_cart, GetVendorProduct } from '../ApiService';
+import Header from './../components/Header.jsx';
+import Footer from '../components/footer.jsx';
+import CartSide from '../components/CartSide';
+import ProductCard from '../components/ProductCard';
+import MyJumbotron from '../components/MyJumbotron';
 
 const ProductDetail = () => {
   const history = useHistory();
@@ -44,7 +44,7 @@ const ProductDetail = () => {
   const addtoCart = () => {
     add_to_cart({
       productID: id,
-      vendorID: vendorId,
+      vendorID: vendorId !== null ? vendorId : vendor.id,
       quantity: quantity,
     }).then(() => {
       window.location.reload();
@@ -78,7 +78,9 @@ const ProductDetail = () => {
                   <h6 className="text-primary">
                     {petType} {productSubcategory}
                   </h6>
-                  <h5 className="text-dark font-weight-bold mt-2">{productName}</h5>
+                  <h5 className="text-dark font-weight-bold mt-2">
+                    {productName}
+                  </h5>
                   {Array.from({ length: 5 }, (x, i) => {
                     return i + 1 > rating ? (
                       <i className="far fa-star text-secondary"></i>
@@ -111,7 +113,11 @@ const ProductDetail = () => {
                     </h4>
                   </div>
                   <div className="d-flex w-100 mt-5">
-                    <Button className="w-50 mr-3" onClick={addtoCart} variant="outline-dark">
+                    <Button
+                      className="w-50 mr-3"
+                      onClick={addtoCart}
+                      variant="outline-dark"
+                    >
                       Add to Cart
                     </Button>
 
@@ -119,7 +125,7 @@ const ProductDetail = () => {
                       className="w-50"
                       variant="secondary"
                       onClick={() => {
-                        history.push("/checkout");
+                        history.push('/checkout');
                       }}
                     >
                       Checkout
@@ -129,7 +135,10 @@ const ProductDetail = () => {
               </Card.Body>
             </Card>
 
-            <Tab.Container id="left-tabs-example" defaultActiveKey="description">
+            <Tab.Container
+              id="left-tabs-example"
+              defaultActiveKey="description"
+            >
               <Card className="mt-3">
                 <Card.Header className="bg-transparent border-0">
                   <Nav variant="tab">
@@ -146,7 +155,9 @@ const ProductDetail = () => {
                     <Tab.Pane eventKey="description">
                       <h5>Product Information</h5>
                       <label className="f-12 mb-0">Brand :</label>
-                      <label className="f-12 font-weight-bold ml-2 mb-0">{productBrand}</label>
+                      <label className="f-12 font-weight-bold ml-2 mb-0">
+                        {productBrand}
+                      </label>
                       <br />
                       <label className="f-12">Category :</label>
                       <label className="f-12 font-weight-bold ml-2  mb-0">
@@ -154,10 +165,14 @@ const ProductDetail = () => {
                       </label>
                       <br />
                       <label className="f-12">{productCategory} Type :</label>
-                      <label className="f-12 font-weight-bold ml-2  mb-0">{productSubcategory}</label>
+                      <label className="f-12 font-weight-bold ml-2  mb-0">
+                        {productSubcategory}
+                      </label>
                       <br />
                       <label className="f-12">GST Applied :</label>
-                      <label className="f-12 font-weight-bold ml-2  mb-0">{gst}%</label>
+                      <label className="f-12 font-weight-bold ml-2  mb-0">
+                        {gst}%
+                      </label>
                       <p>{productDescription}</p>
                     </Tab.Pane>
                     <Tab.Pane eventKey="reviews">

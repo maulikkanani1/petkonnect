@@ -71,3 +71,5 @@ export const getAllProducts = () =>
 
 export const get_brand_based_products = (brand) =>
   axios.get(`${MAIN_API}/inventory/get_all_products?brand=${brand}`);
+export const userRegistration = (data) =>
+  axios.post(`${MAIN_API}/user/register`, data);
