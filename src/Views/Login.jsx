@@ -3,19 +3,21 @@ import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { userLogin, userRegistration } from '../ApiService';
 import { Container, Nav, Card, Tab } from 'react-bootstrap';
+
 import './../scss/login.scss';
 
 const Login = () => {
   const [match, setMatch] = useState(true);
   const [checked, setChecked] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   const history = useHistory();
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.email.value);
     userLogin({
       email: e.target.email.value,
       password: e.target.password.value,
+      checked,
     }).then(({ data }) => {
       if (data.status) {
         localStorage.setItem('token', data.token);
@@ -26,6 +28,8 @@ const Login = () => {
       }
     });
   };
+
+  const handleShowPassword = () => setShowPassword(!showPassword);
 
   const handleCheckboxChange = () => setChecked(!checked);
 
@@ -99,22 +103,35 @@ const Login = () => {
                         <p className="text-left mb-4">
                           Use your credentials to login into account.
                         </p>
-                        <label className="sr-only">Email address</label>
-                        <input
-                          type="email"
-                          name="email"
-                          className="form-control"
-                          placeholder="Email address"
-                          required
-                        />
-                        <label className="sr-only">Password</label>
-                        <input
-                          type="password"
-                          name="password"
-                          className="form-control"
-                          placeholder="Password"
-                          required
-                        />
+                        <div>
+                          <label className="sr-only">Email address</label>
+                          <input
+                            type="email"
+                            name="email"
+                            className="form-control"
+                            placeholder="Email address"
+                            required
+                          />
+                          <label className="sr-only">Password</label>
+                          <input
+                            type={showPassword ? 'text' : 'password'}
+                            name="password"
+                            className="form-control"
+                            placeholder="Password"
+                            required
+                          />
+                        </div>
+                        <div className="checkbox text-left mt-3">
+                          <label>
+                            <input
+                              type="checkbox"
+                              name="showPassword"
+                              defaultChecked={showPassword}
+                              onChange={handleShowPassword}
+                            />{' '}
+                            Show Password
+                          </label>
+                        </div>
                         <div className="checkbox text-left mb-3">
                           <label>
                             <input
@@ -165,7 +182,6 @@ const Login = () => {
 
                         <label className="sr-only">Password</label>
                         <input
-                          // onChange={onInputChange}
                           type="password"
                           name="password"
                           className="form-control"
@@ -175,7 +191,6 @@ const Login = () => {
 
                         <label className="sr-only">Repeat Password</label>
                         <input
-                          // onChange={onInputChange}
                           type="password"
                           name="repeatPassword"
                           className="form-control"

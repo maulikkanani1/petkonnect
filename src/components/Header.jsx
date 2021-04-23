@@ -15,7 +15,7 @@ const Header = () => {
   }, []);
 
   return (
-    <Container>
+    <Container fluid>
       <Navbar bg="light" expand="lg">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
