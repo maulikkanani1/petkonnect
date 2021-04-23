@@ -44,8 +44,8 @@ const Login = () => {
       };
       userRegistration(registrationDetails).then(({ data }) => {
         console.log(data);
-        if (data.user) {
-          toast.success('Registration Successfull !');
+        if (data.status) {
+          toast.success(data.message);
           e.target.name.value = '';
           e.target.email.value = '';
           e.target.password.value = '';
