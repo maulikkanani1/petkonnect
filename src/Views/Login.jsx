@@ -7,24 +7,27 @@ import './../scss/login.scss';
 
 const Login = () => {
   const [match, setMatch] = useState(true);
+  const [checked, setChecked] = useState(true);
   const history = useHistory();
 
   const onSubmit = (e) => {
     e.preventDefault();
-
+    console.log(e.target.email.value);
     userLogin({
       email: e.target.email.value,
       password: e.target.password.value,
     }).then(({ data }) => {
-      if (data.user) {
+      if (data.status) {
         localStorage.setItem('token', data.token);
-        toast.success('Login success');
+        toast.success(data.message);
         history.push('/dashboard');
       } else {
-        toast.error(data);
+        toast.error(data.message);
       }
     });
   };
+
+  const handleCheckboxChange = () => setChecked(!checked);
 
   const onSignup = (e) => {
     e.preventDefault();
@@ -117,7 +120,8 @@ const Login = () => {
                             <input
                               type="checkbox"
                               name="remember"
-                              defaultValue="remember-me"
+                              defaultChecked={checked}
+                              onChange={handleCheckboxChange}
                             />{' '}
                             Remember me
                           </label>
