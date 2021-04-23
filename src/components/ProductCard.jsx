@@ -1,18 +1,12 @@
-import React from 'react';
-import { Button, Card } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import React from "react";
+import { Button, Card } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 const ProductCard = ({ product, vendor, id }) => {
   const history = useHistory();
-  console.log('product', vendor);
   return (
     <div className="col-lg-4 col-md-4 col-sm-12 mb-3" key={product.id}>
-      <a
-        href="javascript:void(0)"
-        onClick={() =>
-          history.push('/ProductDetail', { data: product, id, vendor })
-        }
-      >
+      <a href="javascript:void(0)" onClick={() => history.push("/ProductDetail", { data: product, id, vendor })}>
         <Card className="w-100 product_card">
           <Card.Img variant="top" src={product.productImage[0]} />
 
@@ -34,15 +28,11 @@ const ProductCard = ({ product, vendor, id }) => {
               <small>
                 <i className="fas fa-rupee-sign text-primary mr-1"></i>
               </small>
-              <span className="amount">
-                {Math.round(product.gstInclusivePrice).toFixed(2)}
-              </span>
+              <span className="amount">{Math.round(product.gstInclusivePrice).toFixed(2)}</span>
               <small>
                 +<i className="fas fa-rupee-sign text-muted ml-2"></i>
               </small>
-              <small className="text-muted ml-2">
-                {vendor.shippingCharges}
-              </small>
+              <small className="text-muted ml-2">{vendor.shippingCharges}</small>
             </div>
           </Card.Body>
         </Card>
