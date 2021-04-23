@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { GetallStores, GetAllVendorProduct } from '../ApiService';
+import {
+  GetallStores,
+  GetAllVendorProduct,
+  getAllProducts,
+} from '../ApiService';
 import { Container } from 'react-bootstrap';
 import Header from './../components/Header.jsx';
 import Footer from './../components/footer.jsx';
@@ -12,6 +16,8 @@ import ProductCard from './../components/ProductCard.jsx';
 
 const DashBoard = () => {
   const [stores, setStores] = useState([]);
+  const [products, setProducts] = useState([]);
+  console.log('Prrrr', products);
   const categories = [
     {
       name: 'Dog',
@@ -61,6 +67,9 @@ const DashBoard = () => {
   useEffect(() => {
     GetallStores().then(({ data }) => {
       setStores(data.vendors);
+      getAllProducts().then(({ data }) => {
+        setProducts(data.products);
+      });
     });
   }, []);
   return (
@@ -98,11 +107,10 @@ const DashBoard = () => {
           </div>
         </div>
       </div>
+      <Container>
+        <Products stores={products} />
+      </Container>
       <Footer />
-      {/*<Container>
-        <Products stores={stores} />
-        
-      </Container>*/}
     </div>
   );
 };
