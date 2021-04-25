@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode';
 
 export const MAIN_API =
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost:5000'
+    ? 'https://petkonnect.in/api'
     : 'https://petkonnect.in/api';
 
 axios.interceptors.request.use(function (config) {
