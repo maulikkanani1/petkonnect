@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   Container,
   Navbar,
@@ -10,21 +10,81 @@ import {
   InputGroup,
   Dropdown,
   DropdownButton,
-} from "react-bootstrap";
+} from 'react-bootstrap';
+import EditAddress from '../components/Model/Edit_address';
 
-import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { GetUserData, logout } from "../ApiService";
+import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { GetUserData, logout } from '../ApiService';
 
-const Header = () => {
+const Header = (props) => {
   const history = useHistory();
   const [userData, setuserData] = useState();
+  const [searchValue, setSearchvalue] = useState('');
+  const [editAddress, seteditAddress] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
+  const close_edit = () => {
+    seteditAddress(!editAddress);
+  };
 
   useEffect(() => {
     GetUserData().then(({ data }) => {
       setuserData(data);
     });
   }, []);
+
+  const productCategory = [
+    {
+      name: 'Food',
+    },
+    {
+      name: 'Treats',
+    },
+    {
+      name: 'Toys',
+    },
+    {
+      name: 'Leashes, Collars & Harnesses',
+    },
+    {
+      name: 'Clothing & Accessories',
+    },
+    {
+      name: 'Bowls & Feeders',
+    },
+    {
+      name: 'Beds',
+    },
+    {
+      name: 'Grooming & Hygiene',
+    },
+    {
+      name: 'Health & Wellness',
+    },
+    {
+      name: 'Carriers & Travel',
+    },
+    {
+      name: 'Crates, Pens & Gates',
+    },
+    {
+      name: 'Trees, Condos & Scratchers',
+    },
+    {
+      name: 'Aquarium',
+    },
+  ];
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    history.push(`/Products?search=${searchValue}`);
+    window.location.reload();
+  };
+
+  const handleSelect = (e) => {
+    setSelectedCategory(e);
+  };
 
   return (
     <div className="bg-white sticky-top">
@@ -35,57 +95,108 @@ const Header = () => {
             <Navbar.Collapse id="basic-navbar-nav">
               <div className="d-flex align-items-center">
                 <div>
-                  <img src="./../../img/logo new.png" style={{ width: "150px", marginRight: "13px" }} />
+                  <img
+                    src="./../../img/logo new.png"
+                    style={{ width: '150px', marginRight: '13px' }}
+                  />
                 </div>
-                <div className="ml-3 text-center d-flex flex-column" style={{ marginRight: "10px", width: "14%" }}>
-                  <span style={{ fontSize: "12px" }}>Deliver to Jasmine</span>
-                  <span style={{ fontSize: "10px", fontWeight: "600" }}>
-                    <i className="fas fa-map-marker-alt"></i> Navi Mumbai 400001
+                <div
+                  className="ml-3 text-center d-flex flex-column"
+                  style={{ marginRight: '10px', width: '14%' }}
+                >
+                  <span style={{ fontSize: '12px' }}>
+                    Deliver to {userData?.name}
+                  </span>
+                  <span
+                    onClick={close_edit}
+                    style={{
+                      fontSize: '10px',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <i className="fas fa-map-marker-alt"></i>{' '}
+                    {userData?.address?.state} {userData?.address?.zip}
                   </span>
                 </div>
                 <div className="d-flex ml-3 mr-3">
-                  <InputGroup style={{ textAlign: "center" }}>
+                  <InputGroup style={{ textAlign: 'center' }}>
                     <DropdownButton
                       as={InputGroup.Prepend}
                       variant="outline-secondary"
-                      title="All"
+                      title={selectedCategory}
+                      onSelect={handleSelect}
                       id="input-group-dropdown-1"
                     >
-                      <Dropdown.Item href="#">Item 1</Dropdown.Item>
-                      <Dropdown.Item href="#">Item 1</Dropdown.Item>
-                      <Dropdown.Divider />
-                      <Dropdown.Item href="#">Item 1</Dropdown.Item>
+                      {productCategory.map((product, i) => (
+                        <Dropdown.Item
+                          href={`/Products?search=${selectedCategory}`}
+                          eventKey={product.name}
+                        >
+                          {product.name}
+                        </Dropdown.Item>
+                      ))}
                     </DropdownButton>
-                    <FormControl aria-describedby="basic-addon1" />
+                    <FormControl
+                      type="text"
+                      name="search"
+                      value={searchValue}
+                      onChange={(e) => setSearchvalue(e.target.value)}
+                      placeholder="Search"
+                      aria-describedby="basic-addon1"
+                    />
                     <InputGroup.Append>
-                      <InputGroup.Text>
+                      <InputGroup.Text onClick={handleSearch}>
                         <i className="fas fa-search text-primary cursor-pointer"></i>
                       </InputGroup.Text>
                     </InputGroup.Append>
                   </InputGroup>
                 </div>
-                <div className="ml-3 d-flex" style={{ fontSize: "25px", marginLeft: "5px", flexDirection: "row" }}>
+                <div
+                  className="ml-3 d-flex"
+                  style={{
+                    fontSize: '20px',
+                    marginLeft: '5px',
+                    flexDirection: 'row',
+                  }}
+                >
                   <i className="fas fa-shopping-bag text-primary cursor-pointer mr-3"></i>
                   <i className="fas fa-bell text-primary cursor-pointer mr-3"></i>
                 </div>
                 <div
                   className="pl-3 pr-3 text-center small"
-                  style={{ borderRight: "1px solid grey", borderLeft: "1px solid grey" }}
+                  style={{
+                    borderRight: '1px solid grey',
+                    borderLeft: '1px solid grey',
+                  }}
                 >
                   <span> 24 * 7 Support</span>
                 </div>
 
                 <div className="ml-4">
                   <Link to="/Profile">
-                    <img src={"./../../img/profile_img_2.png"} width="30px" className="pt-1" />
+                    <img
+                      src={'./../../img/profile_img_2.png'}
+                      width="30px"
+                      className="pt-1"
+                    />
                   </Link>
                 </div>
 
-                <NavDropdown title={userData ? userData.name : "Hello User"} id="basic-nav-dropdown">
-                  <NavDropdown.Item href="javascript:void(0)" onClick={() => history.push("/OrderDetails")}>
+                <NavDropdown
+                  title={userData ? userData.name : 'Hello User'}
+                  id="basic-nav-dropdown"
+                >
+                  <NavDropdown.Item
+                    href="javascript:void(0)"
+                    onClick={() => history.push('/OrderDetails')}
+                  >
                     Order History
                   </NavDropdown.Item>
-                  <NavDropdown.Item href="javascript:void(0)" onClick={() => logout()}>
+                  <NavDropdown.Item
+                    href="javascript:void(0)"
+                    onClick={() => logout()}
+                  >
                     Logout
                   </NavDropdown.Item>
                 </NavDropdown>
@@ -119,12 +230,17 @@ const Header = () => {
             <i
               className="fas fa-shopping-cart text-primary mr-3 cursor-pointer"
               onClick={() => {
-                history.push("/checkout");
+                history.push('/checkout');
               }}
             ></i>
           </Nav.Link>
         </div>
       </Navbar>
+      <EditAddress
+        status={editAddress}
+        close={close_edit}
+        address={userData?.address}
+      />
     </div>
   );
 };

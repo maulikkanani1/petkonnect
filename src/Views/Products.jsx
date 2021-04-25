@@ -8,11 +8,13 @@ import {
   get_all_products_cat,
   get_brand_based_products,
   getAllProducts,
+  searchType,
 } from '../ApiService';
 import Header from './../components/Header.jsx';
 import Slider from './../components/Slider.jsx';
 import ProductCard from './../components/ProductCard.jsx';
 import CartSide from '../components/CartSide';
+import Dashboard from '../Views/Dashboard';
 
 const Products = () => {
   const location = useLocation();
@@ -21,6 +23,8 @@ const Products = () => {
   const category = params.get('category');
   const product_category = params.get('product_category');
   const brand = params.get('brand');
+  const search = params.get('search');
+  console.log(search);
   const [products, setProducts] = useState([]);
   const [filterData, setfilterData] = useState([]);
 
@@ -57,6 +61,8 @@ const Products = () => {
         .catch((err) => {
           console.log(err);
         });
+    } else if (search) {
+      searchType({ search }).then(({ data }) => setfilterData(data.products));
     } else {
       getAllProducts().then(({ data }) => {
         setProducts(data.products);
@@ -65,19 +71,20 @@ const Products = () => {
     }
   }, [vendorId, category, product_category, brand]);
 
-  const searchText = (search, keys) => {
-    search = search.toLowerCase();
-    if (!search || search === '') {
-      setfilterData(products);
-    } else {
-      const filteredName = products.filter((item) =>
-        keys.find((inneritem) =>
-          String(item[inneritem]).toLowerCase().match(search)
-        )
-      );
-      setfilterData(filteredName);
-    }
-  };
+  // const searchText = (search, keys) => {
+  //   search = search.toLowerCase();
+  //   if (!search || search === '') {
+  //     setfilterData(products);
+  //   } else {
+  //     const filteredName = products.filter((item) =>
+  //       keys.find((inneritem) =>
+  //         String(item[inneritem]).toLowerCase().match(search)
+  //       )
+  //     );
+  //     setfilterData(filteredName);
+  //   }
+  // };
+  console.log('Prrrpp', filterData);
 
   return (
     <div className="product_listing_page">
@@ -85,12 +92,7 @@ const Products = () => {
       <Slider />
 
       <Container>
-        <div>
-          <select value="Category">
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-          </select>
+        {/* <div>
           <Form.Control
             type="text"
             placeholder="Search Products"
@@ -104,7 +106,7 @@ const Products = () => {
             }
             className="inventory-Searchbox"
           />
-        </div>
+        </div> */}
         <div className="row mt-5 mb-5">
           <div className="col-lg-8">
             <div className="row">

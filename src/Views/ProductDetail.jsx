@@ -14,9 +14,6 @@ const ProductDetail = () => {
   const productData = location.state.data;
   const vendorId = location.state.id;
   const vendor = location.state.vendor;
-  console.log('VU', vendor);
-
-  console.log('VI', vendorId);
 
   const {
     productImage,

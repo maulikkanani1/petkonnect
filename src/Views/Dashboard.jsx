@@ -14,10 +14,10 @@ import Products from './../components/Products.jsx';
 import Slider from './../components/Slider.jsx';
 import ProductCard from './../components/ProductCard.jsx';
 
-const DashBoard = () => {
+const DashBoard = (props) => {
+  console.log(props)
   const [stores, setStores] = useState([]);
   const [products, setProducts] = useState([]);
-  console.log('Prrrr', products);
   const categories = [
     {
       name: 'Dog',

@@ -12,6 +12,7 @@ import swal from 'sweetalert';
 import Header from '../components/Header.jsx';
 import Footer from '../components/footer.jsx';
 import MyJumbotron from '../components/MyJumbotron';
+import EditAddress from '../components/Model/Edit_address';
 import './../scss/checkout.scss';
 
 const Cart = () => {
@@ -22,6 +23,11 @@ const Cart = () => {
   const [total, settotal] = useState(0);
   const [userData, setuserData] = useState();
   const [quantity, setQuantity] = useState();
+  const [editAddress, seteditAddress] = useState(false);
+
+  const close_edit = () => {
+    seteditAddress(!editAddress);
+  };
 
   useEffect(() => {
     View_cart();
@@ -118,11 +124,11 @@ const Cart = () => {
                               {gstInclusivePrice}
                             </td>
                             <td>
-                              <i className="fas fa-plus-circle text-secondary mr-4"></i>
+                              <i className="fas fa-minus-circle text-secondary mr-4"></i>
                               <span className="mr-4">
                                 {products.quantities[i]}
                               </span>
-                              <i className="fas fa-minus-circle text-secondary "></i>
+                              <i className="fas fa-plus-circle text-secondary "></i>
                             </td>
                             <td>
                               <i className="fas fa-rupee-sign mr-1 f-18"></i>
@@ -171,7 +177,11 @@ const Cart = () => {
                           </span>
                         ) : null}
 
-                        <a className="mt-3 d-block text-primary" href="#">
+                        <a
+                          className="mt-3 d-block text-primary"
+                          onClick={close_edit}
+                          href="#"
+                        >
                           Change Address
                         </a>
                       </div>
@@ -262,6 +272,11 @@ const Cart = () => {
       </Container>
 
       <Footer />
+      <EditAddress
+        status={editAddress}
+        close={close_edit}
+        address={userData?.address}
+      />
     </div>
   );
 };
