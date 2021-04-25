@@ -6,6 +6,7 @@ import {
   remove_card_item,
   GetUserData,
   add_to_cart,
+  update_cart,
 } from '../ApiService';
 import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
@@ -68,12 +69,9 @@ const Cart = () => {
       });
   };
 
-  const updateCart = (quantity, productID, vendorID) => {
-    add_to_cart({
-      productID,
-      vendorID,
-      quantity,
-    }).then(() => {
+  const updateCart = (quantity, productID) => {
+    const updatedProducts = { updatedProducts: [{ productID, quantity }] };
+    update_cart(updatedProducts).then(() => {
       View_cart();
     });
   };
@@ -110,6 +108,7 @@ const Cart = () => {
                           productName,
                           gstInclusivePrice,
                           id,
+                          vendorID,
                         } = product;
                         return (
                           <tr>
@@ -124,11 +123,27 @@ const Cart = () => {
                               {gstInclusivePrice}
                             </td>
                             <td>
-                              <i className="fas fa-minus-circle text-secondary mr-4"></i>
+                              <i
+                                onClick={() =>
+                                  updateCart(
+                                    Number(products.quantities[i]) - 1,
+                                    id
+                                  )
+                                }
+                                className="fas fa-minus-circle text-secondary mr-4"
+                              ></i>
                               <span className="mr-4">
                                 {products.quantities[i]}
                               </span>
-                              <i className="fas fa-plus-circle text-secondary "></i>
+                              <i
+                                onClick={() =>
+                                  updateCart(
+                                    Number(products.quantities[i]) + 1,
+                                    id
+                                  )
+                                }
+                                className="fas fa-plus-circle text-secondary "
+                              ></i>
                             </td>
                             <td>
                               <i className="fas fa-rupee-sign mr-1 f-18"></i>
