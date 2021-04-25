@@ -25,6 +25,7 @@ const Products = () => {
   const brand = params.get('brand');
   const search = params.get('search');
   console.log(search);
+  console.log(product_category);
   const [products, setProducts] = useState([]);
   const [filterData, setfilterData] = useState([]);
 

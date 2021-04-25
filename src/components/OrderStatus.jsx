@@ -25,9 +25,9 @@ const OrderStatus = ({ item }) => {
   }
   return (
     <>
-      <i className={`fas fa-circle mr-2 `} style={{ color: color, fontSize: "20px" }}></i>
+      {/* <i className={`fas fa-circle mr-2 `} style={{ color: color, fontSize: "20px" }}></i> */}
       <span style={{ color: "#333333", fontSize: "20px" }}>
-        {item.orderStatus} {date}
+        {item.orderStatus.toUpperCase()}
       </span>
     </>
   );

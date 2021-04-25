@@ -160,7 +160,7 @@ const Header = (props) => {
                     flexDirection: 'row',
                   }}
                 >
-                  <i className="fas fa-shopping-bag text-primary cursor-pointer mr-3"></i>
+                  {/* <i className="fas fa-shopping-bag text-primary cursor-pointer mr-3"></i> */}
                   <i className="fas fa-bell text-primary cursor-pointer mr-3"></i>
                 </div>
                 <div
@@ -174,13 +174,15 @@ const Header = (props) => {
                 </div>
 
                 <div className="ml-4">
-                  <Link to="/Profile">
-                    <img
-                      src={'./../../img/profile_img_2.png'}
-                      width="30px"
-                      className="pt-1"
-                    />
-                  </Link>
+                  {/* <Link to="/Profile"> */}
+                  <img
+                    style={{ borderRadius: '50%' }}
+                    src="https://i.stack.imgur.com/l60Hf.png"
+                    width="30px"
+                    height="30px"
+                    className="pt-1"
+                  />
+                  {/* </Link> */}
                 </div>
 
                 <NavDropdown

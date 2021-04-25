@@ -27,6 +27,7 @@ const Myorder = () => {
     // });
   }, []);
 
+  console.log('OD',OrderData)
   const get_status = (item, product) => {
     history.push(`/TrackOrder/${item.id}`, { item, product });
   };
@@ -49,6 +50,7 @@ const Myorder = () => {
             {OrderData.length ? (
               OrderData.map((res) =>
                 res["productIDs"].map((products) => (
+                  console.log('pro',products),
                   <div className="m-2 p-2" onClick={() => get_status(res, products)}>
                     <Card>
                       <div>
@@ -80,8 +82,8 @@ const Myorder = () => {
                                   <OrderStatus item={res} />
                                 </div>
                               </div>
-                              <div className="sub_text m-3">You item has been arrived</div>
-                              <div className="rate_review m-3">Rate & Review Product</div>
+                              {/* <div className="sub_text m-3">You item has been arrived</div> */}
+                              {/* <div className="rate_review m-3">Rate & Review Product</div> */}
                             </div>
                           </div>
                         </div>

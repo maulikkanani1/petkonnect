@@ -58,10 +58,13 @@ export const get_order_status = (id) =>
   axios.post(`${MAIN_API}/vendorOrder/get_order_status`, { orderID: id });
 export const get_all_products = (category) =>
   axios.get(`${MAIN_API}/inventory/get_all_products?pet_category=${category}`);
-export const get_all_products_cat = (product_category) =>
-  axios.get(
-    `${MAIN_API}/inventory/get_all_products?product_category=${product_category}`
+export const get_all_products_cat = (product_category) => {
+  return axios.get(
+    `${MAIN_API}/inventory/get_all_products?product_category=${encodeURIComponent(
+      product_category
+    )}`
   );
+};
 export const get_vendorbased_product = (category, vendor) =>
   axios.get(
     `${MAIN_API}/vendor/get_vendor_store?pet_category=${category}&vendorID=${vendor}`

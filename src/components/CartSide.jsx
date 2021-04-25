@@ -7,7 +7,10 @@ const CartSide = () => {
   const history = useHistory();
 
   const category_page = (product_category) => {
-    history.push(`/Products?product_category=${product_category}`);
+    
+    history.push(
+      `/Products?product_category=${encodeURIComponent(product_category)}`
+    );
   };
 
   const productCategory = [

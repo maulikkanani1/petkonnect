@@ -4,7 +4,8 @@ import {
   GetAllVendorProduct,
   getAllProducts,
 } from '../ApiService';
-import { Container } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+import { Container, Button } from 'react-bootstrap';
 import Header from './../components/Header.jsx';
 import Footer from './../components/footer.jsx';
 import StoreCard from './../components/StoreCard.jsx';
@@ -15,7 +16,8 @@ import Slider from './../components/Slider.jsx';
 import ProductCard from './../components/ProductCard.jsx';
 
 const DashBoard = (props) => {
-  console.log(props)
+  console.log(props);
+  const history = useHistory();
   const [stores, setStores] = useState([]);
   const [products, setProducts] = useState([]);
   const categories = [
@@ -64,6 +66,10 @@ const DashBoard = (props) => {
     },
   ];
 
+  const handleViewProducts = () => {
+    history.push('/Products');
+  };
+
   useEffect(() => {
     GetallStores().then(({ data }) => {
       setStores(data.vendors);
@@ -86,7 +92,15 @@ const DashBoard = (props) => {
             ))}
           </div>
         </div>
-
+        <div className="text-center">
+          <Button
+            className="px-4"
+            onClick={handleViewProducts}
+            variant="secondary"
+          >
+            View all Products
+          </Button>
+        </div>
         {/* Shop Recommended for You */}
         <h5 className="text-primary text-center mt-5">Shops Near for You</h5>
         <div className="row mt-5">

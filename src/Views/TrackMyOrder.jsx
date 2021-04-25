@@ -77,7 +77,7 @@ const Cart = () => {
                           </div>
                         </div>
 
-                        <div className="d-flex my-5 justify-content-between align-items-center">
+                        {/* <div className="d-flex my-5 justify-content-between align-items-center">
                           <div className="d-flex align-items-center">
                             <img src="./../../icons/order_processed.svg" width="40px" />
                             <div className="m-2">
@@ -88,13 +88,13 @@ const Cart = () => {
                               </label>
                             </div>
                           </div>
-                        </div>
+                        </div> */}
 
                         <div className="d-flex my-5 justify-content-between align-items-center">
                           <div className="d-flex align-items-center">
                             <img src="./../../icons/delivered_address.svg" width="40px" />
                             <div className="m-2">
-                              <h6 className="font-weight-bold">Delivered Address</h6>
+                              <h6 className="font-weight-bold">Delivery Address</h6>
                               <label className="delivered_address">
                                 {item.userID.address.doorNo},{item.userID.address.street},{" "}
                                 {item.userID.address.building}, {item.userID.address.city} {item.userID.address.zip},{" "}
@@ -110,22 +110,22 @@ const Cart = () => {
                       <div className="float-right p-3 m-2">
                         <TrackCard2
                           title="Ordered"
-                          date={moment(item["updatedAt"]).format("DD-MM-YYYY")}
+                          date={moment(item["createdAt"]).format("DD-MM-YYYY")}
                           trackActiveDot={item.orderStatus === "pending" ? true : false}
                         />
                         <TrackCard2
                           title="Packed"
-                          date={moment(item["updatedAt"]).format("DD-MM-YYYY")}
+                          date={moment(item["confirmationDate"]).format("DD-MM-YYYY")}
                           trackActiveDot={item.orderStatus === "confirm" ? true : false}
                         />
                         <TrackCard2
                           title="Shipped"
-                          date={moment(item["updatedAt"]).format("DD-MM-YYYY")}
+                          date={moment(item["completedDate"]).format("DD-MM-YYYY")}
                           trackActiveDot={item.orderStatus === "completed" ? true : false}
                         />
                         <TrackCard2
                           title="Delivered "
-                          date={moment(item["updatedAt"]).format("DD-MM-YYYY")}
+                          date={moment(item["deliveredDate"]).format("DD-MM-YYYY")}
                           trackActiveDot={item.orderStatus === "delivered" ? true : false}
                         />
                       </div>
