@@ -182,7 +182,8 @@ const Login = () => {
 
                         <label className="sr-only">Password</label>
                         <input
-                          type="password"
+                          type={showPassword ? 'text' : 'password'}
+                          onChange={handleShowPassword}
                           name="password"
                           className="form-control"
                           placeholder="Password"
@@ -191,7 +192,8 @@ const Login = () => {
 
                         <label className="sr-only">Repeat Password</label>
                         <input
-                          type="password"
+                          type={showPassword ? 'text' : 'password'}
+                          onChange={handleShowPassword}
                           name="repeatPassword"
                           className="form-control"
                           placeholder="Repeat Password"
@@ -202,6 +204,17 @@ const Login = () => {
                         ) : (
                           <p style={{ color: 'red' }}>Passwords do not match</p>
                         )}
+                        <div className="checkbox text-left mt-3">
+                          <label>
+                            <input
+                              type="checkbox"
+                              name="showPassword"
+                              defaultChecked={showPassword}
+                              onChange={handleShowPassword}
+                            />{' '}
+                            Show Password
+                          </label>
+                        </div>
                         <button
                           className="btn btn-lg btn-primary btn-block"
                           type="submit"
