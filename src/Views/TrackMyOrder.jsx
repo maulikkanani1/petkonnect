@@ -32,7 +32,7 @@ const Cart = () => {
       history.push("/checkout");
     });
   };
-  console.log(item);
+  console.log("This is the log", item);
   return (
     <div>
       <Header />
@@ -69,10 +69,10 @@ const Cart = () => {
                               <span className="text-muted">Vendor :{item.vendorID.vendorName}</span>
                             </div>
                             <div>
-                              <span className="text-muted">Quantity : {product["subUnit"]}</span>
+                              <span className="text-muted">Quantity : {item?.quantities[0]}</span>
                             </div>
                             <div>
-                              <b>Price : &#8377; {product["sellingPrice"] * product["subUnit"]}</b>
+                              <b>Price : &#8377; {item?.netPrice[0]}</b>
                             </div>
                           </div>
                         </div>
