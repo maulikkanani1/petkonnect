@@ -89,3 +89,5 @@ export const getUserPets = () => axios.get(`${MAIN_API}/pets/get_user_pets`);
 export const getPet = (id) => axios.post(`${MAIN_API}/pets/get_pet/${id}`);
 export const editUser = (data, id) =>
   axios.post(`${MAIN_API}/user/update/${id}`, data);
+export const removePet = (id) =>
+  axios.delete(`${MAIN_API}/pets/remove_pet/${id}`);

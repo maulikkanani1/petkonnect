@@ -70,7 +70,7 @@ const Products = () => {
         setfilterData(data.products);
       });
     }
-  }, [vendorId, category, product_category, brand]);
+  }, [vendorId, category, product_category, brand, search]);
 
   // const searchText = (search, keys) => {
   //   search = search.toLowerCase();

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import sweetalert from 'sweetalert';
-import { addPet, editPet, getPet } from '../../ApiService';
+import { addPet, editPet, getPet, removePet } from '../../ApiService';
 import '../../scss/model.scss';
 
 const EditProfile = (props) => {
@@ -32,6 +32,7 @@ const EditProfile = (props) => {
         if (data.status) {
           props.close();
           sweetalert('Pet added !', '', 'success');
+          props.close();
           setTimeout(() => {
             window.location.reload();
           }, 2000);
@@ -41,7 +42,7 @@ const EditProfile = (props) => {
   };
 
   useEffect(() => {
-    // if (typeof props.id === String) {
+    // if (props.id !== false) {
     getPet(props?.id).then(({ data }) => {
       if (data.status) {
         setPet(data.pet);
@@ -56,6 +57,18 @@ const EditProfile = (props) => {
     }
   }, [pet]);
 
+  const onRemove = (data) => {
+    removePet(data.id).then(({ data }) => {
+      if (data.status) {
+        props.close();
+        sweetalert(data.message, '', 'success');
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      }
+    });
+  };
+
   return (
     <div classNameName="col-lg-4 product-menu">
       <div
@@ -68,7 +81,7 @@ const EditProfile = (props) => {
         aria-hidden="true"
       >
         <div className="modal-dialog" role="document">
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form>
             <div className="modal-content">
               <div className="modal-header">
                 <h5
@@ -88,6 +101,7 @@ const EditProfile = (props) => {
                   <span
                     aria-hidden="true"
                     onClick={() => {
+                      // e.preventDefault();
                       setPet({});
                       reset();
                       props.close();
@@ -212,11 +226,24 @@ const EditProfile = (props) => {
                 </div>
               </div>
               <div className="modal-footer">
-                <input
-                  type="Submit"
-                  className="btn btn-secondary edit_save m-auto w-50"
-                  value="Save"
-                />
+                {isUpdate ? (
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={handleSubmit(onRemove)}
+                  >
+                    Remove
+                  </button>
+                ) : (
+                  ''
+                )}
+                <button
+                  type="button"
+                  className="btn btn-secondary edit_save"
+                  onClick={handleSubmit(onSubmit)}
+                >
+                  Save
+                </button>
               </div>
             </div>
           </form>

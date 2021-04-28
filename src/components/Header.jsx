@@ -79,7 +79,7 @@ const Header = (props) => {
   const handleSearch = (e) => {
     e.preventDefault();
     history.push(`/Products?search=${searchValue}`);
-    window.location.reload();
+    // window.location.reload();
   };
 
   const handleSelect = (e) => {

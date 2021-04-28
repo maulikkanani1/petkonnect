@@ -79,7 +79,9 @@ const EditProfile = (props) => {
                     <div className="d-flex justify-content-center">
                       <img
                         name="image"
-                        src={'./../../img/profile_img_2.png'}
+                        src={`${
+                          image ? image : './../../img/profile_img_2.png'
+                        }`}
                         className="edit_profile_image"
                       />
                     </div>
@@ -134,6 +136,7 @@ const EditProfile = (props) => {
                 </div>
               </div>
               <div className="modal-footer">
+                  
                 <input
                   type="Submit"
                   className="btn btn-secondary edit_save m-auto w-50"
