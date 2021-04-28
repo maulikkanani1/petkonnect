@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
-import Header from "../components/Header.jsx";
-import Footer from "../components/footer.jsx";
-import { useHistory, useLocation, useParams } from "react-router-dom";
-import MyJumbotron from "../components/MyJumbotron";
-import Editprofile from "../components/Model/Editprofile";
-// import Editpet from "../components/Model/Edit_pet_profile";
-import "./../scss/profile.scss";
-import { GetUserData } from "../ApiService.js";
+import React, { useEffect, useState } from 'react';
+import { Container } from 'react-bootstrap';
+import Header from '../components/Header.jsx';
+import Footer from '../components/footer.jsx';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
+import MyJumbotron from '../components/MyJumbotron';
+import Editprofile from '../components/Model/Editprofile';
+import Editpet from '../components/Model/Edit_pet_profile';
+import './../scss/profile.scss';
+import { GetUserData, getUserPets } from '../ApiService.js';
 
 const Store = () => {
   const location = useLocation();
@@ -15,32 +15,38 @@ const Store = () => {
   const [editprofile, seteditprofile] = useState(false);
   const [editpet, seteditpet] = useState(false);
   const [userData, setuserData] = useState();
+  const [userPets, setUserPets] = useState();
+  const [id, setId] = useState(false);
 
   const close_edit = () => {
     seteditprofile(!editprofile);
   };
-  const close_edit_profile = () => {
+  const close_edit_profile = (id) => {
     seteditpet(!editpet);
+    setId(id);
   };
 
   const open_my_order = () => {
-    history.push("/MyOrder");
+    history.push('/MyOrder');
   };
 
   useEffect(() => {
     GetUserData().then(({ data }) => {
       setuserData(data);
     });
+
+    getUserPets().then(({ data }) => setUserPets(data));
   }, []);
-  console.log(userData);
+
+  console.log(userPets);
   return (
     <div className="product_listing_page">
       <Header />
       <MyJumbotron
         title="Profile"
         route={[
-          { title: "Home", to: "/" },
-          { title: "Profile", isActive: true },
+          { title: 'Home', to: '/' },
+          { title: 'Profile', isActive: true },
         ]}
       />
       <Container>
@@ -54,19 +60,31 @@ const Store = () => {
                     <div className="profile_name">{userData.name}</div>
                     <div className="d-flex">
                       <div className="p-1">
-                        <img src={"./../../icons/add_post.svg"} className="profile_side_images" />
+                        <img
+                          src={'./../../icons/add_post.svg'}
+                          className="profile_side_images"
+                        />
                       </div>
                       <div className="p-1">
-                        <img src={"./../../icons/message.svg"} className="profile_side_images" />{" "}
+                        <img
+                          src={'./../../icons/message.svg'}
+                          className="profile_side_images"
+                        />{' '}
                       </div>
                     </div>
                   </div>
                   <div className="d-flex justify-content-between">
                     <div>
                       <div className="position-relative mb-2">
-                        <img src={"./../../img/profile_img_2.png"} className="profile_image" />
+                        <img
+                          src={'./../../img/profile_img_2.png'}
+                          className="profile_image"
+                        />
                         <div>
-                          <img src={"./../../icons/edit.svg"} className="profile_edit" />
+                          <img
+                            src={'./../../icons/edit.svg'}
+                            className="profile_edit"
+                          />
                         </div>
                       </div>
                       <div className="name mt-2">{userData.name}</div>
@@ -97,26 +115,51 @@ const Store = () => {
                       </div>
 
                       <div>
-                        <button className="follow_button w-100 mt-2 " onClick={close_edit}>
+                        <button
+                          className="follow_button w-100 mt-2 "
+                          onClick={close_edit}
+                        >
                           Edit Profile
                         </button>
                       </div>
                     </div>
                   </div>
                   <div className="mt-2">
-                    <div claaname="story font-weight-bold">My pets</div>
+                    <div claaname="story font-weight-bold">My Pets</div>
                     <div className="d-flex">
-                      <div className="p-2">
-                        <img src={"./../../img/store_img_2.png"} className="story_img"></img>
+                      {userPets &&
+                        userPets?.pets.map((pet) => (
+                          <div
+                            className="p-2"
+                            onClick={() => close_edit_profile(pet.id)}
+                          >
+                            <img
+                              src={
+                                pet.petImage
+                                  ? pet.petImage
+                                  : `./../../img/store_img_2.png`
+                              }
+                              className="story_img"
+                            />
+                          </div>
+                        ))}
+                      {/* <div className="p-2">
+                        <img
+                          src={'./../../img/store_img_2.png'}
+                          className="story_img"
+                        ></img>
                       </div>
                       <div className="p-2">
-                        <img src={"./../../img/store_img_2.png"} className="story_img"></img>
-                      </div>
-                      <div className="p-2">
-                        <img src={"./../../img/store_img_2.png"} className="story_img"></img>
-                      </div>
+                        <img
+                          src={'./../../img/store_img_2.png'}
+                          className="story_img"
+                        ></img>
+                      </div> */}
                       <div className="p-2" onClick={close_edit_profile}>
-                        <img src={"./../../img/add_post.png"} className="story_img"></img>
+                        <img
+                          src={'./../../img/add_post.png'}
+                          className="story_img"
+                        ></img>
                       </div>
                     </div>
                   </div>
@@ -130,22 +173,40 @@ const Store = () => {
                   <div className="w-100">
                     <div className="row">
                       <div className="col-md-4">
-                        <img src={"./../../img/store_img_2.png"} className="post_img" />
+                        <img
+                          src={'./../../img/store_img_2.png'}
+                          className="post_img"
+                        />
                       </div>
                       <div className="col-md-4">
-                        <img src={"./../../img/store_img_2.png"} className="post_img" />
+                        <img
+                          src={'./../../img/store_img_2.png'}
+                          className="post_img"
+                        />
                       </div>
                       <div className="col-md-4">
-                        <img src={"./../../img/store_img_2.png"} className="post_img" />
+                        <img
+                          src={'./../../img/store_img_2.png'}
+                          className="post_img"
+                        />
                       </div>
                       <div className="col-md-4">
-                        <img src={"./../../img/store_img_2.png"} className="post_img" />
+                        <img
+                          src={'./../../img/store_img_2.png'}
+                          className="post_img"
+                        />
                       </div>
                       <div className="col-md-4">
-                        <img src={"./../../img/store_img_2.png"} className="post_img" />
+                        <img
+                          src={'./../../img/store_img_2.png'}
+                          className="post_img"
+                        />
                       </div>
                       <div className="col-md-4">
-                        <img src={"./../../img/store_img_2.png"} className="post_img" />
+                        <img
+                          src={'./../../img/store_img_2.png'}
+                          className="post_img"
+                        />
                       </div>
                     </div>
                   </div>
@@ -156,37 +217,58 @@ const Store = () => {
                     <div className="left-side-title">Jasmine_Jassie</div>
                     <div className="d-flex justify-content-center mt-3">
                       <div className="p-1">
-                        <img src={"./../../icons/insights.svg"} className="profile_side_images" />
+                        <img
+                          src={'./../../icons/insights.svg'}
+                          className="profile_side_images"
+                        />
                       </div>
                       <div className="p-1">Insights</div>
                     </div>
-                    <div className="d-flex justify-content-center mt-3" Onclick={open_my_order}>
+                    <div
+                      className="d-flex justify-content-center mt-3"
+                      Onclick={open_my_order}
+                    >
                       <div className="p-1">
-                        <img src={"./../../icons/my_orders.svg"} className="profile_side_images" />
+                        <img
+                          src={'./../../icons/my_orders.svg'}
+                          className="profile_side_images"
+                        />
                       </div>
                       <div className="p-1">My Orders</div>
                     </div>
                     <div className="d-flex justify-content-center mt-3">
                       <div className="p-1">
-                        <img src={"./../../icons/my_store.svg"} className="profile_side_images" />
+                        <img
+                          src={'./../../icons/my_store.svg'}
+                          className="profile_side_images"
+                        />
                       </div>
                       <div className="p-1">My Store</div>
                     </div>
                     <div className="d-flex justify-content-center mt-3">
                       <div className="p-1">
-                        <img src={"./../../icons/account.svg"} className="profile_side_images" />
+                        <img
+                          src={'./../../icons/account.svg'}
+                          className="profile_side_images"
+                        />
                       </div>
                       <div className="p-1">Account</div>
                     </div>
                     <div className="d-flex justify-content-center mt-3">
                       <div className="p-1">
-                        <img src={"./../../icons/settings.svg"} className="profile_side_images" />
+                        <img
+                          src={'./../../icons/settings.svg'}
+                          className="profile_side_images"
+                        />
                       </div>
                       <div className="p-1">Settings</div>
                     </div>
                     <div className="d-flex justify-content-center mt-3">
                       <div className="p-1">
-                        <img src={"./../../icons/help.svg"} className="profile_side_images" />
+                        <img
+                          src={'./../../icons/help.svg'}
+                          className="profile_side_images"
+                        />
                       </div>
                       <div className="p-1">Help</div>
                     </div>
@@ -198,22 +280,31 @@ const Store = () => {
                   <div>
                     <div className="d-flex justify-content-between mt-3">
                       <div>
-                        <img src={"./../../img/store_img_2.png"} className="suggested_profiles_img" />
-                        <span className="profile_texts">User1</span>{" "}
+                        <img
+                          src={'./../../img/store_img_2.png'}
+                          className="suggested_profiles_img"
+                        />
+                        <span className="profile_texts">User1</span>{' '}
                       </div>
                       <div className="follow_text">Follow</div>
                     </div>
                     <div className="d-flex justify-content-between mt-3">
                       <div>
-                        <img src={"./../../img/store_img_2.png"} className="suggested_profiles_img" />
-                        <span className="profile_texts">User1</span>{" "}
+                        <img
+                          src={'./../../img/store_img_2.png'}
+                          className="suggested_profiles_img"
+                        />
+                        <span className="profile_texts">User1</span>{' '}
                       </div>
                       <div className="follow_text">Follow</div>
                     </div>
                     <div className="d-flex justify-content-between mt-3">
                       <div>
-                        <img src={"./../../img/store_img_2.png"} className="suggested_profiles_img" />
-                        <span className="profile_texts">User1</span>{" "}
+                        <img
+                          src={'./../../img/store_img_2.png'}
+                          className="suggested_profiles_img"
+                        />
+                        <span className="profile_texts">User1</span>{' '}
                       </div>
                       <div className="follow_text">Follow</div>
                     </div>
@@ -230,7 +321,11 @@ const Store = () => {
         )}
       </Container>
       <Editprofile status={editprofile} close={close_edit} />
-      {/* <Editpet status={editprofile} close={close_edit_profile} /> */}
+      <Editpet
+        status={editpet}
+        id={id ? id : false}
+        close={close_edit_profile}
+      />
       <Footer />
     </div>
   );

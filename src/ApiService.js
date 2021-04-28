@@ -82,3 +82,8 @@ export const searchType = (data) =>
   axios.post(`${MAIN_API}/inventory/search`, data);
 export const update_cart = (data) =>
   axios.post(`${MAIN_API}/user/update_cart?isUpdate=true`, data);
+export const addPet = (data) => axios.post(`${MAIN_API}/pets/add_pet`, data);
+export const editPet = (data, id) =>
+  axios.post(`${MAIN_API}/pets/update/${id}`, data);
+export const getUserPets = () => axios.get(`${MAIN_API}/pets/get_user_pets`);
+export const getPet = (id) => axios.post(`${MAIN_API}/pets/get_pet/${id}`);

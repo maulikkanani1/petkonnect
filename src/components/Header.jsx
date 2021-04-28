@@ -174,7 +174,7 @@ const Header = (props) => {
                 </div>
 
                 <div className="ml-4">
-                  {/* <Link to="/Profile"> */}
+                  <Link to="/Profile">
                   <img
                     style={{ borderRadius: '50%' }}
                     src="https://i.stack.imgur.com/l60Hf.png"
@@ -182,7 +182,7 @@ const Header = (props) => {
                     height="30px"
                     className="pt-1"
                   />
-                  {/* </Link> */}
+                  </Link>
                 </div>
 
                 <NavDropdown
