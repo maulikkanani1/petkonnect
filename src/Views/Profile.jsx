@@ -319,7 +319,7 @@ const Store = () => {
           </div>
         )}
       </Container>
-      <Editprofile status={editprofile} close={close_edit} />
+      <Editprofile status={editprofile} profile={userData} close={close_edit} />
       <Editpet
         status={editpet}
         id={id ? id : false}

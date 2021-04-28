@@ -9,7 +9,6 @@ const EditProfile = (props) => {
   const { register, handleSubmit, setValue, reset, watch } = useForm();
   const isUpdate = Object.keys(pet).length !== 0;
 
-  console.log('IsUpdate', isUpdate);
   const image = watch('image');
 
   const onSubmit = (data) => {

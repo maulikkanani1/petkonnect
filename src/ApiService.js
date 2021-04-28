@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode';
 
 export const MAIN_API =
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost:5000'
+    ? 'https://petkonnect.in/api'
     : 'https://petkonnect.in/api';
 
 axios.interceptors.request.use(function (config) {
@@ -87,3 +87,5 @@ export const editPet = (data, id) =>
   axios.post(`${MAIN_API}/pets/update/${id}`, data);
 export const getUserPets = () => axios.get(`${MAIN_API}/pets/get_user_pets`);
 export const getPet = (id) => axios.post(`${MAIN_API}/pets/get_pet/${id}`);
+export const editUser = (data, id) =>
+  axios.post(`${MAIN_API}/user/update/${id}`, data);
