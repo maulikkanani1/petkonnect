@@ -38,7 +38,6 @@ const Store = () => {
     getUserPets().then(({ data }) => setUserPets(data));
   }, []);
 
-  console.log(userPets);
   return (
     <div className="product_listing_page">
       <Header />

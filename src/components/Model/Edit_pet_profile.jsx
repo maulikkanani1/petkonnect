@@ -5,34 +5,45 @@ import { addPet, editPet, getPet } from '../../ApiService';
 import '../../scss/model.scss';
 
 const EditProfile = (props) => {
-  console.log('Props', props);
   const [pet, setPet] = useState({});
   const { register, handleSubmit, setValue, reset, watch } = useForm();
+  const isUpdate = Object.keys(pet).length !== 0;
 
+  console.log('IsUpdate', isUpdate);
   const image = watch('image');
 
   const onSubmit = (data) => {
-    console.log('petData', data);
     const formData = new FormData();
     Object.keys(data).forEach((key) =>
       formData.append(key, key === 'image' ? image[0] : data[key])
     );
-    addPet(formData).then(({ data }) => {
-      if (data.status) {
-        props.close();
-        sweetalert('Pet added !', '', 'success');
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
-      }
-    });
+    if (isUpdate) {
+      editPet(formData, data.id).then(({ data }) => {
+        console.log(data);
+        if (data.status) {
+          sweetalert('Pet Updated !', '', 'success');
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        }
+      });
+    } else {
+      addPet(formData).then(({ data }) => {
+        console.log(data);
+        if (data.status) {
+          props.close();
+          sweetalert('Pet added !', '', 'success');
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        }
+      });
+    }
   };
 
   useEffect(() => {
     // if (typeof props.id === String) {
-    console.log(typeof props.id);
     getPet(props?.id).then(({ data }) => {
-      console.log('DDDD', data);
       if (data.status) {
         setPet(data.pet);
       }
@@ -42,7 +53,6 @@ const EditProfile = (props) => {
 
   useEffect(() => {
     if (pet) {
-      console.log('Ifp', pet);
       Object.keys(pet).map((item) => setValue(item, pet[item]));
     }
   }, [pet]);
@@ -68,7 +78,7 @@ const EditProfile = (props) => {
                   id="edit_model"
                   className="edit_title"
                 >
-                  Edit Pet Profile
+                  {`${isUpdate ? 'Edit' : 'Add'} Pet Profile`}
                 </h5>
                 <button
                   type="button"
@@ -79,6 +89,7 @@ const EditProfile = (props) => {
                   <span
                     aria-hidden="true"
                     onClick={() => {
+                      setPet({});
                       reset();
                       props.close();
                     }}
@@ -124,6 +135,7 @@ const EditProfile = (props) => {
                       <option selected>Choose Pet Type</option>
                       <option value="Dog">Dog</option>
                       <option value="Cat">Cat</option>
+                      <option value="Mice">Mice </option>
                     </select>
                   </div>
                   <div className="ml-3 mr-3">
