@@ -30,9 +30,25 @@ const Header = (props) => {
 
   useEffect(() => {
     GetUserData().then(({ data }) => {
+      if (
+        !data.address.state ||
+        !data.address.city ||
+        !data.address.doorNo ||
+        !data.address.zip
+      ) {
+        seteditAddress(true);
+      }
       setuserData(data);
     });
   }, []);
+
+  // useEffect(() => {
+  //   if (!userData?.address.state) {
+  //     seteditAddress(false);
+  //   } else {
+  //     seteditAddress(true);
+  //   }
+  // }, []);
 
   const productCategory = [
     {
@@ -175,13 +191,13 @@ const Header = (props) => {
 
                 <div className="ml-4">
                   <Link to="/Profile">
-                  <img
-                    style={{ borderRadius: '50%' }}
-                    src="https://i.stack.imgur.com/l60Hf.png"
-                    width="30px"
-                    height="30px"
-                    className="pt-1"
-                  />
+                    <img
+                      style={{ borderRadius: '50%' }}
+                      src="https://i.stack.imgur.com/l60Hf.png"
+                      width="30px"
+                      height="30px"
+                      className="pt-1"
+                    />
                   </Link>
                 </div>
 

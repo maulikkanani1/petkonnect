@@ -91,3 +91,11 @@ export const editUser = (data, id) =>
   axios.post(`${MAIN_API}/user/update/${id}`, data);
 export const removePet = (id) =>
   axios.delete(`${MAIN_API}/pets/remove_pet/${id}`);
+
+export const viewServices = (vendorID) => {
+  return axios.post(`${MAIN_API}/services/get_services`, { vendorID });
+};
+
+export const cancelOrder = (data) => {
+  return axios.post(`${MAIN_API}/vendorOrder/order_status`, data);
+};

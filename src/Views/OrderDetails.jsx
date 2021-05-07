@@ -103,7 +103,6 @@ const Myorder = () => {
               OrderData.map((res) =>
                 res["productIDs"].map(
                   (products, j) => (
-                    console.log("pro", res),
                     (
                       <div className="m-2 p-2" onClick={() => get_status(res, products)}>
                         <Card>

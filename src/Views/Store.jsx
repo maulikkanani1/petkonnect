@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Container, Card, Button, Tab, Nav } from 'react-bootstrap';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 
-import { GetVendorProduct, GetAllVendorProduct } from '../ApiService';
+import {
+  GetVendorProduct,
+  GetAllVendorProduct,
+  viewServices,
+} from '../ApiService';
 import Header from './../components/Header.jsx';
 import Slider from './../components/Slider.jsx';
 import ProductCard from './../components/ProductCard.jsx';
@@ -18,6 +22,9 @@ const Store = () => {
 
   const [products, setProducts] = useState([]);
   const [vendor, setVendor] = useState({});
+  const [services, setServices] = useState([]);
+
+  console.log('Ser', services);
 
   useEffect(() => {
     if (vendorId) {
@@ -25,6 +32,7 @@ const Store = () => {
         setProducts(data.products);
         setVendor(data.vendor);
       });
+      viewServices(vendorId).then(({ data }) => setServices(data.service));
     } else {
       GetAllVendorProduct().then(({ data }) => {
         const productArr = [];

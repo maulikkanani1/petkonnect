@@ -8,7 +8,7 @@ const StoreCard = ({ store }) => {
   return (
     <div className="col-lg-3 col-md-3 col-sm-12" key={store.id}>
       <Card
-        className="w-100 store_card "
+        className="w-100 store_card"
         onClick={() => history.push(`/store/${store.storeName}`, { vendorId: store.id })}
         key={store.id}
       >
