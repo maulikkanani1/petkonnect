@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { userLogin, userRegistration } from '../ApiService';
-import { Container, Nav, Card, Tab } from 'react-bootstrap';
-
+import { Container, Nav, Card, Tab,Modal } from 'react-bootstrap';
+import ResetPassModal from '../components/ResetPassModal';
 import './../scss/login.scss';
 
 const Login = () => {
   const [match, setMatch] = useState(true);
   const [checked, setChecked] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
+  const [modalShow,setModalShow] = useState(false);
   const history = useHistory();
 
   const onSubmit = (e) => {
@@ -144,7 +145,7 @@ const Login = () => {
                           </label>
                         </div>
                         <div className="text-right mb-3">
-                          <a className="forgot_link" href="#">
+                          <a className="forgot_link" onClick={() => setModalShow(true)}>
                             Forgot Password ?
                           </a>
                         </div>
@@ -222,7 +223,7 @@ const Login = () => {
                           Register
                         </button>
                         <div className="text-right mb-3">
-                          <a className="forgot_link" href="#">
+                          <a className="forgot_link" href="#"  >
                             Already have an account ?
                           </a>
                         </div>
@@ -235,6 +236,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <ResetPassModal show={modalShow} onHide={() => setModalShow(false)}/>
     </div>
   );
 };
