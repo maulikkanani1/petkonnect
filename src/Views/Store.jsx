@@ -50,6 +50,54 @@ const Store = () => {
       });
     }
   }, [vendorId]);
+  const [state,setState] = useState({currentPage: 1,itemsPerPage: 6});
+
+  const {currentPage, itemsPerPage} = state;
+
+  const lastIndex = currentPage * itemsPerPage;
+  const firstIndex = lastIndex - itemsPerPage;
+  const currentItems = products.slice(firstIndex,lastIndex);
+
+  const pgNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(products.length / itemsPerPage); i++) {
+    pgNumbers.push(i);
+  }
+
+  function handleClick(e) {
+    setState(state => {
+      return {
+        ...state,
+        currentPage: Number(e.target.id)
+      }
+    })
+  }
+
+  function handleNext() {
+    setState(state => {
+      return {
+        ...state,
+        currentPage: currentPage == lastIndex  ? 1 : currentPage+1
+      }
+    })
+  }
+
+  function handlePrev() {
+    setState(state => {
+      return {
+        ...state,
+        currentPage: currentPage  == 1 ? lastIndex : currentPage-1
+      }
+    })
+  }
+
+  const displayPageNumbers = pgNumbers.map(pgnum => {
+    return (
+      <li className = "page-link"  key = {pgnum} id={pgnum} onClick = {handleClick}>
+        {pgnum}
+      </li>
+    );
+  });
 
   return (
     <div className="product_details">
@@ -124,10 +172,17 @@ const Store = () => {
             </Tab.Container>
             <h2 className="my-3">Products</h2>
             <div className="row mb-4 mt-3">
-              {products.map((product) => (
+              {currentItems.map((product) => (
                 <ProductCard product={product} vendor={vendor} id={vendorId} />
               ))}
             </div>
+            <nav aria-label="Page navigation example justify-content-center">
+        <ul className ="pagination">
+          <li className="page-link" >Prev</li>
+          {displayPageNumbers}
+          <li className="page-link" onClick={handleNext}>Next</li>
+        </ul>
+    </nav>
           </div>
           <CartSide />
         </div>
