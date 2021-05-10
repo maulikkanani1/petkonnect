@@ -17,6 +17,7 @@
 .logo {
   padding-right: 10px;
   padding-left: 10px;
+  font-size: 18px;
 }
 
 .store-img-wrapper {
@@ -59,8 +60,9 @@
 }
 
 .vertical {
-  border-left: 5px solid #ffffff;
+  border-left: 1px solid #ffffff;
   height: 10px;
+  margin-left: 8px;
 }
 
 .bottom-text {
@@ -77,4 +79,9 @@
   letter-spacing: 0px;
   color: #ffffff;
   opacity: 1;
+}
+
+.middle {
+  display: inline-block;
+  vertical-align: middle;
 }

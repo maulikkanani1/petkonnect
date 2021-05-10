@@ -68,11 +68,13 @@ const Store = () => {
          </div>
          <div className="bottom-text small-text">
            <span className="logo"><img src={cart}/></span>
-           Food,Pet Products
+           <span className="middle">Food,Pet Product </span>
+           <span className="vertical"></span>
            <span className="logo" ><img src={star} /></span>
-           4.5 Ratings
+           <span className="middle">4.5 Ratings</span>
+           <span className="vertical"></span>
            <span className="logo" ><img src={offer} /></span>
-           50% OFF
+           <span className="middle">50% OFF</span>
            <span className="offer-text">
              on first 3 products
            </span>
