@@ -1,0 +1,87 @@
+.outside-container {
+  display: flex;
+  height: 421px;
+  position: relative;
+  background: #c91f3c;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.favorites {
+  position: absolute;
+  top: 70px;
+  left: 1420px;
+}
+
+.logo {
+  padding-right: 10px;
+  padding-left: 10px;
+  font-size: 18px;
+}
+
+.store-img-wrapper {
+  display: block;
+  text-align: center;
+  background: #ffffff;
+  height: 296px;
+  width: 296px;
+}
+
+.store-img {
+  height: 176px;
+  width: 176px;
+  margin-top: 60px;
+}
+
+.shop-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.store-name {
+  padding-left: 65px;
+  font: normal normal medium 38px/44px Poppins;
+  font-size: 28px;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+}
+
+.small-text {
+  text-align: left;
+  font: normal normal normal 22px/23px Poppins;
+  padding-top: 5px;
+  padding-left: 58px;
+  font-size: 18px;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+}
+
+.vertical {
+  border-left: 1px solid #ffffff;
+  height: 10px;
+  margin-left: 8px;
+}
+
+.bottom-text {
+  padding-top: 40px;
+}
+
+.offer-text {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 3px;
+  text-align: left;
+  font: normal normal medium 14px/21px Poppins;
+  font-size: 10px;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+}
+
+.middle {
+  display: inline-block;
+  vertical-align: middle;
+}
