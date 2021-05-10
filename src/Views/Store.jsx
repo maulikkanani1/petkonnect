@@ -50,13 +50,13 @@ const Store = () => {
       });
     }
   }, [vendorId]);
-  const [state,setState] = useState({currentPage: 1,itemsPerPage: 6});
+  const [state, setState] = useState({ currentPage: 1, itemsPerPage: 6 });
 
-  const {currentPage, itemsPerPage} = state;
+  const { currentPage, itemsPerPage } = state;
 
   const lastIndex = currentPage * itemsPerPage;
   const firstIndex = lastIndex - itemsPerPage;
-  const currentItems = products.slice(firstIndex,lastIndex);
+  const currentItems = products.slice(firstIndex, lastIndex);
 
   const pgNumbers = [];
 
@@ -65,35 +65,36 @@ const Store = () => {
   }
 
   function handleClick(e) {
-    setState(state => {
+    setState((state) => {
       return {
         ...state,
-        currentPage: Number(e.target.id)
-      }
-    })
+        currentPage: Number(e.target.id),
+      };
+    });
   }
 
   function handleNext() {
-    setState(state => {
+    setState((state) => {
       return {
         ...state,
-        currentPage: currentPage == lastIndex  ? 1 : currentPage+1
-      }
-    })
+        currentPage: currentPage == lastIndex ? 1 : currentPage + 1,
+      };
+    });
   }
 
-  function handlePrev() {
-    setState(state => {
+  function handlePrev(e) {
+    e.preventDefault();
+    setState((state) => {
       return {
         ...state,
-        currentPage: currentPage  == 1 ? lastIndex : currentPage-1
-      }
-    })
+        currentPage: currentPage == 1 ? lastIndex : currentPage - 1,
+      };
+    });
   }
 
-  const displayPageNumbers = pgNumbers.map(pgnum => {
+  const displayPageNumbers = pgNumbers.map((pgnum) => {
     return (
-      <li className = "page-link"  key = {pgnum} id={pgnum} onClick = {handleClick}>
+      <li className="page-link" key={pgnum} id={pgnum} onClick={handleClick}>
         {pgnum}
       </li>
     );
@@ -177,12 +178,24 @@ const Store = () => {
               ))}
             </div>
             <nav aria-label="Page navigation example justify-content-center">
-        <ul className ="pagination">
-          <li className="page-link" >Prev</li>
-          {displayPageNumbers}
-          <li className="page-link" onClick={handleNext}>Next</li>
-        </ul>
-    </nav>
+              <ul className="pagination">
+                <li
+                  className="page-link"
+                  style={{ cursor: 'pointer' }}
+                  onClick={handlePrev}
+                >
+                  Prev
+                </li>
+                {displayPageNumbers}
+                <li
+                  className="page-link"
+                  style={{ cursor: 'pointer' }}
+                  onClick={handleNext}
+                >
+                  Next
+                </li>
+              </ul>
+            </nav>
           </div>
           <CartSide />
         </div>
