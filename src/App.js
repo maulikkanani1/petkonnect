@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import ResetPassword from './Views/ResetPassword';
 import Routes from "./routes";
 
 import Login from "./Views/Login";
@@ -25,7 +25,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/login" component={Login} />
-
+        <Route path="/reset_password" component={ResetPassword} />
         {Routes.map((item) => (
           <ProtectedRoute path={item.path} component={item.component} />
         ))}

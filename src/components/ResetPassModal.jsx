@@ -18,7 +18,7 @@ const ResetPassModal = (props) => {
                </Form>
            </Modal.Body>
            <Modal.Footer>
-               <button onClick={props.onHide} className="btn btn-primary" >Reset </button>
+               <button onClick={props.onHide} className="btn btn-primary" >CONFIRM </button>
            </Modal.Footer>
        </Modal>
     );
