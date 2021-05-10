@@ -31,10 +31,10 @@ const Header = (props) => {
   useEffect(() => {
     GetUserData().then(({ data }) => {
       if (
-        !data.address.state ||
-        !data.address.city ||
-        !data.address.doorNo ||
-        !data.address.zip
+        !data?.address?.state ||
+        !data?.address?.city ||
+        !data?.address?.doorNo ||
+        !data?.address?.zip
       ) {
         seteditAddress(true);
       }
