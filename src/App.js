@@ -1,24 +1,36 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+  useLocation,
+} from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import ResetPassword from './Views/ResetPassword';
-import Routes from "./routes";
+import Routes from './routes';
 
-import Login from "./Views/Login";
+import Login from './Views/Login';
 
-const ProtectedRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={(props) =>
-      localStorage.getItem("token") ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
-      )
-    }
-  />
-);
+const ProtectedRoute = ({ component: Component, ...rest }) => {
+  const location = useLocation();
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        localStorage.getItem('token') ||
+        location.pathname === '/reset_password' ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{ pathname: '/login', state: { from: props.location } }}
+          />
+        )
+      }
+    />
+  );
+};
 
 function App() {
   return (

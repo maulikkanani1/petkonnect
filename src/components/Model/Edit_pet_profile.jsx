@@ -115,11 +115,12 @@ const EditProfile = (props) => {
                 <div class="container-fluid">
                   <div className="m-3">
                     <div className="d-flex justify-content-center">
-                      <img
+                      {/* <img
                         name="image"
                         src={'./../../img/profile_img_2.png'}
                         className="edit_profile_image"
-                      />
+                      /> */}
+                      <input type="file" name="image" />
                     </div>
                     <div className="d-flex justify-content-center">
                       <div className="change_profile">Change pet image</div>

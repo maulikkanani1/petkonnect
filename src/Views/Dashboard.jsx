@@ -30,7 +30,7 @@ const DashBoard = (props) => {
       imageUrl: './../../img/cat_img_1.png',
     },
     {
-      name: 'Bird',
+      name: 'Birds',
       imageUrl: './../../img/bird_img_1.png',
     },
     {
@@ -42,7 +42,7 @@ const DashBoard = (props) => {
       imageUrl: './../../img/turtle_1.png',
     },
     {
-      name: 'Small pets',
+      name: 'Small Pets',
       imageUrl: './../../img/small_pets_1.png',
     },
   ];

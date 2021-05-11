@@ -1,10 +1,7 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
-export const MAIN_API =
-  process.env.NODE_ENV === 'development'
-    ? 'https://petkonnect.in/api'
-    : 'https://petkonnect.in/api';
+export const MAIN_API = 'https://petkonnect.in/api';
 
 axios.interceptors.request.use(function (config) {
   const token = localStorage.getItem('token');
@@ -98,4 +95,16 @@ export const viewServices = (vendorID) => {
 
 export const cancelOrder = (data) => {
   return axios.post(`${MAIN_API}/vendorOrder/order_status`, data);
+};
+
+export const forgotPassword = (data) => {
+  return axios.post(`${MAIN_API}/user/forgot_password`, data);
+};
+
+export const resetPassword = (data, token) => {
+  return axios.post(`${MAIN_API}/user/reset_password`, data, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
 };

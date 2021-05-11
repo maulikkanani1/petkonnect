@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { userLogin, userRegistration } from '../ApiService';
-import { Container, Nav, Card, Tab,Modal } from 'react-bootstrap';
+import { Container, Nav, Card, Tab, Modal } from 'react-bootstrap';
 import ResetPassModal from '../components/ResetPassModal';
 import './../scss/login.scss';
 
@@ -10,7 +10,7 @@ const Login = () => {
   const [match, setMatch] = useState(true);
   const [checked, setChecked] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
-  const [modalShow,setModalShow] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
   const history = useHistory();
 
   const onSubmit = (e) => {
@@ -145,7 +145,10 @@ const Login = () => {
                           </label>
                         </div>
                         <div className="text-right mb-3">
-                          <a className="forgot_link" onClick={() => setModalShow(true)}>
+                          <a
+                            className="forgot_link"
+                            onClick={() => setModalShow(true)}
+                          >
                             Forgot Password ?
                           </a>
                         </div>
@@ -184,7 +187,6 @@ const Login = () => {
                         <label className="sr-only">Password</label>
                         <input
                           type={showPassword ? 'text' : 'password'}
-                          onChange={handleShowPassword}
                           name="password"
                           className="form-control"
                           placeholder="Password"
@@ -194,7 +196,6 @@ const Login = () => {
                         <label className="sr-only">Repeat Password</label>
                         <input
                           type={showPassword ? 'text' : 'password'}
-                          onChange={handleShowPassword}
                           name="repeatPassword"
                           className="form-control"
                           placeholder="Repeat Password"
@@ -223,7 +224,7 @@ const Login = () => {
                           Register
                         </button>
                         <div className="text-right mb-3">
-                          <a className="forgot_link" href="#"  >
+                          <a className="forgot_link" href="#">
                             Already have an account ?
                           </a>
                         </div>
@@ -236,7 +237,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <ResetPassModal show={modalShow} onHide={() => setModalShow(false)}/>
+      <ResetPassModal show={modalShow} onHide={() => setModalShow(false)} />
     </div>
   );
 };
