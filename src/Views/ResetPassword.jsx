@@ -2,17 +2,18 @@ import React from 'react'
 import './../scss/login.scss';
 import './../scss/resetpassword.scss';
 import {useState} from 'react';
+import {EyeFill,EyeSlashFill} from 'react-bootstrap-icons';
 
 const ResetPassword = () => {
 
-    const [state,setState] = useState({newPassword:'',cnfPassword:'',isValid:true});
-    const {newPassword,cnfPassword,isValid} = state;
+    const [state,setState] = useState({newPassword:'',cnfPassword:'',isValid: false,isClicked: false});
+    const {newPassword,cnfPassword,isValid,isClicked} = state;
 
     function handlePasswordChange(e){
         setState(state =>  {
             return {
                 ...state,
-                newPassword: String(e.target.value),
+                newPassword:e.target.value,
             }
         })
     }
@@ -21,16 +22,20 @@ const ResetPassword = () => {
         setState(state =>  {
             return {
                 ...state,
-                cnfPassword: String(e.target.value),
-                isValid: newPassword === cnfPassword ? false : true,
+                cnfPassword: e.target.value,
+                isValid: newPassword == cnfPassword ? true : false,
             }
         })
     }
 
-
-
-    console.log('hey passwd',newPassword);
-    console.log("isvalid: ",state.isValid)
+    function handleClick(){
+        setState(state =>  {
+            return {
+                ...state,
+                isClicked: !isClicked
+            }
+        })
+    }
 
     return (
         <div className="reset-password">
@@ -40,13 +45,17 @@ const ResetPassword = () => {
             <form className="form_signin ">
                 <div className="form-group ">
                     <label for="password" >New Password: </label>
-                    <input type='password' id="password" className="form-control " placeholder="New Password..." onChange={handlePasswordChange} required />
+                    <input type={isClicked ? 'text' : 'password'} id="password" className="form-control " placeholder="New Password..." onChange={handlePasswordChange} required />
                 </div>
                 <div className="form-group ">
                     <label for="confirmpass" >Confirm Password: </label>
-                    <input type='password' id="confirmpass" className="form-control " placeholder="New Password..." onChange={handleCnfPasswordChange} required />
+                    <input type={isClicked ? 'text' : 'password'} id="confirmpass" className="form-control " placeholder="New Password..." onChange={handleCnfPasswordChange} required />
                 </div>
-                <button className="btn btn-primary btn-lg btn-block" type="submit" disabled={isValid}>
+                <div className="input-icons" onClick={handleClick}>
+                    <span className='icon'>{isClicked ? <EyeFill/> : <EyeSlashFill/>}</span>
+                    <span>Show Password</span>
+                </div>
+                <button className="btn btn-primary btn-lg btn-block" type="submit" disabled={!isValid}>
                     Reset Password
                 </button>
             </form>
