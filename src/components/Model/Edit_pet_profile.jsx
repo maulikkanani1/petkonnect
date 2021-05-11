@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import sweetalert from 'sweetalert';
 import { addPet, editPet, getPet, removePet } from '../../ApiService';
 import '../../scss/model.scss';
+import '../../scss/editpetprofile.scss';
 
 const EditProfile = (props) => {
   const [pet, setPet] = useState({});
@@ -28,7 +29,7 @@ const EditProfile = (props) => {
       });
     } else {
       addPet(formData).then(({ data }) => {
-        console.log(data);
+        console.log('hey data', data);
         if (data.status) {
           props.close();
           sweetalert('Pet added !', '', 'success');
@@ -68,6 +69,9 @@ const EditProfile = (props) => {
       }
     });
   };
+
+  console.log('hey pet', pet);
+  console.log('heyimage', image);
 
   return (
     <div classNameName="col-lg-4 product-menu">
@@ -114,16 +118,30 @@ const EditProfile = (props) => {
               <div className="modal-body">
                 <div class="container-fluid">
                   <div className="m-3">
-                    <div className="d-flex justify-content-center">
-                      {/* <img
-                        name="image"
-                        src={'./../../img/profile_img_2.png'}
-                        className="edit_profile_image"
-                      /> */}
-                      <input type="file" name="image" />
+                    <div className="image-wrapper rounded-circle">
+                      <img
+                        src={
+                          image !== undefined && image.length !== 0
+                            ? window.URL.createObjectURL(image[0])
+                            : isUpdate
+                            ? pet.petImage
+                            : './../../img/profile_img_2.png'
+                        }
+                        className="pet-image rounded-circle"
+                      />
                     </div>
-                    <div className="d-flex justify-content-center">
-                      <div className="change_profile">Change pet image</div>
+                    <div>
+                      <input
+                        className="image-input"
+                        id="img"
+                        name="image"
+                        type="file"
+                        placeholder="Change Pet Image"
+                        {...register('image')}
+                      />
+                      <label className="image-input-label" htmlFor="img">
+                        {isUpdate ? 'Change Pet Image' : 'Upload Pet Image'}
+                      </label>
                     </div>
                   </div>
                   <div className="ml-3 mr-3">
