@@ -1,0 +1,26 @@
+.image-wrapper {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  height: 161px;
+  width: 161px;
+  padding-left: 30%;
+  text-align: center;
+}
+
+.pet-image {
+  height: 161px;
+  width: 161px;
+}
+
+.image-input {
+  opacity: 0;
+  z-index: 2;
+}
+
+.image-input-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: orange;
+}
