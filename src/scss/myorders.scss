@@ -1,4 +1,4 @@
-.oderer_title {
+.order_title {
   text-align: left;
   font: normal normal 600 18px Poppins;
   letter-spacing: 0px;
@@ -82,4 +82,80 @@
   letter-spacing: 0px;
   color: #333333;
   opacity: 1;
+}
+
+.orders-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.card {
+  display: block;
+  padding: 10px;
+}
+
+.top-container {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+
+.img-wrapper {
+  display: inline;
+  height: 80px;
+  width: 120px;
+  border-radius: 5px;
+}
+
+.store-details {
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+  height: 80px;
+  justify-content: flex-start;
+}
+
+.small-text {
+  color: rgb(126, 123, 123);
+  font-size: 12px;
+  padding-left: 0;
+  padding-top: 0;
+  margin-bottom: 0;
+}
+
+.horizontal-line {
+  border: 0.8px solid rgb(172, 170, 170);
+}
+
+.bottom-container {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  .first-half {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.product-qty {
+  color: rgb(116, 113, 113);
+  font-size: 12px;
+}
+
+.track-btn {
+  margin-top: 5px;
+  width: 150px;
+  height: 35px;
+  text-align: center;
+}
+
+.btn-outline-secondary {
+  margin-left: 5px;
+}
+
+.card-wrapper {
+  padding: 15px;
 }

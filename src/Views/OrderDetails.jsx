@@ -36,15 +36,15 @@ const Myorder = () => {
     <div>
       <Header />
       <MyJumbotron
-        title="My orders"
+        title="My Orders"
         route={[
           { title: "Home", to: "/" },
           { title: "Store", to: "/dashboard" },
           { title: "My orders", isActive: true },
         ]}
       />
-      <Container>
-        <Card>
+      
+        <Card className="orders-container">
           {/* <div>
             <div className="m-3 p-2">My Orders</div>
             {OrderData.length ? (
@@ -97,67 +97,57 @@ const Myorder = () => {
               <h1>No Order details</h1>
             )}
           </div> */}
-          <div style={{ cursor: "pointer" }}>
+          <div style={{ cursor: "pointer" }} >
             <div className="m-3 p-2">My Orders</div>
             {OrderData.length ? (
               OrderData.map((res) =>
-                res["productIDs"].map(
-                  (products, j) => (
+                 (
                     (
-                      <div className="m-2 p-2" onClick={() => get_status(res, products)}>
-                        <Card>
-                          <div>
-                            <div className="row">
-                              <div className="col-md-5">
-                                <div className="float-left m-auto">
-                                  <div className="d-flex justify-content-between">
-                                    <div className="col d-flex align-items-center justify-content-center">
-                                      <img src={products["productImage"][0]} width="100px" />
-                                    </div>
-                                    <div className="px-4 py-2">
-                                      <div className="oderer_title">{products["productName"]}</div>
-                                      <div>Type : {products["productCategory"]}</div>
-                                      <div>Quantity : {res?.quantities[j]}</div>
-                                      <div>Price : {res?.netPrice[j]}</div>
-                                    </div>
-                                  </div>
-                                </div>
+                      <div className="card-wrapper">
+                        <div className="card">
+                          <div className="top-container">
+                            <img src={res?.vendorID.storeImage} alt="" className="img-wrapper" />
+                            <div className="store-details">
+                              <div className="order_title">
+                                {res?.vendorID.storeName}
                               </div>
-                              <div className="col-md-3">
-                                <div className="px-4 py-2">
-                                  <strong>Vendor :</strong> {res?.vendorID?.vendorName} <br />
-                                  <strong>Shipping Charges: </strong>
-                                  {res?.shippingCharges}
-                                </div>
-                              </div>
-                              <div className="col-md-2 m-auto w-50">
-                                <div className="oderer_title text-center col d-flex align-items-center justify-content-center">
-                                  &#8377; {res?.finalTotal}
-                                </div>
-                              </div>
-                              <div className="col-md-2">
-                                <div className="float-right p-3">
-                                  <div className="d-flex justify-content-center m-3">
-                                    <div className="ml-2 status">
-                                      <OrderStatus item={res} />
-                                    </div>
-                                  </div>
-                                </div>
+                              <div>
+                              <p className="small-text">C-3 Street, New Jearsey</p>
+                              <p className="small-text"> {res?.createdAt}</p>
                               </div>
                             </div>
                           </div>
-                        </Card>
+                          <hr className="horizontal-line" />
+                          <div className="bottom-container">
+                            <div className="first-half">
+                              <div>
+                                {res['productIDs'].map((product,idx) => {
+                                  const qty = res.quantities[idx];
+                                
+                                  return (
+                                    <span className="product-qty"> {product['productName']} x {qty} </span>
+                                  )
+                                })}
+                              </div>
+                              <div>
+                                <button className="btn btn-secondary track-btn"> TRACK ORDER</button>
+                                <button className="btn btn-outline-secondary track-btn"> CANCEL</button>
+                              </div>
+                            </div>
+                            <div className="second-half">
+                              Total: &#x20B9; {res?.finalTotal}
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     )
                   )
-                )
               )
             ) : (
               <h1>No Order details</h1>
             )}
           </div>
         </Card>
-      </Container>
 
       <Footer />
     </div>
