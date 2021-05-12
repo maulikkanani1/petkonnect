@@ -123,14 +123,15 @@ const Myorder = () => {
                               <div>
                                 {res['productIDs'].map((product,idx) => {
                                   const qty = res.quantities[idx];
+                                
                                   return (
                                     <span className="product-qty"> {product['productName']} x {qty} </span>
                                   )
                                 })}
                               </div>
                               <div>
-                                <button className="btn btn-secondary track-btn" > TRACK ORDER</button>
-                                <button className="btn btn-outline-secondary track-btn" > CANCEL</button>
+                                <button className="btn btn-secondary track-btn"> TRACK ORDER</button>
+                                <button className="btn btn-outline-secondary track-btn"> CANCEL</button>
                               </div>
                             </div>
                             <div className="second-half">
