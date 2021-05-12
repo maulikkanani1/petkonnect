@@ -192,11 +192,11 @@ const Header = (props) => {
                 <div className="ml-4">
                   <Link to="/Profile">
                     <img
-                      style={{ borderRadius: '50%' }}
+                      // style={{ borderRadius: '50%'}}
                       src="https://i.stack.imgur.com/l60Hf.png"
                       width="30px"
                       height="30px"
-                      className="pt-1"
+                      className="pt-1 rounded-circle"
                     />
                   </Link>
                 </div>

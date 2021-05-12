@@ -76,8 +76,12 @@ const Store = () => {
                     <div>
                       <div className="position-relative mb-2">
                         <img
-                          src={'./../../img/profile_img_2.png'}
-                          className="profile_image"
+                          src={
+                            userData?.userImage
+                              ? userData.userImage
+                              : './../../img/profile_img_2.png'
+                          }
+                          className="profile_image rounded-circle"
                         />
                         <div>
                           <img
