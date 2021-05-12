@@ -51,6 +51,8 @@ const EditProfile = (props) => {
     // }
   }, [props?.id]);
 
+  console.log('hey pet',pet);
+  console.log('isUpdate',isUpdate);
   useEffect(() => {
     if (pet) {
       Object.keys(pet).map((item) => setValue(item, pet[item]));

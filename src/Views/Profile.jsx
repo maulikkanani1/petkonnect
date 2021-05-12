@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { Container } from 'react-bootstrap';
 import Header from '../components/Header.jsx';
 import Footer from '../components/footer.jsx';
@@ -7,7 +8,9 @@ import MyJumbotron from '../components/MyJumbotron';
 import Editprofile from '../components/Model/Editprofile';
 import Editpet from '../components/Model/Edit_pet_profile';
 import './../scss/profile.scss';
+import sweetalert from 'sweetalert';
 import { GetUserData, getUserPets } from '../ApiService.js';
+import { editUser } from '../ApiService.js';
 
 const Store = () => {
   const location = useLocation();
@@ -17,6 +20,7 @@ const Store = () => {
   const [userData, setuserData] = useState();
   const [userPets, setUserPets] = useState();
   const [id, setId] = useState(false);
+  const [showEditButton,setEditButton] = useState(false);
 
   const close_edit = () => {
     seteditprofile(!editprofile);
@@ -33,10 +37,47 @@ const Store = () => {
   useEffect(() => {
     GetUserData().then(({ data }) => {
       setuserData(data);
+      
     });
 
     getUserPets().then(({ data }) => setUserPets(data));
   }, []);
+
+  console.log('hey user',userData);
+  const { register, handleSubmit, setValue, reset, watch } = useForm();
+  const isUpdate = true;
+
+  const image = watch('image');
+
+  const onSubmit = (data) => {
+    const formData = new FormData();
+    Object.keys(data).forEach((key) =>
+      formData.append(key, key === 'image' ? image[0] : data[key])
+    );
+    if (isUpdate) {
+      editUser(formData, data.id).then(({ data }) => {
+        console.log(data);
+        if (data.status) {
+          sweetalert('User Updated !', '', 'success');
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        }
+      });
+    } else {
+      // addPet(formData).then(({ data }) => {
+      //   console.log(data);
+      //   if (data.status) {
+      //     props.close();
+      //     sweetalert('Pet added !', '', 'success');
+      //     props.close();
+      //     setTimeout(() => {
+      //       window.location.reload();
+      //     }, 2000);
+      //   }
+      // });
+    }
+  };
 
   return (
     <div className="product_listing_page">
@@ -74,24 +115,22 @@ const Store = () => {
                   </div>
                   <div className="d-flex justify-content-between">
                     <div>
-                      <div className="position-relative mb-2">
+                      <div className="image-wrapper rounded-circle" on={() => setEditButton(true)}>
                         <img
-                          src={'./../../img/profile_img_2.png'}
-                          className="profile_image"
+                          src={image !== undefined && image.length !== 0 ? window.URL.createObjectURL(image[0]) : './../../img/profile_img_2.png'}
+                          className="profile_image rounded-circle"
                         />
                         <div>
-                          <img
+                        <input className="image-input" id="img" name="image" type="file" placeholder="Change User Image" {...register('image')} />
+                        <label className="image-input-label" htmlFor="img">
+                        <img
                             src={'./../../icons/edit.svg'}
                             className="profile_edit"
                           />
+                        </label>
                         </div>
                       </div>
                       <div className="name mt-2">{userData.name}</div>
-                      <div className="mt-2">
-                        <a href="www.petowner.com" className="link">
-                          www.petowner.com
-                        </a>
-                      </div>
                       <div className="mt-2">
                         <p>{userData.email}</p>
                       </div>
