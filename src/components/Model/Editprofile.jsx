@@ -4,12 +4,14 @@ import { editUser } from '../../ApiService';
 import { useForm } from 'react-hook-form';
 import Form from 'react-bootstrap/Form';
 import sweetalert from 'sweetalert';
+import '../../scss/edituserpicture.scss';
 
 const EditProfile = (props) => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({});
 
   const { register, handleSubmit, setValue, watch } = useForm();
   const image = watch('image');
+  const isUpdate = Object.keys(user).length !== 0;
 
   const onSubmit = (data) => {
     const formData = new FormData();
@@ -18,7 +20,6 @@ const EditProfile = (props) => {
     );
 
     editUser(formData, data.id).then(({ data }) => {
-      console.log(data);
       if (data.status) {
         sweetalert('Profile Updated !', '', 'success');
         setTimeout(() => {
@@ -76,17 +77,32 @@ const EditProfile = (props) => {
               <div className="modal-body">
                 <div class="container-fluid">
                   <div className="m-3">
-                    <div className="d-flex justify-content-center">
+                    <div className="image-wrapper rounded-circle">
                       <img
-                        name="image"
-                        src={`${
-                          image ? image : './../../img/profile_img_2.png'
-                        }`}
-                        className="edit_profile_image"
+                        src={
+                          image !== undefined && image.length !== 0
+                            ? window.URL.createObjectURL(image[0])
+                            : isUpdate
+                            ? user.userImage
+                              ? user.userImage
+                              : './../../img/profile_img_2.png'
+                            : './../../img/profile_img_2.png'
+                        }
+                        className="pet-image rounded-circle"
                       />
                     </div>
-                    <div className="d-flex justify-content-center">
-                      <div className="change_profile">Change profile photo</div>
+                    <div>
+                      <input
+                        className="image-input"
+                        id="img"
+                        name="image"
+                        type="file"
+                        placeholder={isUpdate ? 'Change Image' : 'Upload Image'}
+                        {...register('image')}
+                      />
+                      <label className="image-input-label" htmlFor="img">
+                        {user.userImage ? 'Change Profile Picture' : 'Upload Image'}
+                      </label>
                     </div>
                   </div>
                   <div className="ml-3 mr-3">
@@ -136,11 +152,11 @@ const EditProfile = (props) => {
                 </div>
               </div>
               <div className="modal-footer">
-                  
                 <input
                   type="Submit"
                   className="btn btn-secondary edit_save m-auto w-50"
                   value="Save"
+                  onClick={handleSubmit(onSubmit)}
                 />
               </div>
             </div>

@@ -70,9 +70,6 @@ const EditProfile = (props) => {
     });
   };
 
-  console.log('hey pet', pet);
-  console.log('heyimage', image);
-
   return (
     <div classNameName="col-lg-4 product-menu">
       <div
