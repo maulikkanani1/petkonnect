@@ -14,7 +14,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 10px;
 }
 
 .r1 {
@@ -39,4 +38,33 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+}
+
+.bottom_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.left-block {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-right: 10px;
+}
+
+.address-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  h5 {
+    margin-left: 10px;
+  }
+}
+
+.address {
+  display: flex;
+  flex-direction: column;
 }

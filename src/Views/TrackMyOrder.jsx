@@ -121,25 +121,6 @@ const Cart = () => {
                         </div> */}
 
                         <div className="d-flex my-5 justify-content-between align-items-center">
-                          <div className="d-flex align-items-center">
-                            <img
-                              src="./../../icons/delivered_address.svg"
-                              width="30px"
-                            />
-                            <div className="m-2">
-                              <h6 className="font-weight-bold">
-                                Delivery Address
-                              </h6>
-                              <label className="delivered_address">
-                                {order.userID.address.doorNo},
-                                {order.userID.address.street},{' '}
-                                {order.userID.address.building},{' '}
-                                {order.userID.address.city}{' '}
-                                {order.userID.address.zip},{' '}
-                                {order.userID.address.state}
-                              </label>
-                            </div>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -187,9 +168,27 @@ const Cart = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="row mb-5">
-                    <div className="col-11 pr-2 pl-5">
-                      <div className="invoice px-5">
+                  <div className="bottom_container">
+                  <div className="left-block border rounded px-2 py-1">
+                    <div className="address-title" >
+                      <span><img src="./../../icons/delivered_address.svg" alt="" width="30px" /></span>
+                      <span><h5 className="font-weight-bold">
+                        Delivery Address
+                    </h5></span>
+                    </div>
+                    
+                    <div className="address">
+                      <label className="delivered_address">
+                        {order.userID.address.doorNo},
+                        {order.userID.address.street},{' '}
+                        {order.userID.address.building},{' '}
+                        {order.userID.address.city}{' '}
+                        {order.userID.address.zip},{' '}
+                        {order.userID.address.state}
+                    </label>
+                    </div>
+                  </div>
+                      <div className="invoice border rounded px-2 py-1">
                         <div className="r1">
                           <div className="invoice-fields">Item Total</div>
                           <div className="invoice-values">
@@ -213,7 +212,6 @@ const Cart = () => {
                           </div>
                         </div>
                       </div>
-                    </div>
                   </div>
                   {/* <div className="text-center mb-3">
                     <Button variant="danger">

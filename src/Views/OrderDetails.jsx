@@ -9,6 +9,17 @@ import MyJumbotron from '../components/MyJumbotron';
 import OrderStatus from '../components/OrderStatus';
 import './../scss/myorders.scss';
 import './../scss/track_order.scss';
+import { makeStyles } from '@material-ui/core/styles';
+import Pagination from '@material-ui/lab/Pagination';
+import '.././scss/orderspagination.scss';
+
+const useStyles = makeStyles(() => ({
+  ul: {
+    "& .MuiPaginationItem-root": {
+      color: "#F67F2A",
+    }
+  }
+}));
 
 const Myorder = () => {
   const history = useHistory();
@@ -31,6 +42,31 @@ const Myorder = () => {
   const get_status = (order) => {
     history.push(`/TrackOrder/${order.id}`, { order });
   };
+
+  const [state, setState] = useState({ currentPage: 1, itemsPerPage: 7 });
+
+  const { currentPage, itemsPerPage } = state;
+
+  const lastIndex = currentPage * itemsPerPage;
+  const firstIndex = lastIndex - itemsPerPage;
+  const currentItems = OrderData.slice(firstIndex, lastIndex);
+
+  const pgNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(OrderData.length / itemsPerPage); i++) {
+    pgNumbers.push(i);
+  }
+
+  function handleClick(e,val) {
+    setState((state) => {
+      return {
+        ...state,
+        currentPage: val,
+      };
+    });
+  }
+
+  const classes = useStyles();
 
   return (
     <div>
@@ -99,11 +135,16 @@ const Myorder = () => {
           </div> */}
         <div style={{ cursor: 'pointer' }}>
           <div className="m-3 p-2">My Orders</div>
-          {OrderData.length ? (
-            OrderData.map((order) => (
+          {currentItems.length ? (
+            currentItems.map((order) => (
               <div className="card-wrapper">
                 <div className="card">
                   <div className="row">
+                    <div className="order-status">
+                      <h6>
+                        {order.orderStatus.toUpperCase()}
+                      </h6>
+                    </div>
                     <div className="col-9">
                       <div className="top-container">
                         <img
@@ -127,12 +168,7 @@ const Myorder = () => {
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="col-3">
-                      <h6 className="mt-4">
-                        {order.orderStatus.toUpperCase()}
-                      </h6>
-                    </div>
+                    </div>       
                   </div>
                   <hr />
                   <div className="bottom-container">
@@ -177,7 +213,9 @@ const Myorder = () => {
           )}
         </div>
       </Card>
-
+      <div className="pagination">
+            <Pagination classes={{ ul: classes.ul }} count={pgNumbers.length} page={currentPage} variant="outlined" onChange={handleClick} size="large"/>
+          </div>
       <Footer />
     </div>
   );
