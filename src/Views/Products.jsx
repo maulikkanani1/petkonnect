@@ -27,6 +27,7 @@ const Products = () => {
   console.log(search);
   console.log(product_category);
   const [products, setProducts] = useState([]);
+  const [header, setHeader] = useState('');
   const [filterData, setfilterData] = useState([]);
 
   useEffect(() => {
@@ -63,6 +64,7 @@ const Products = () => {
           console.log(err);
         });
     } else if (search) {
+      setHeader(search);
       searchType({ search }).then(({ data }) => setfilterData(data.products));
     } else {
       getAllProducts().then(({ data }) => {
@@ -93,6 +95,7 @@ const Products = () => {
       <Slider />
 
       <Container>
+        <h2>{header}</h2>
         {/* <div>
           <Form.Control
             type="text"

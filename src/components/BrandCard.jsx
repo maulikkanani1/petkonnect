@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 const BrandCard = ({ brand }) => {
   const history = useHistory();
   const brand_page = (brand) => {
-    history.push(`/Products?brand=${brand}`);
+    history.push(`/Products?search=${brand}`);
   };
 
   return (
