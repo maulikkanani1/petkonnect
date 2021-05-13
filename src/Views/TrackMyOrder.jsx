@@ -70,7 +70,7 @@ const Cart = () => {
               <Card>
                 <div>
                   <div className="row">
-                    <div className="col-md-5">
+                    <div className="col-md-6">
                       <div className="float-left track_my_order p-2">
                         {order['productIDs'].map((product, i) => (
                           <div className="d-flex justify-content-center">
@@ -124,44 +124,20 @@ const Cart = () => {
                           <div className="d-flex align-items-center">
                             <img
                               src="./../../icons/delivered_address.svg"
-                              width="40px"
+                              width="30px"
                             />
                             <div className="m-2">
                               <h6 className="font-weight-bold">
                                 Delivery Address
                               </h6>
                               <label className="delivered_address">
-                                {/* {item.userID.address.doorNo},
-                                {item.userID.address.street},{' '}
-                                {item.userID.address.building},{' '}
-                                {item.userID.address.city}{' '}
-                                {item.userID.address.zip},{' '}
-                                {item.userID.address.state} */}
+                                {order.userID.address.doorNo},
+                                {order.userID.address.street},{' '}
+                                {order.userID.address.building},{' '}
+                                {order.userID.address.city}{' '}
+                                {order.userID.address.zip},{' '}
+                                {order.userID.address.state}
                               </label>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="invoice border rounded px-2 py-1">
-                          <div className="r1">
-                            <div className="invoice-fields">
-                              Item Total
-                            </div>
-                            <div className="invoice-values">
-                              &#x20B9; {order?.finalTotal - order?.shippingCharges}
-                            </div>
-                          </div>
-                          <div className="r1">
-                            <div className="invoice-fields-light">
-                              Shipping Charges
-                            </div>
-                            <div className="invoice-values">
-                              &#x20B9; {order?.shippingCharges}
-                            </div>
-                          </div>
-                          <hr />
-                          <div className="r2">
-                            <div className="invoice-fields" >
-                              <span>BILL TOTAL: </span>  &#x20B9; {order?.finalTotal}
                             </div>
                           </div>
                         </div>
@@ -169,7 +145,7 @@ const Cart = () => {
                     </div>
 
                     <div className="col-md-5">
-                      <div className="float-right p-3 m-2">
+                      <div className="float-right p-3 ">
                         <TrackCard2
                           title="Ordered"
                           date={moment(order['createdAt']).format('DD-MM-YYYY')}
@@ -208,6 +184,34 @@ const Cart = () => {
                             order['deliveredDate'] !== null ? true : false
                           }
                         />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row mb-5">
+                    <div className="col-11 pr-2 pl-5">
+                      <div className="invoice px-5">
+                        <div className="r1">
+                          <div className="invoice-fields">Item Total</div>
+                          <div className="invoice-values">
+                            &#x20B9;{' '}
+                            {order?.finalTotal - order?.shippingCharges}
+                          </div>
+                        </div>
+                        <div className="r1">
+                          <div className="invoice-fields-light">
+                            Shipping Charges
+                          </div>
+                          <div className="invoice-values">
+                            &#x20B9; {order?.shippingCharges}
+                          </div>
+                        </div>
+                        <hr />
+                        <div className="r2">
+                          <div className="invoice-fields">
+                            <span>BILL TOTAL: </span> &#x20B9;{' '}
+                            {order?.finalTotal}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
