@@ -73,7 +73,7 @@ const Cart = () => {
                     <div className="col-md-6">
                       <div className="float-left track_my_order p-2">
                         {order['productIDs'].map((product, i) => (
-                          <div className="d-flex justify-content-center">
+                          <div className="d-flex justify-content-left">
                             <div>
                               <img
                                 src={product['productImage']}
