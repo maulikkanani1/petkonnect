@@ -2,6 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Nav } from 'react-bootstrap';
 // import StoreCard from "./../components/StoreCard.jsx";
 import ProductCard from '../components/ProductCard';
+import { makeStyles } from '@material-ui/core/styles';
+import Pagination from '@material-ui/lab/Pagination';
+import '../scss/pagination.scss'
+
+const useStyles = makeStyles(() => ({
+  ul: {
+    "& .MuiPaginationItem-root": {
+      color: "#F67F2A"
+    }
+  }
+}));
 
 const Products = ({ stores }) => {
   const [state, setState] = useState({ currentPage: 1, itemsPerPage: 6 });
@@ -18,11 +29,11 @@ const Products = ({ stores }) => {
     pgNumbers.push(i);
   }
 
-  function handleClick(e) {
+  function handleClick(e,val) {
     setState((state) => {
       return {
         ...state,
-        currentPage: Number(e.target.id),
+        currentPage: val,
       };
     });
   }
@@ -55,7 +66,7 @@ const Products = ({ stores }) => {
 
   console.log('hey items:', currentItems.length);
   console.log('hey products:', stores.length);
-
+  const classes = useStyles();
   return (
     <div className="products_container">
       <h5 className="text-primary text-center mt-5">Top Products</h5>
@@ -83,7 +94,7 @@ const Products = ({ stores }) => {
           />
         ))}
       </div>
-      <nav aria-label="Page navigation example justify-content-center">
+      {/* <nav aria-label="Page navigation example justify-content-center">
         <ul className="pagination">
           <li
             className="page-link"
@@ -101,7 +112,10 @@ const Products = ({ stores }) => {
             Next
           </li>
         </ul>
-      </nav>
+      </nav> */}
+      <div className="pagination">
+        <Pagination classes={{ ul: classes.ul }} count={pgNumbers.length} page={currentPage} variant="outlined" onChange={handleClick} size="large"/>
+      </div>
     </div>
   );
 };

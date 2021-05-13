@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Card, Button, Tab, Nav, Row, Col } from 'react-bootstrap';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import Pagination from '@material-ui/lab/Pagination';
+import '../scss/pagination.scss';
 import '../scss/stores.scss';
 import {
   GetVendorProduct,
@@ -20,6 +23,15 @@ import call from '../assets/call.png';
 import cart from '../assets/shopping-cart.png';
 import star from '../assets/star.png';
 import offer from '../assets/offer.png';
+
+
+const useStyles = makeStyles(() => ({
+  ul: {
+    "& .MuiPaginationItem-root": {
+      color: "#F67F2A"
+    }
+  }
+}));
 
 const Store = () => {
   const location = useLocation();
@@ -64,41 +76,18 @@ const Store = () => {
     pgNumbers.push(i);
   }
 
-  function handleClick(e) {
+  function handleClick(e,val) {
     setState((state) => {
       return {
         ...state,
-        currentPage: Number(e.target.id),
+        currentPage: val ,
       };
     });
   }
 
-  function handleNext() {
-    setState((state) => {
-      return {
-        ...state,
-        currentPage: currentPage == lastIndex ? 1 : currentPage + 1,
-      };
-    });
-  }
 
-  function handlePrev(e) {
-    e.preventDefault();
-    setState((state) => {
-      return {
-        ...state,
-        currentPage: currentPage == 1 ? lastIndex : currentPage - 1,
-      };
-    });
-  }
+  const classes = useStyles();
 
-  const displayPageNumbers = pgNumbers.map((pgnum) => {
-    return (
-      <li className="page-link" key={pgnum} id={pgnum} onClick={handleClick}>
-        {pgnum}
-      </li>
-    );
-  });
 
   return (
     <div className="product_details">
@@ -177,25 +166,9 @@ const Store = () => {
                 <ProductCard product={product} vendor={vendor} id={vendorId} />
               ))}
             </div>
-            <nav aria-label="Page navigation example justify-content-center">
-              <ul className="pagination">
-                <li
-                  className="page-link"
-                  style={{ cursor: 'pointer' }}
-                  onClick={handlePrev}
-                >
-                  Prev
-                </li>
-                {displayPageNumbers}
-                <li
-                  className="page-link"
-                  style={{ cursor: 'pointer' }}
-                  onClick={handleNext}
-                >
-                  Next
-                </li>
-              </ul>
-            </nav>
+            <div className="pagination">
+              <Pagination classes={{ ul: classes.ul }} count={pgNumbers.length} page={currentPage} variant="outlined" onChange={handleClick} size="large"/>
+             </div>
           </div>
           <CartSide />
         </div>
