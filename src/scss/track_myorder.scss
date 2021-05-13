@@ -40,3 +40,30 @@
   flex-direction: row;
   justify-content: flex-end;
 }
+
+.bottom_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.left-block {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.address-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  h5 {
+    margin-left: 10px;
+  }
+}
+
+.address {
+  display: flex;
+  flex-direction: column;
+}
