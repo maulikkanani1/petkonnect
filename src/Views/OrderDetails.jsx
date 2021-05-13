@@ -104,6 +104,11 @@ const Myorder = () => {
               <div className="card-wrapper">
                 <div className="card">
                   <div className="row">
+                    <div className="order-status">
+                      <h6>
+                        {order.orderStatus.toUpperCase()}
+                      </h6>
+                    </div>
                     <div className="col-9">
                       <div className="top-container">
                         <img
@@ -127,12 +132,7 @@ const Myorder = () => {
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="col-3">
-                      <h6 className="mt-4">
-                        {order.orderStatus.toUpperCase()}
-                      </h6>
-                    </div>
+                    </div>       
                   </div>
                   <hr />
                   <div className="bottom-container">
