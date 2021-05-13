@@ -39,9 +39,10 @@ const Cart = () => {
       orderID: order.id,
       isConfirmed: false,
     };
+
     cancelOrder(orderDetails).then(({ data }) => {
       if (data.status) {
-        window.location.reload();
+        history.push('/checkout');
         toast.success(data.message);
       } else {
         toast.error(data.message);
@@ -49,9 +50,6 @@ const Cart = () => {
     });
   };
 
-  useEffect(() => {}, []);
-
-  console.log('This is the log', order);
   return (
     <div>
       <Header />
@@ -88,7 +86,9 @@ const Cart = () => {
                                 {product['productName']}
                               </div>
                               <div>
-                                <span className="text-muted">Type : {}</span>
+                                <span className="text-muted">
+                                  Type : {order['vendorID'].vendorType}
+                                </span>
                               </div>
                               <div>
                                 <span className="text-muted">
@@ -167,11 +167,11 @@ const Cart = () => {
                         />
                         <TrackCard2
                           title="Shipped"
-                          date={moment(order['completedDate']).format(
+                          date={moment(order['dispatchedDate']).format(
                             'DD-MM-YYYY'
                           )}
                           trackActiveDot={
-                            order['completedDate'] !== null ? true : false
+                            order['dispatchedDate'] !== null ? true : false
                           }
                           // trackActiveDot={false}
                         />
@@ -214,10 +214,10 @@ const Cart = () => {
                     />
                     Download Invoice
                   </Button>
-                  {/* {item.orderStatus !== 'confirm' &&
-                  item.orderStatus !== 'completed' &&
-                  item.orderStatus !== 'delivered' &&
-                  item.orderStatus !== 'cancelled' ? (
+                  {order.orderStatus !== 'confirm' &&
+                  order.orderStatus !== 'completed' &&
+                  order.orderStatus !== 'delivered' &&
+                  order.orderStatus !== 'cancelled' ? (
                     <Button
                       onClick={handleCancel}
                       className="ml-3"
@@ -227,7 +227,7 @@ const Cart = () => {
                     </Button>
                   ) : (
                     ''
-                  )} */}
+                  )}
                 </div>
               </Card>
             </div>
