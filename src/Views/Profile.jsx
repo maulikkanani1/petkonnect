@@ -90,14 +90,12 @@ const Store = () => {
                           />
                         </div>
                       </div>
-                      <div className="name mt-2">{userData.name}</div>
+                      <div className="name mt-3">{userData?.name}</div>
                       <div className="mt-2">
-                        <a href="www.petowner.com" className="link">
-                          www.petowner.com
-                        </a>
+                        <p>{userData?.phoneNumber}</p>
                       </div>
                       <div className="mt-2">
-                        <p>{userData.email}</p>
+                        <p>{userData?.email}</p>
                       </div>
                     </div>
 
