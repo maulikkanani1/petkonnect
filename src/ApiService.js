@@ -1,7 +1,7 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
-export const MAIN_API = 'http://localhost:5000';
+export const MAIN_API = 'https://petkonnect.in/api';
 
 axios.interceptors.request.use(function (config) {
   const token = localStorage.getItem('token');
