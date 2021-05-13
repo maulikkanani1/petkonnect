@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { Container, Card, Button, Table, Form } from "react-bootstrap";
-import { user_oerder_history, get_order_status } from "../ApiService";
+import React, { useEffect, useState } from 'react';
+import { Container, Card, Button, Table, Form } from 'react-bootstrap';
+import { user_oerder_history, get_order_status } from '../ApiService';
 
-import { useHistory, useParams } from "react-router-dom";
-import Header from "../components/Header.jsx";
-import Footer from "../components/footer.jsx";
-import MyJumbotron from "../components/MyJumbotron";
-import OrderStatus from "../components/OrderStatus";
-import "./../scss/myorders.scss";
-import "./../scss/track_order.scss";
+import { useHistory, useParams } from 'react-router-dom';
+import Header from '../components/Header.jsx';
+import Footer from '../components/footer.jsx';
+import MyJumbotron from '../components/MyJumbotron';
+import OrderStatus from '../components/OrderStatus';
+import './../scss/myorders.scss';
+import './../scss/track_order.scss';
 
 const Myorder = () => {
   const history = useHistory();
   const [OrderData, setOrderData] = useState([]);
   const params = useParams();
-  const [status, setstatus] = useState("");
+  const [status, setstatus] = useState('');
 
   useEffect(() => {
     user_oerder_history().then(({ data }) => {
@@ -27,9 +27,9 @@ const Myorder = () => {
     // });
   }, []);
 
-  console.log("OD", OrderData);
-  const get_status = (item, product) => {
-    history.push(`/TrackOrder/${item.id}`, { item, product });
+  console.log('OD', OrderData);
+  const get_status = (order) => {
+    history.push(`/TrackOrder/${order.id}`, { order });
   };
 
   return (
@@ -38,14 +38,14 @@ const Myorder = () => {
       <MyJumbotron
         title="My Orders"
         route={[
-          { title: "Home", to: "/" },
-          { title: "Store", to: "/dashboard" },
-          { title: "My orders", isActive: true },
+          { title: 'Home', to: '/' },
+          { title: 'Store', to: '/dashboard' },
+          { title: 'My orders', isActive: true },
         ]}
       />
-      
-        <Card className="orders-container">
-          {/* <div>
+
+      <Card className="orders-container">
+        {/* <div>
             <div className="m-3 p-2">My Orders</div>
             {OrderData.length ? (
               OrderData.map(
@@ -97,57 +97,71 @@ const Myorder = () => {
               <h1>No Order details</h1>
             )}
           </div> */}
-          <div style={{ cursor: "pointer" }} >
-            <div className="m-3 p-2">My Orders</div>
-            {OrderData.length ? (
-              OrderData.map((res) =>
-                 (
-                    (
-                      <div className="card-wrapper">
-                        <div className="card">
-                          <div className="top-container">
-                            <img src={res?.vendorID.storeImage} alt="" className="img-wrapper" />
-                            <div className="store-details">
-                              <div className="order_title">
-                                {res?.vendorID.storeName}
-                              </div>
-                              <div>
-                              <p className="small-text">C-3 Street, New Jearsey</p>
-                              <p className="small-text"> {res?.createdAt}</p>
-                              </div>
-                            </div>
-                          </div>
-                          <hr className="horizontal-line" />
-                          <div className="bottom-container">
-                            <div className="first-half">
-                              <div>
-                                {res['productIDs'].map((product,idx) => {
-                                  const qty = res.quantities[idx];
-                                
-                                  return (
-                                    <span className="product-qty"> {product['productName']} x {qty} </span>
-                                  )
-                                })}
-                              </div>
-                              <div>
-                                <button className="btn btn-secondary track-btn"> TRACK ORDER</button>
-                                <button className="btn btn-outline-secondary track-btn"> CANCEL</button>
-                              </div>
-                            </div>
-                            <div className="second-half">
-                              Total: &#x20B9; {res?.finalTotal}
-                            </div>
-                          </div>
-                        </div>
+        <div style={{ cursor: 'pointer' }}>
+          <div className="m-3 p-2">My Orders</div>
+          {OrderData.length ? (
+            OrderData.map((order) => (
+              <div className="card-wrapper">
+                <div className="card">
+                  <div className="top-container">
+                    <img
+                      src={order?.vendorID.storeImage}
+                      alt=""
+                      className="img-wrapper"
+                    />
+                    <div className="store-details">
+                      <div className="order_title">
+                        {order?.vendorID.storeName}
                       </div>
-                    )
-                  )
-              )
-            ) : (
-              <h1>No Order details</h1>
-            )}
-          </div>
-        </Card>
+                      <div>
+                        <p className="small-text">C-3 Street, New Jearsey</p>
+                        <p className="small-text"> {order?.createdAt}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr />
+                  <div className="bottom-container">
+                    <div className="first-half">
+                      <div>
+                        {order['productIDs'].map((product, idx) => {
+                          const qty = order.quantities[idx];
+
+                          return (
+                            <>
+                              <span className="product-qty border rounded px-2 py-1">
+                                {product['productName']} x {qty}
+                              </span>
+                              &nbsp;
+                            </>
+                          );
+                        })}
+                      </div>
+                      {/* <br /> */}
+                      <div className="mt-2">
+                        <button
+                          onClick={() => get_status(order)}
+                          className="btn btn-secondary track-btn"
+                        >
+                          TRACK ORDER
+                        </button>
+                        <button className="btn btn-outline-secondary track-btn">
+                          {' '}
+                          CANCEL
+                        </button>
+                      </div>
+                    </div>
+                    <div className="second-half">
+                      <span> Total: &#x20B9; {order?.finalTotal}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <h1>No Order details</h1>
+          )}
+        </div>
+      </Card>
 
       <Footer />
     </div>

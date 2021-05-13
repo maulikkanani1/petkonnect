@@ -17,7 +17,7 @@ import './../scss/track_order.scss';
 const Cart = () => {
   const location = useLocation();
   const history = useHistory();
-  const { item, product } = location.state;
+  const { order } = location.state;
 
   const sucess_alert = () => {
     swal('Order Confirmed', '', 'success');
@@ -36,7 +36,7 @@ const Cart = () => {
 
   const handleCancel = () => {
     const orderDetails = {
-      orderID: item.id,
+      orderID: order.id,
       isConfirmed: false,
     };
     cancelOrder(orderDetails).then(({ data }) => {
@@ -49,7 +49,9 @@ const Cart = () => {
     });
   };
 
-  console.log('This is the log', item);
+  useEffect(() => {}, []);
+
+  console.log('This is the log', order);
   return (
     <div>
       <Header />
@@ -72,38 +74,38 @@ const Cart = () => {
                   <div className="row">
                     <div className="col-md-5">
                       <div className="float-left track_my_order p-2">
-                        <div className="d-flex justify-content-center">
-                          <div>
-                            <img
-                              src={product['productImage'][0]}
-                              width="100px"
-                            />
-                          </div>
+                        {order['productIDs'].map((product, i) => (
+                          <div className="d-flex justify-content-center">
+                            <div>
+                              <img
+                                src={product['productImage']}
+                                width="100px"
+                              />
+                            </div>
 
-                          <div className="p-2">
-                            <div className="oderer_title">
-                              {product['productName']}
-                            </div>
-                            <div>
-                              <span className="text-muted">
-                                Type : {product['productCategory']}
-                              </span>
-                            </div>
-                            <div>
-                              <span className="text-muted">
-                                Vendor :{item.vendorID.vendorName}
-                              </span>
-                            </div>
-                            <div>
-                              <span className="text-muted">
-                                Quantity : {item?.quantities[0]}
-                              </span>
-                            </div>
-                            <div>
-                              <b>Price : &#8377; {item?.netPrice[0]}</b>
+                            <div className="p-2">
+                              <div className="oderer_title">
+                                {product['productName']}
+                              </div>
+                              <div>
+                                <span className="text-muted">Type : {}</span>
+                              </div>
+                              <div>
+                                <span className="text-muted">
+                                  Vendor :{order['vendorID'].vendorName}
+                                </span>
+                              </div>
+                              <div>
+                                <span className="text-muted">
+                                  Quantity : {order['quantities'][i]}
+                                </span>
+                              </div>
+                              <div>
+                                <b>Price : &#8377; {order['netPrice'][i]}</b>
+                              </div>
                             </div>
                           </div>
-                        </div>
+                        ))}
 
                         {/* <div className="d-flex my-5 justify-content-between align-items-center">
                           <div className="d-flex align-items-center">
@@ -129,12 +131,12 @@ const Cart = () => {
                                 Delivery Address
                               </h6>
                               <label className="delivered_address">
-                                {item.userID.address.doorNo},
+                                {/* {item.userID.address.doorNo},
                                 {item.userID.address.street},{' '}
                                 {item.userID.address.building},{' '}
                                 {item.userID.address.city}{' '}
                                 {item.userID.address.zip},{' '}
-                                {item.userID.address.state}
+                                {item.userID.address.state} */}
                               </label>
                             </div>
                           </div>
@@ -146,36 +148,40 @@ const Cart = () => {
                       <div className="float-right p-3 m-2">
                         <TrackCard2
                           title="Ordered"
-                          date={moment(item['createdAt']).format('DD-MM-YYYY')}
-                          trackActiveDot={
-                            item.createdAt !== null ? true : false
-                          }
+                          date={moment(order['createdAt']).format('DD-MM-YYYY')}
+                          // trackActiveDot={
+                          //   order.createdAt !== null ? true : false
+                          // }
+                          trackActiveDot={true}
                         />
                         <TrackCard2
                           title="Packed"
-                          date={moment(item['confirmationDate']).format(
+                          date={moment(order['confirmationDate']).format(
                             'DD-MM-YYYY'
                           )}
+                          date=""
                           trackActiveDot={
-                            item.confirmationDate !== null ? true : false
+                            order['confirmationDate'] !== null ? true : false
                           }
+                          // trackActiveDot={false}
                         />
                         <TrackCard2
                           title="Shipped"
-                          date={moment(item['completedDate']).format(
+                          date={moment(order['completedDate']).format(
                             'DD-MM-YYYY'
                           )}
                           trackActiveDot={
-                            item.completedDate !== null ? true : false
+                            order['completedDate'] !== null ? true : false
                           }
+                          // trackActiveDot={false}
                         />
                         <TrackCard2
                           title="Delivered "
-                          date={moment(item['deliveredDate']).format(
+                          date={moment(order['deliveredDate']).format(
                             'DD-MM-YYYY'
                           )}
                           trackActiveDot={
-                            item.deliveredDate !== null ? true : false
+                            order['deliveredDate'] !== null ? true : false
                           }
                         />
                       </div>
@@ -208,7 +214,7 @@ const Cart = () => {
                     />
                     Download Invoice
                   </Button>
-                  {item.orderStatus !== 'confirm' &&
+                  {/* {item.orderStatus !== 'confirm' &&
                   item.orderStatus !== 'completed' &&
                   item.orderStatus !== 'delivered' &&
                   item.orderStatus !== 'cancelled' ? (
@@ -221,7 +227,7 @@ const Cart = () => {
                     </Button>
                   ) : (
                     ''
-                  )}
+                  )} */}
                 </div>
               </Card>
             </div>
