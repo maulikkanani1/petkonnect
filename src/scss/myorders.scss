@@ -76,14 +76,6 @@
   opacity: 1;
 }
 
-.small_text {
-  text-align: left;
-  font: normal normal normal 8px Poppins;
-  letter-spacing: 0px;
-  color: #333333;
-  opacity: 1;
-}
-
 .orders-container {
   display: flex;
   flex-direction: column;
@@ -117,7 +109,7 @@
   justify-content: flex-start;
 }
 
-.small-text {
+.small_text {
   color: rgb(126, 123, 123);
   font-size: 12px;
   padding-left: 0;

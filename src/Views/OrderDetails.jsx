@@ -114,8 +114,8 @@ const Myorder = () => {
                         {order?.vendorID.storeName}
                       </div>
                       <div>
-                        <p className="small-text">C-3 Street, New Jearsey</p>
-                        <p className="small-text"> {order?.createdAt}</p>
+                        <p className="small_text">C-3 Street, New Jearsey</p>
+                        <p className="small_text"> {order?.createdAt}</p>
                       </div>
                     </div>
                   </div>
