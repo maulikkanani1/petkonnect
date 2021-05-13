@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Form, Card } from 'react-bootstrap';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import Pagination from '@material-ui/lab/Pagination';
+import '../scss/pagination.scss'
 
 import {
   get_all_products,
@@ -15,6 +18,15 @@ import Slider from './../components/Slider.jsx';
 import ProductCard from './../components/ProductCard.jsx';
 import CartSide from '../components/CartSide';
 import Dashboard from '../Views/Dashboard';
+
+
+const useStyles = makeStyles(() => ({
+  ul: {
+    "& .MuiPaginationItem-root": {
+      color: "#F67F2A",
+    }
+  }
+}));
 
 const Products = () => {
   const location = useLocation();
@@ -88,6 +100,31 @@ const Products = () => {
   //   }
   // };
   console.log('Prrrpp', filterData);
+  const [state, setState] = useState({ currentPage: 1, itemsPerPage: 6 });
+
+  const { currentPage, itemsPerPage } = state;
+
+  const lastIndex = currentPage * itemsPerPage;
+  const firstIndex = lastIndex - itemsPerPage;
+  const currentItems = filterData.slice(firstIndex, lastIndex);
+
+  const pgNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(filterData.length / itemsPerPage); i++) {
+    pgNumbers.push(i);
+  }
+
+  function handleClick(e,val) {
+    setState((state) => {
+      return {
+        ...state,
+        currentPage: val,
+      };
+    });
+  }
+
+  const classes = useStyles();
+
 
   return (
     <div className="product_listing_page">
@@ -120,8 +157,8 @@ const Products = () => {
             <div className="row">
               <div className="col-lg-12"></div>
 
-              {filterData ? (
-                filterData.map((product) => (
+              {currentItems ? (
+                currentItems.map((product) => (
                   <ProductCard
                     product={product}
                     vendor={product['vendorID']}
@@ -135,6 +172,9 @@ const Products = () => {
           </div>
           <CartSide />
         </div>
+        <div className="pagination">
+            <Pagination classes={{ ul: classes.ul }} count={pgNumbers.length} page={currentPage} variant="outlined" onChange={handleClick} size="large"/>
+          </div>
       </Container>
     </div>
   );
