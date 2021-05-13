@@ -169,7 +169,7 @@ const Cart = () => {
                     </div>
                   </div>
                   <div className="bottom_container">
-                  <div className="left-block">
+                  <div className="left-block border rounded px-2 py-1">
                     <div className="address-title" >
                       <span><img src="./../../icons/delivered_address.svg" alt="" width="30px" /></span>
                       <span><h5 className="font-weight-bold">
