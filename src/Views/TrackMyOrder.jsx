@@ -141,6 +141,30 @@ const Cart = () => {
                             </div>
                           </div>
                         </div>
+                        <div className="invoice border rounded px-2 py-1">
+                          <div className="r1">
+                            <div className="invoice-fields">
+                              Item Total
+                            </div>
+                            <div className="invoice-values">
+                              &#x20B9; {order?.finalTotal - order?.shippingCharges}
+                            </div>
+                          </div>
+                          <div className="r1">
+                            <div className="invoice-fields-light">
+                              Shipping Charges
+                            </div>
+                            <div className="invoice-values">
+                              &#x20B9; {order?.shippingCharges}
+                            </div>
+                          </div>
+                          <hr />
+                          <div className="r2">
+                            <div className="invoice-fields" >
+                              <span>BILL TOTAL: </span>  &#x20B9; {order?.finalTotal}
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
