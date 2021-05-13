@@ -122,6 +122,8 @@ const EditProfile = (props) => {
                             ? window.URL.createObjectURL(image[0])
                             : isUpdate
                             ? pet.petImage
+                              ? pet.petImage
+                              : './../../img/profile_img_2.png'
                             : './../../img/profile_img_2.png'
                         }
                         className="pet-image rounded-circle"
@@ -137,7 +139,7 @@ const EditProfile = (props) => {
                         {...register('image')}
                       />
                       <label className="image-input-label" htmlFor="img">
-                        {isUpdate ? 'Change Pet Image' : 'Upload Pet Image'}
+                        {pet.petImage ? 'Change Pet Image' : 'Upload Pet Image'}
                       </label>
                     </div>
                   </div>

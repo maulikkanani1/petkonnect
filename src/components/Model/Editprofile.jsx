@@ -94,14 +94,16 @@ const EditProfile = (props) => {
                     <div>
                       <input
                         className="image-input"
-                        id="img"
+                        id="userImg"
                         name="image"
                         type="file"
-                        placeholder={isUpdate ? 'Change Image' : 'Upload Image'}
+                        placeholder={user.userImage ? 'Change Image' : 'Upload Image'}
                         {...register('image')}
                       />
-                      <label className="image-input-label" htmlFor="img">
-                        {user.userImage ? 'Change Profile Picture' : 'Upload Image'}
+                      <label className="image-input-label" htmlFor="userImg">
+                        {user.userImage
+                          ? 'Change Profile Picture'
+                          : 'Upload Image'}
                       </label>
                     </div>
                   </div>
