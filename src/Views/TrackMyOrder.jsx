@@ -42,7 +42,7 @@ const Cart = () => {
 
     cancelOrder(orderDetails).then(({ data }) => {
       if (data.status) {
-        history.push('/checkout');
+        history.push('/OrderDetails');
         toast.success(data.message);
       } else {
         toast.error(data.message);

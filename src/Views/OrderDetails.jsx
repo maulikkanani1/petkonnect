@@ -103,20 +103,35 @@ const Myorder = () => {
             OrderData.map((order) => (
               <div className="card-wrapper">
                 <div className="card">
-                  <div className="top-container">
-                    <img
-                      src={order?.vendorID.storeImage}
-                      alt=""
-                      className="img-wrapper"
-                    />
-                    <div className="store-details">
-                      <div className="order_title">
-                        {order?.vendorID.storeName}
+                  <div className="row">
+                    <div className="col-9">
+                      <div className="top-container">
+                        <img
+                          src={order?.vendorID.storeImage}
+                          alt=""
+                          className="img-wrapper"
+                        />
+                        <div className="store-details">
+                          <div className="order_title">
+                            {order?.vendorID.storeName}
+                          </div>
+                          <div>
+                            <p className="small_text">
+                              C-3 Street, New Jearsey
+                            </p>
+                            <p className="small_text">
+                              {' '}
+                              {new Date(order?.createdAt).toDateString()},{' '}
+                              {new Date(order?.createdAt).toLocaleTimeString()}{' '}
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <p className="small_text">C-3 Street, New Jearsey</p>
-                        <p className="small_text"> {order?.createdAt}</p>
-                      </div>
+                    </div>
+                    <div className="col-3">
+                      <h6 className="mt-4">
+                        {order.orderStatus.toUpperCase()}
+                      </h6>
                     </div>
                   </div>
                   <hr />
@@ -150,7 +165,7 @@ const Myorder = () => {
                         </button>
                       </div>
                     </div>
-                    <div className="second-half">
+                    <div className="second-half px-3">
                       <span> Total: &#x20B9; {order?.finalTotal}</span>
                     </div>
                   </div>
