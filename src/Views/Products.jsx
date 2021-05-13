@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Form } from 'react-bootstrap';
+import { Container, Form, Card } from 'react-bootstrap';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 
 import {
@@ -95,22 +95,26 @@ const Products = () => {
       <Slider />
 
       <Container>
-        <h2>{header}</h2>
         {/* <div>
           <Form.Control
-            type="text"
-            placeholder="Search Products"
-            onChange={(e) =>
-              searchText(e.target.value, [
-                'productName',
-                'productBrand',
-                'petType',
-                'productCategory',
-              ])
-            }
-            className="inventory-Searchbox"
+          type="text"
+          placeholder="Search Products"
+          onChange={(e) =>
+            searchText(e.target.value, [
+              'productName',
+              'productBrand',
+              'petType',
+              'productCategory',
+            ])
+          }
+          className="inventory-Searchbox"
           />
         </div> */}
+        <Card>
+          <Card.Header>
+            <h5 className="mb-0">{header}</h5>
+          </Card.Header>
+        </Card>
         <div className="row mt-5 mb-5">
           <div className="col-lg-8">
             <div className="row">
