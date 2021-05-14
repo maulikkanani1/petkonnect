@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { userLogin, userRegistration } from '../ApiService';
-import { Container, Nav, Card, Tab, Modal } from 'react-bootstrap';
+import { Container, Nav, Card, Tab, Modal,InputGroup,FormControl} from 'react-bootstrap';
 import ResetPassModal from '../components/ResetPassModal';
 import './../scss/login.scss';
+import {EyeFill,EyeSlashFill,EnvelopeFill} from 'react-bootstrap-icons';
 
 const Login = () => {
   const [match, setMatch] = useState(true);
@@ -105,33 +106,28 @@ const Login = () => {
                           Use your credentials to login into account.
                         </p>
                         <div>
-                          <label className="sr-only">Email address</label>
-                          <input
-                            type="email"
-                            name="email"
-                            className="form-control"
-                            placeholder="Email address"
-                            required
-                          />
-                          <label className="sr-only">Password</label>
-                          <input
-                            type={showPassword ? 'text' : 'password'}
-                            name="password"
-                            className="form-control"
-                            placeholder="Password"
-                            required
-                          />
-                        </div>
-                        <div className="checkbox text-left mt-3">
-                          <label>
-                            <input
-                              type="checkbox"
-                              name="showPassword"
-                              defaultChecked={showPassword}
-                              onChange={handleShowPassword}
-                            />{' '}
-                            Show Password
-                          </label>
+                        <InputGroup className="email">
+                            <FormControl
+                              placeholder="Email"
+                              type="email"
+                              name="email"
+                              required
+                            />
+                            <InputGroup.Append>
+                              <InputGroup.Text id="inputGroup-sizing-default" padding="0px"><EnvelopeFill color="orange" size="20px" /></InputGroup.Text>
+                            </InputGroup.Append>
+                          </InputGroup>
+                          <InputGroup>
+                            <FormControl
+                              placeholder="Password"
+                              type = {showPassword ? "text" : "password"}
+                              required
+                            />
+                            <InputGroup.Append onClick={handleShowPassword}>
+                              <InputGroup.Text id="inputGroup-sizing-default" padding="0px">{showPassword ? <EyeFill color="orange" size="20px" /> : <EyeSlashFill color="orange" size="20px" />}</InputGroup.Text>
+                            </InputGroup.Append>
+                          </InputGroup>
+
                         </div>
                         <div className="checkbox text-left mb-3">
                           <label>
