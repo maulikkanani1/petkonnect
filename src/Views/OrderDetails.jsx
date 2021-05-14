@@ -43,7 +43,7 @@ const Myorder = () => {
     history.push(`/TrackOrder/${order.id}`, { order });
   };
 
-  const [state, setState] = useState({ currentPage: 1, itemsPerPage: 7 });
+  const [state, setState] = useState({ currentPage: 1, itemsPerPage: 5 });
 
   const { currentPage, itemsPerPage } = state;
 

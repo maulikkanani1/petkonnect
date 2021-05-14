@@ -5,13 +5,9 @@ import { useHistory } from 'react-router-dom';
 const ProductCard = ({ product, vendor, id }) => {
   const history = useHistory();
   return (
-    <div className="col-lg-4 col-md-4 col-sm-12 mb-3" key={product.id}>
-      <a
-        href="javascript:void(0)"
-        onClick={() =>
-          history.push('/ProductDetail', { data: product, id, vendor })
-        }
-      >
+    <div className="col-lg-4 col-md-4 col-sm-12 mb-3" key={product.id} onClick={() =>
+      history.push('/ProductDetail', { data: product, id, vendor })
+    }>
         <Card className="w-100 product_card">
           <Card.Img variant="top" src={product.productImage[0]} />
 
@@ -45,7 +41,6 @@ const ProductCard = ({ product, vendor, id }) => {
             </div>
           </Card.Body>
         </Card>
-      </a>
     </div>
   );
 };
