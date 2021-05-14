@@ -42,6 +42,9 @@ const Header = (props) => {
     });
   }, []);
 
+  console.log('hey user',userData);
+
+
   // useEffect(() => {
   //   if (!userData?.address.state) {
   //     seteditAddress(false);
@@ -193,10 +196,10 @@ const Header = (props) => {
                   <Link to="/Profile">
                     <img
                       // style={{ borderRadius: '50%'}}
-                      src="https://i.stack.imgur.com/l60Hf.png"
+                      src={userData?.userImage}
                       width="30px"
                       height="30px"
-                      className="pt-1 rounded-circle"
+                      className=" rounded-circle"
                     />
                   </Link>
                 </div>
