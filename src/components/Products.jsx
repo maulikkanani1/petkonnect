@@ -5,6 +5,11 @@ import ProductCard from '../components/ProductCard';
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 import '../scss/pagination.scss'
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
+import FeaturedProducts from './Product Tabs/FeaturedProducts';
+import NewProducts from './Product Tabs/NewProducts';
+import TopSellingProducts from './Product Tabs/TopSellingProducts'
 
 const useStyles = makeStyles(() => ({
   ul: {
@@ -14,8 +19,9 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const Products = ({ stores }) => {
+const Products = ({ stores,featuredProducts,newProducts, topSelling}) => {
   const [state, setState] = useState({ currentPage: 1, itemsPerPage: 6 });
+  const [key,setKey] = useState('home');
 
   const { currentPage, itemsPerPage } = state;
 
@@ -38,62 +44,33 @@ const Products = ({ stores }) => {
     });
   }
 
-  function handleNext() {
-    setState((state) => {
-      return {
-        ...state,
-        currentPage: currentPage == lastIndex ? 1 : currentPage + 1,
-      };
-    });
-  }
 
-  function handlePrev() {
-    setState((state) => {
-      return {
-        ...state,
-        currentPage: currentPage == 1 ? lastIndex : currentPage - 1,
-      };
-    });
-  }
-
-  const displayPageNumbers = pgNumbers.map((pgnum) => {
-    return (
-      <li className="page-link" key={pgnum} id={pgnum} onClick={handleClick}>
-        {pgnum}
-      </li>
-    );
-  });
 
   console.log('hey items:', currentItems.length);
-  console.log('hey products:', stores.length);
+  console.log('hey products:', stores);
   const classes = useStyles();
   return (
     <div className="products_container">
       <h5 className="text-primary text-center mt-5">Top Products</h5>
-      <Nav
-        className="justify-content-center mt-5"
-        variant="pills"
-        defaultActiveKey="/home"
-      >
-        <Nav.Item>
-          <Nav.Link href="/home">Featured Products</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="link-1">New Products</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="link-2">Top Selling</Nav.Link>
-        </Nav.Item>
-      </Nav>
-      <div className="row mt-5 mb-5">
-        {currentItems.map((store, i) => (
-          <ProductCard
-            product={store}
-            vendor={store['vendorID']}
-            id={store['vendorID'].id}
-          />
-        ))}
-      </div>
+      <Tabs
+      className="justify-content-center mt-5"
+      id="controlled-tab-example"
+      activeKey={key}
+      onSelect={(k) => setKey(k)}
+      variant='pills'
+    >
+      <Tab eventKey="home" title="Featured Products">
+        <div>
+          <FeaturedProducts featuredProds={featuredProducts}/>
+        </div>
+      </Tab>
+      <Tab eventKey="profile" title="New Products">
+        <NewProducts newProds={newProducts}/>
+      </Tab>
+      <Tab eventKey="contact" title="Top Selling" >
+        <TopSellingProducts topSelling={topSelling}/>
+      </Tab>
+    </Tabs>
       {/* <nav aria-label="Page navigation example justify-content-center">
         <ul className="pagination">
           <li
@@ -113,9 +90,9 @@ const Products = ({ stores }) => {
           </li>
         </ul>
       </nav> */}
-      <div className="pagination">
+      {/* <div className="pagination">
         <Pagination classes={{ ul: classes.ul }} count={pgNumbers.length} page={currentPage} variant="outlined" onChange={handleClick} size="large"/>
-      </div>
+      </div> */}
     </div>
   );
 };

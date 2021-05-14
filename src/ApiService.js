@@ -89,6 +89,10 @@ export const editUser = (data, id) =>
 export const removePet = (id) =>
   axios.delete(`${MAIN_API}/pets/remove_pet/${id}`);
 
+export const getFeaturedProducts = () => axios.post(`${MAIN_API}/inventory/get_featured_products`);
+export const getNewProducts = () => axios.post(`${MAIN_API}/inventory/get_new_products`);
+export const getTopSellingProducts = () => axios.post(`${MAIN_API}/inventory/get_topSelling_products`);
+
 export const viewServices = (vendorID) => {
   return axios.post(`${MAIN_API}/services/get_services`, { vendorID });
 };

@@ -3,6 +3,9 @@ import {
   GetallStores,
   GetAllVendorProduct,
   getAllProducts,
+  getFeaturedProducts,
+  getNewProducts,
+  getTopSellingProducts
 } from '../ApiService';
 import { useHistory } from 'react-router-dom';
 import { Container, Button } from 'react-bootstrap';
@@ -20,6 +23,10 @@ const DashBoard = (props) => {
   const history = useHistory();
   const [stores, setStores] = useState([]);
   const [products, setProducts] = useState([]);
+  const [featuredProducts,setFeaturedProducts] = useState([]);
+  const [newProducts,setNewProducts] = useState([]);
+  const [topSelling,setTopSelling] = useState([]);
+
   const categories = [
     {
       name: 'Dog',
@@ -78,6 +85,27 @@ const DashBoard = (props) => {
       });
     });
   }, []);
+
+  useEffect(() => {
+    getFeaturedProducts().then(({data}) => {
+      console.log('heyoo',data);
+      setFeaturedProducts(data.featuredProducts);
+    })
+  },[]);
+
+  useEffect(() => {
+    getNewProducts().then(({data}) => {
+      setNewProducts(data.newProducts);
+    })
+  })
+
+  useEffect(() => {
+    getTopSellingProducts().then(({data}) => {
+      setTopSelling(data.topSellingProducts);
+    })
+  })
+
+
   return (
     <div>
       <Header />
@@ -122,7 +150,7 @@ const DashBoard = (props) => {
         </div>
       </div>
       <Container>
-        <Products stores={products} />
+        <Products stores={products} featuredProducts={featuredProducts} newProducts={newProducts} topSelling={topSelling} />
       </Container>
       <Footer />
     </div>
