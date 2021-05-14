@@ -7,6 +7,16 @@ import Footer from '../components/footer.jsx';
 import CartSide from '../components/CartSide';
 import ProductCard from '../components/ProductCard';
 import MyJumbotron from '../components/MyJumbotron';
+import { makeStyles } from '@material-ui/core/styles';
+import Pagination from '@material-ui/lab/Pagination';
+
+const useStyles = makeStyles(() => ({
+    ul: {
+      "& .MuiPaginationItem-root": {
+        color: "#F67F2A"
+      }
+    }
+  }));
 
 const ProductDetail = () => {
   const history = useHistory();
@@ -50,6 +60,31 @@ const ProductDetail = () => {
       window.location.reload();
     });
   };
+
+  const [state, setState] = useState({ currentPage: 1, itemsPerPage: 3 });
+  const { currentPage, itemsPerPage } = state;
+
+  const lastIndex = currentPage * itemsPerPage;
+  const firstIndex = lastIndex - itemsPerPage;
+  const currentItems = products.slice(firstIndex, lastIndex);
+
+  const pgNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(products.length / itemsPerPage); i++) {
+    pgNumbers.push(i);
+  }
+
+  function handleClick(e,val) {
+    setState((state) => {
+      return {
+        ...state,
+        currentPage: val,
+      };
+    });
+  }
+
+  const classes = useStyles();
+
   return (
     <div className="product_details">
       <Header />
@@ -184,7 +219,7 @@ const ProductDetail = () => {
             </Tab.Container>
             <h2 className="my-3">You may also like</h2>
             <div className="row mb-4 mt-3">
-              {products.map((product) => (
+              {currentItems.map((product) => (
                 <ProductCard product={product} vendor={vendor} id={vendorId} />
               ))}
             </div>
@@ -192,6 +227,9 @@ const ProductDetail = () => {
           <CartSide />
         </div>
       </Container>
+      <div className="pagination ">
+        <Pagination classes={{ ul: classes.ul }} count={pgNumbers.length} page={currentPage} variant="outlined" onChange={handleClick} size="large"/>
+      </div>
       <Footer />
     </div>
   );
