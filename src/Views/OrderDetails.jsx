@@ -15,10 +15,10 @@ import '.././scss/orderspagination.scss';
 
 const useStyles = makeStyles(() => ({
   ul: {
-    "& .MuiPaginationItem-root": {
-      color: "#F67F2A",
-    }
-  }
+    '& .MuiPaginationItem-root': {
+      color: '#F67F2A',
+    },
+  },
 }));
 
 const Myorder = () => {
@@ -57,7 +57,7 @@ const Myorder = () => {
     pgNumbers.push(i);
   }
 
-  function handleClick(e,val) {
+  function handleClick(e, val) {
     setState((state) => {
       return {
         ...state,
@@ -141,9 +141,7 @@ const Myorder = () => {
                 <div className="card">
                   <div className="row">
                     <div className="order-status">
-                      <h6>
-                        {order.orderStatus.toUpperCase()}
-                      </h6>
+                      <h6>{order.orderStatus.toUpperCase()}</h6>
                     </div>
                     <div className="col-9">
                       <div className="top-container">
@@ -168,7 +166,7 @@ const Myorder = () => {
                           </div>
                         </div>
                       </div>
-                    </div>       
+                    </div>
                   </div>
                   <hr />
                   <div className="bottom-container">
@@ -214,8 +212,15 @@ const Myorder = () => {
         </div>
       </Card>
       <div className="pagination">
-            <Pagination classes={{ ul: classes.ul }} count={pgNumbers.length} page={currentPage} variant="outlined" onChange={handleClick} size="large"/>
-          </div>
+        <Pagination
+          classes={{ ul: classes.ul }}
+          count={pgNumbers.length}
+          page={currentPage}
+          variant="outlined"
+          onChange={handleClick}
+          size="large"
+        />
+      </div>
       <Footer />
     </div>
   );

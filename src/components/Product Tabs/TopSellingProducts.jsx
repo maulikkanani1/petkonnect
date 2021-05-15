@@ -52,7 +52,7 @@ const TopSellingProducts = () => {
           <ProductCard
             product={prod}
             vendor={prod['vendorID']}
-            id={prod['vendorID'].id}
+            id={prod['vendorID']?.id}
           />
         ))}
       </div>
