@@ -123,7 +123,7 @@ const Login = () => {
                             required
                           /> */}
                           <div className="input-group">
-                            <input type={showPassword ? 'text' : 'password'} className="form-control" placeholder="Password" required />
+                            <input type={showPassword ? 'text' : 'password'} name="password" className="form-control" placeholder="Password" required />
                             <div className="input-group-btn">
                               <div onClick={handleShowPassword} className="btn btn-default">
                                 {showPassword ? <EyeFill color="#ff801e"/> : <EyeSlashFill color="#ff801e"/> }
@@ -131,7 +131,7 @@ const Login = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="checkbox text-left mb-3" marginTop="10px">
+                        <div className="checkbox text-left mb-3">
                           <label>
                             <input
                               type="checkbox"
