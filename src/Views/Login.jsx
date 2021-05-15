@@ -5,6 +5,7 @@ import { userLogin, userRegistration } from '../ApiService';
 import { Container, Nav, Card, Tab, Modal } from 'react-bootstrap';
 import ResetPassModal from '../components/ResetPassModal';
 import './../scss/login.scss';
+import {Eye, EyeFill,EyeSlashFill} from 'react-bootstrap-icons';
 
 const Login = () => {
   const [match, setMatch] = useState(true);
@@ -113,27 +114,24 @@ const Login = () => {
                             placeholder="Email address"
                             required
                           />
-                          <label className="sr-only">Password</label>
+                          {/* <label className="sr-only">Password</label>
                           <input
                             type={showPassword ? 'text' : 'password'}
                             name="password"
                             className="form-control"
                             placeholder="Password"
                             required
-                          />
+                          /> */}
+                          <div className="input-group">
+                            <input type={showPassword ? 'text' : 'password'} className="form-control" placeholder="Password" required />
+                            <div className="input-group-btn">
+                              <div onClick={handleShowPassword} className="btn btn-default">
+                                {showPassword ? <EyeFill color="#ff801e"/> : <EyeSlashFill color="#ff801e"/> }
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <div className="checkbox text-left mt-3">
-                          <label>
-                            <input
-                              type="checkbox"
-                              name="showPassword"
-                              defaultChecked={showPassword}
-                              onChange={handleShowPassword}
-                            />{' '}
-                            Show Password
-                          </label>
-                        </div>
-                        <div className="checkbox text-left mb-3">
+                        <div className="checkbox text-left mb-3" marginTop="10px">
                           <label>
                             <input
                               type="checkbox"
