@@ -157,9 +157,9 @@ const Myorder = () => {
                             {order?.vendorID.storeName}
                           </div>
                           <div>
-                            <p className="small_text">
+                            {/* <p className="small_text">
                               C-3 Street, New Jearsey
-                            </p>
+                            </p> */}
                             <p className="small_text">
                               {' '}
                               {new Date(order?.createdAt).toDateString()},{' '}

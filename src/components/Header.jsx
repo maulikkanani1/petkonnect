@@ -42,17 +42,6 @@ const Header = (props) => {
     });
   }, []);
 
-  console.log('hey user',userData);
-
-
-  // useEffect(() => {
-  //   if (!userData?.address.state) {
-  //     seteditAddress(false);
-  //   } else {
-  //     seteditAddress(true);
-  //   }
-  // }, []);
-
   const productCategory = [
     {
       name: 'Food',
@@ -98,7 +87,6 @@ const Header = (props) => {
   const handleSearch = (e) => {
     e.preventDefault();
     history.push(`/Products?search=${searchValue}`);
-    // window.location.reload();
   };
 
   const handleSelect = (e) => {
