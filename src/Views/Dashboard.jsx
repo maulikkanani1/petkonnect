@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  GetallStores,
-  GetAllVendorProduct,
-  getAllProducts,
-  getFeaturedProducts,
-  getNewProducts,
-  getTopSellingProducts,
-} from '../ApiService';
+import { GetallStores } from '../ApiService';
 import { useHistory } from 'react-router-dom';
 import { Container, Button } from 'react-bootstrap';
 import Header from './../components/Header.jsx';
@@ -16,13 +9,13 @@ import CategoryCard from './../components/CategoryCard.jsx';
 import BrandCard from './../components/BrandCard.jsx';
 import Products from './../components/Products.jsx';
 import Slider from './../components/Slider.jsx';
-import ProductCard from './../components/ProductCard.jsx';
+// import ProductCard from './../components/ProductCard.jsx';
 
 const DashBoard = (props) => {
   console.log(props);
   const history = useHistory();
   const [stores, setStores] = useState([]);
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
   // const [featuredProducts, setFeaturedProducts] = useState([]);
   // const [newProducts, setNewProducts] = useState([]);
   // const [topSelling, setTopSelling] = useState([]);
@@ -80,29 +73,11 @@ const DashBoard = (props) => {
   useEffect(() => {
     GetallStores().then(({ data }) => {
       setStores(data.vendors);
-      getAllProducts().then(({ data }) => {
-        setProducts(data.products);
-      });
+      // getAllProducts().then(({ data }) => {
+      //   setProducts(data.products);
+      // });
     });
   }, []);
-
-  // useEffect(() => {
-  //   getFeaturedProducts().then(({ data }) => {
-  //     setFeaturedProducts(data.featuredProducts);
-  //   });
-  //   getNewProducts().then(({ data }) => {
-  //     setNewProducts(data.newProducts);
-  //   });
-  //   getTopSellingProducts().then(({ data }) => {
-  //     setTopSelling(data.topSellingProducts);
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  // })
-
-  // useEffect(() => {
-  // })
 
   return (
     <div>
@@ -149,10 +124,10 @@ const DashBoard = (props) => {
       </div>
       <Container>
         <Products
-          // stores={products}
-          // featuredProducts={featuredProducts}
-          // newProducts={newProducts}
-          // topSelling={topSelling}
+        // stores={products}
+        // featuredProducts={featuredProducts}
+        // newProducts={newProducts}
+        // topSelling={topSelling}
         />
       </Container>
       <Footer />
