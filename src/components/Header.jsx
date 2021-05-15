@@ -47,47 +47,7 @@ const Header = (props) => {
     });
   }, []);
 
-  const productCategory = [
-    {
-      name: 'Food',
-    },
-    {
-      name: 'Treats',
-    },
-    {
-      name: 'Toys',
-    },
-    {
-      name: 'Leashes, Collars & Harnesses',
-    },
-    {
-      name: 'Clothing & Accessories',
-    },
-    {
-      name: 'Bowls & Feeders',
-    },
-    {
-      name: 'Beds',
-    },
-    {
-      name: 'Grooming & Hygiene',
-    },
-    {
-      name: 'Health & Wellness',
-    },
-    {
-      name: 'Carriers & Travel',
-    },
-    {
-      name: 'Crates, Pens & Gates',
-    },
-    {
-      name: 'Trees, Condos & Scratchers',
-    },
-    {
-      name: 'Aquarium',
-    },
-  ];
+
 
   const productSubcategories = [
     {
