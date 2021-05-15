@@ -81,58 +81,6 @@ const Myorder = () => {
       />
 
       <Card className="orders-container">
-        {/* <div>
-            <div className="m-3 p-2">My Orders</div>
-            {OrderData.length ? (
-              OrderData.map(
-                (order, i) => (
-                  console.log(order),
-                  (
-                    <div className="m-2 p-2">
-                      <Card>
-                        <div>
-                          <div className="row">
-                            <div className="col-md-3">
-                              <div className="float-left p-2 mt-2">
-                                {order.productIDs.map((product, j) => (
-                                  <div className="mb-2">
-                                    <img
-                                      src={product.productImage}
-                                      height="50px"
-                                      style={{
-                                        maxWidth: 50,
-                                        objectFit: "contain",
-                                      }}
-                                    />
-                                    <div className="p-2">
-                                      <div className="oderer_title">{product["productName"]}</div>
-                                      <div>Type : {product["productCategory"]}</div>
-
-                                      <div>Quantity : {order?.quantities[j]}</div>
-                                      <div>Sub Total : {order?.netPrice[j]}</div>
-                                    </div>
-                                  </div>
-                                ))}
-                                <div className="">
-                                  <strong>Vendor :</strong> {order?.vendorID?.vendorName} <br />
-                                  <strong>Shipping Charges: </strong>
-                                  {order?.shippingCharges}
-                                  <br />
-                                  <strong>Final Total :</strong> {order?.finalTotal}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </Card>
-                    </div>
-                  )
-                )
-              )
-            ) : (
-              <h1>No Order details</h1>
-            )}
-          </div> */}
         <div style={{ cursor: 'pointer' }}>
           <div className="m-3 p-2">My Orders</div>
           {currentItems.length ? (
@@ -158,7 +106,12 @@ const Myorder = () => {
                           </div>
                           <div>
                             <p className="small_text">
-                              C-3 Street, New Jearsey
+                            {order.userID.address.doorNo},
+                            {order.userID.address.street},{' '}
+                            {order.userID.address.building},{' '}
+                            {order.userID.address.city}{' '}
+                            {order.userID.address.zip},{' '}
+                            {order.userID.address.state}
                             </p>
                             <p className="small_text">
                               {' '}
@@ -188,7 +141,7 @@ const Myorder = () => {
                         })}
                       </div>
                       {/* <br /> */}
-                      <div className="mt-2">
+                      <div >
                         <button
                           onClick={() => get_status(order)}
                           className="btn btn-secondary track-btn"
@@ -196,7 +149,6 @@ const Myorder = () => {
                           TRACK ORDER
                         </button>
                         <button className="btn btn-outline-secondary track-btn">
-                          {' '}
                           CANCEL
                         </button>
                       </div>
