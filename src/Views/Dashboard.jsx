@@ -22,7 +22,7 @@ const DashBoard = (props) => {
   console.log(props);
   const history = useHistory();
   const [stores, setStores] = useState([]);
-  // const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   // const [featuredProducts, setFeaturedProducts] = useState([]);
   // const [newProducts, setNewProducts] = useState([]);
   // const [topSelling, setTopSelling] = useState([]);
