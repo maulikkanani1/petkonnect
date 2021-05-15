@@ -11,11 +11,14 @@ import {
   Dropdown,
   DropdownButton,
 } from 'react-bootstrap';
+import { DropdownSubmenu, NavDropdownMenu} from "react-bootstrap-submenu";
 import EditAddress from '../components/Model/Edit_address';
 
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { GetUserData, logout } from '../ApiService';
+import '.././scss/dropdown.scss';
+import { set } from 'react-hook-form';
 
 const Header = (props) => {
   const history = useHistory();
@@ -23,6 +26,8 @@ const Header = (props) => {
   const [searchValue, setSearchvalue] = useState('');
   const [editAddress, seteditAddress] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [subcategory,setSubCategory] = useState('All');
+  const [isOpen,setIsOpen] = useState(false);
 
   const close_edit = () => {
     seteditAddress(!editAddress);
@@ -42,45 +47,148 @@ const Header = (props) => {
     });
   }, []);
 
-  const productCategory = [
+
+
+  const productSubcategories = [
     {
-      name: 'Food',
+      "id": 7,
+      "label": "Food",
+      "title": [
+        "Dry Food",
+        "Wet/ Canned Food",
+        "Veterniary Diets",
+        "Fresh Food",
+        "Puppy Food",
+        "Adult Dog Food",
+        "Freeze/ Dried & dehydrated Food"
+      ]
     },
     {
-      name: 'Treats',
+      "id": 8,
+      "label": "Treats",
+      "title": [
+        "Biscuits, Cookies & Crunchy Treats",
+        "Soft & Chewy Treats",
+        "Dental Treats",
+        "Jerky Treats",
+        "Bones & Sticks",
+        "Rawhide",
+        "Pill Covers & Wraps",
+        "Veterinary Diet Treats"
+      ]
     },
     {
-      name: 'Toys',
+      "id": 9,
+      "label": "Toys",
+      "title": [
+        "Chew Toys",
+        "Plush Toys",
+        "Sqeaker Toys",
+        "Rope Toys ",
+        "Interactive Toys",
+        "Fetch & Tug Toys",
+        "Variety Packs"
+      ]
     },
     {
-      name: 'Leashes, Collars & Harnesses',
+      "id": 10,
+      "label": "Leashes, Collars & Harnesses",
+      "title": ["Collars", "Leashes", "Harnesses", "ID Tags", "Muzzles"]
     },
     {
-      name: 'Clothing & Accessories',
+      "id": 11,
+      "label": "Clothing & Accessories",
+      "title": [
+        "Jackets & Coats",
+        "Sweaters & Hoodies",
+        "Shoes & Socks",
+        "Bow Ties",
+        "Bandanas",
+        "Shirts & Dresses",
+        "Accessories",
+        "Pajamas",
+        "Costumes",
+        "Outdoor Gear"
+      ]
     },
     {
-      name: 'Bowls & Feeders',
+      "id": 12,
+      "label": "Bowls & Feeders",
+      "title": [
+        "Bowls & Dishes",
+        "Elevated Bowls",
+        "Feeders",
+        "Travel Bowls",
+        "Personalized Bowls",
+        "Storage & Accessories",
+        "Water Bottles",
+        "Placemats"
+      ]
     },
     {
-      name: 'Beds',
+      "id": 13,
+      "label": "Beds",
+      "title": ["Beds & Furniture", "Mats", "Blankets & Pillows"]
     },
     {
-      name: 'Grooming & Hygiene',
+      "id": 14,
+      "label": "Grooming & Hygiene",
+      "title": [
+        "Grooming Tools",
+        "Shampoos & Conditioners",
+        "Brushes & Combs",
+        "Ear Care",
+        "Paw & Nail Care",
+        "Skincare",
+        "Eyecare",
+        "Tick & Flea",
+        "Towels & Wipes",
+        "Stain & Odour Control",
+        "Scoopers & Waste Disposal",
+        "Diapers & Training"
+      ]
     },
     {
-      name: 'Health & Wellness',
+      "id": 15,
+      "label": "Health & Wellness",
+      "title": [
+        "Medicines & Supplements",
+        "Oral Care",
+        "Skin & Coat Care",
+        "Hip & Joint Care",
+        "Digestive Health & Probiotics",
+        "Multivitamins",
+        "Anxiety & Calming Care",
+        "Heart & Liver Care",
+        "Urinary & Kidney Health",
+        "Eyecare",
+        "Dietary Supplements"
+      ]
     },
     {
-      name: 'Carriers & Travel',
+      "id": 16,
+      "label": "Carriers & Travel",
+      "title": [
+        "Carriers",
+        "Kennels",
+        "Car Accessories",
+        "Steps & Ramps",
+        "Travel Bowls & Bags",
+        "Travel Aids"
+      ]
     },
     {
-      name: 'Crates, Pens & Gates',
-    },
-    {
-      name: 'Trees, Condos & Scratchers',
-    },
-    {
-      name: 'Aquarium',
+      "id": 17,
+      "label": "Crates, Pens & Gates",
+      "title": [
+        "Crate & Kennels",
+        "Crate Mats & Pads",
+        "Pens & Accessories",
+        "Gates",
+        "Steps & Ramps",
+        "Doors & Accessories",
+        "Dog Houses"
+      ]
     },
   ];
 
@@ -91,7 +199,20 @@ const Header = (props) => {
 
   const handleSelect = (e) => {
     setSelectedCategory(e);
+    console.log('heyoo',selectedCategory);
   };
+  
+  const handleSubCategory = (e) => {
+    setSubCategory(e);
+  }
+
+  const handleMouseEnter = (e) => {
+    setIsOpen(true);
+  }
+
+  const handleMouseLeave = (e) => {
+    setIsOpen(false);
+  }
 
   return (
     <div className="bg-white sticky-top">
@@ -135,12 +256,27 @@ const Header = (props) => {
                       onSelect={handleSelect}
                       id="input-group-dropdown-1"
                     >
-                      {productCategory.map((product, i) => (
-                        <Dropdown.Item
+                      {productSubcategories.map((product, i) => (
+                        <Dropdown.Item onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
                           href={`/Products?search=${selectedCategory}`}
-                          eventKey={product.name}
+                          eventKey={product.label}
                         >
-                          {product.name}
+                          <div className="r1">
+                            <div>
+                              {product.label}
+                            </div>
+                            <div>
+                              {
+                                isOpen ? <DropdownSubmenu eventKey={product.label} >
+                                {product['title'].map((subcategory,i) => (
+                                  <NavDropdown.Item onSelect={handleSubCategory} href={`/Products?search=${subcategory}`} eventKey={subcategory}>
+                                    {subcategory}
+                                  </NavDropdown.Item>
+                                ))}
+                              </DropdownSubmenu> : null
+                               }
+                            </div>
+                          </div>
                         </Dropdown.Item>
                       ))}
                     </DropdownButton>
