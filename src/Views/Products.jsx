@@ -80,6 +80,7 @@ const Products = () => {
       searchType({ search }).then(({ data }) => setfilterData(data.products));
     } else {
       getAllProducts().then(({ data }) => {
+        console.log('dddd',data)
         setProducts(data.products);
         setfilterData(data.products);
       });
@@ -99,7 +100,6 @@ const Products = () => {
   //     setfilterData(filteredName);
   //   }
   // };
-  console.log('Prrrpp', filterData);
   const [state, setState] = useState({ currentPage: 1, itemsPerPage: 6 });
 
   const { currentPage, itemsPerPage } = state;
@@ -159,6 +159,7 @@ const Products = () => {
 
               {currentItems ? (
                 currentItems.map((product) => (
+                  
                   <ProductCard
                     product={product}
                     vendor={product['vendorID']}
