@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import {Star,StarFill} from 'react-bootstrap-icons'
+import {Star,StarFill,StarHalf} from 'react-bootstrap-icons'
 import '../scss/rateNreviewModal.scss'; 
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import {addReviews} from '.././ApiService';
+import sweetalert from 'sweetalert';
+import ReactStars from "react-rating-stars-component";
 
 
 const RateAndReviewModal = (props) => {
@@ -13,16 +15,10 @@ const RateAndReviewModal = (props) => {
     const {products,show,onHide} = props;
     const [starsCount,setStarsCount] = useState(0);
     const [review,setReview] = useState('');
-    const [clicked1,setClicked1] = useState(false);
-    const [clicked2,setClicked2] = useState(false);
-    const [clicked3,setClicked3] = useState(false);
-    const [clicked4,setClicked4] = useState(false);
-    const [clicked5,setClicked5] = useState(false);
-    const [countArray,setCounArray] = useState([]);
-    
 
-
-
+    const ratingChanged = (newRating) => {
+      setStarsCount(newRating);
+    };
 
     return (
         <Modal
@@ -49,13 +45,16 @@ const RateAndReviewModal = (props) => {
                           <div className="accordion-content">
                             <div className="top-half">
                               <h6>Rate our product:</h6>
-                              <div className="stars">
-                                <span onClick={() => {setClicked1(!clicked1);setCounArray([...countArray,clicked1])}}>{clicked1 ? <StarFill color="#ff801e"/> : <Star color="#ff801e"/>}</span>
-                                <span onClick={() => {setClicked2(!clicked2);setCounArray([...countArray,clicked2])}}>{clicked2 ? <StarFill color="#ff801e"/> : <Star color="#ff801e"/>}</span>
-                                <span onClick={() => {setClicked3(!clicked3);setCounArray([...countArray,clicked3])}}>{clicked3 ? <StarFill color="#ff801e"/> : <Star color="#ff801e"/>}</span>
-                                <span onClick={() => {setClicked4(!clicked4);setCounArray([...countArray,clicked4])}}>{clicked4 ? <StarFill color="#ff801e"/> : <Star color="#ff801e"/>}</span>
-                                <span onClick={() => {setClicked5(!clicked5);setCounArray([...countArray,clicked5])}}>{clicked5 ? <StarFill color="#ff801e"/> : <Star color="#ff801e"/>}</span>
-                              </div>
+                              <ReactStars
+                                count={5}
+                                onChange={ratingChanged}
+                                size={40}
+                                isHalf={true}
+                                emptyIcon={<Star/>}
+                                halfIcon={<StarHalf/>}
+                                fullIcon={<StarFill/>}
+                                activeColor="#ff801e"
+                              />
                             </div>
                             <Form>
                               <Form.Group controlId="exampleForm.ControlTextarea1">
@@ -64,24 +63,17 @@ const RateAndReviewModal = (props) => {
                               </Form.Group>
                             </Form>
                             <button onClick={() => {
-                              console.log('review---',review);
-                              let countF = 0;
-                              let countT = 0;
-                              for(let i=0;i<countArray.length;i++) {
-                                countArray[i] ? countT++ : countF++;
-                              }
-                              setStarsCount(countF-countT);
                               addReviews({
-                                'userID' : products['id'], 
-                                'rating' : starsCount,
-                                'review' : review
-                              },products['id']);
-                              setClicked1(false);
-                              setClicked2(false);
-                              setClicked3(false);
-                              setClicked4(false);
-                              setClicked5(false);
-                              setReview('');
+                                rating : starsCount,
+                                review : review
+                              },products['id']).then(({data}) =>{
+                                if (data.status) {
+                                  console.log(data);
+                                  sweetalert('Thanks for your review !', '', 'success');
+                                }
+                              });
+                              console.log(`ratings--${starsCount} review--${review} id--${product['id']}`);
+                              
                             }} className="btn btn-primary">
                               CONFIRM{' '}
                             </button>
@@ -94,7 +86,8 @@ const RateAndReviewModal = (props) => {
             </div>
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={console.log('heyoo:::',products['productIDs'])} className="btn btn-primary">
+          <button onClick={onHide}
+           className="btn btn-primary">
             CLOSE{' '}
           </button>
         </Modal.Footer>
@@ -103,3 +96,5 @@ const RateAndReviewModal = (props) => {
 }
 
 export default RateAndReviewModal
+
+

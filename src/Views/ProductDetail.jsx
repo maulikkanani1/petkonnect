@@ -82,6 +82,7 @@ const ProductDetail = () => {
       };
     });
   }
+  console.log('hooo::',productData);
 
   const classes = useStyles();
 
