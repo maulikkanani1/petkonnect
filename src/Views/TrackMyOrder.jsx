@@ -13,11 +13,13 @@ import TrackCard2 from '../components/TrackCard2';
 import { cancelOrder } from '../ApiService';
 import './../scss/track_myorder.scss';
 import './../scss/track_order.scss';
+import RateAndReviewModal from '../components/RateAndReviewModal.jsx';
 
 const Cart = () => {
   const location = useLocation();
   const history = useHistory();
   const { order } = location.state;
+  const [modalShow,setModalShow] = useState(false);
 
   const sucess_alert = () => {
     swal('Order Confirmed', '', 'success');
@@ -220,7 +222,7 @@ const Cart = () => {
                   </div> */}
                 </div>
                 <div className="d-flex justify-content-center mb-3">
-                  <Button variant="outline-primary">
+                  <Button variant="outline-primary" onClick={() => setModalShow(true)}>
                     <img
                       className="mr-2"
                       src="./../../icons/star.svg"
@@ -260,8 +262,8 @@ const Cart = () => {
           </div>
         </Card>
       </Container>
-
       <Footer />
+      <RateAndReviewModal products={order} show={modalShow} onHide={() => setModalShow(false)}/>
     </div>
   );
 };

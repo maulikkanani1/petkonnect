@@ -92,6 +92,7 @@ export const removePet = (id) =>
 export const getFeaturedProducts = () => axios.post(`${MAIN_API}/inventory/get_featured_products`);
 export const getNewProducts = () => axios.post(`${MAIN_API}/inventory/get_new_products`);
 export const getTopSellingProducts = () => axios.post(`${MAIN_API}/inventory/get_topSelling_products`);
+export const addReviews = (data,ID) => axios.put(`${MAIN_API}/inventory/get_rating/${ID}`,data);
 
 export const viewServices = (vendorID) => {
   return axios.post(`${MAIN_API}/services/get_services`, { vendorID });
