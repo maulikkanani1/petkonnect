@@ -7,7 +7,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import {addReviews} from '.././ApiService';
 import sweetalert from 'sweetalert';
-import ReactStars from "react-rating-stars-component";
+import StarRating from './StarRating';
 
 
 const RateAndReviewModal = (props) => {
@@ -44,17 +44,8 @@ const RateAndReviewModal = (props) => {
                         <Card.Body>
                           <div className="accordion-content">
                             <div className="top-half">
-                              <h6>Rate our product:</h6>
-                              <ReactStars
-                                count={5}
-                                onChange={ratingChanged}
-                                size={40}
-                                isHalf={true}
-                                emptyIcon={<Star/>}
-                                halfIcon={<StarHalf/>}
-                                fullIcon={<StarFill/>}
-                                activeColor="#ff801e"
-                              />
+                              <h6>Rate this product:</h6>
+                              <StarRating handleRating={ratingChanged}/>
                             </div>
                             <Form>
                               <Form.Group controlId="exampleForm.ControlTextarea1">
